@@ -329,8 +329,7 @@ export function HomeClient({
                   Cămine de bătrâni PREMIUM
                 </h2>
                 <p className="text-navy-deep/60 max-w-2xl mx-auto">
-                  Cămine de bătrâni cu servicii de excepție, recomandate de
-                  familiile beneficiare și verificate de echipura noastră
+                  Cămine de bătrâni Partenere Seniore.ro
                 </p>
               </motion.div>
 
