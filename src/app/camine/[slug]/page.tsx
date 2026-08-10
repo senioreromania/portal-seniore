@@ -36,7 +36,7 @@ type Camin = {
   slug: string;
   name: string;
   phone: string;
-  internationalPhone: string;
+  internationalPhone?: string;
   website: string;
   address: string;
   lat: string | number;
@@ -51,6 +51,7 @@ type Camin = {
   cui: string;
   serviceType: string;
   localitate: string;
+  description?: string;
 };
 
 export const revalidate = 3600;
@@ -448,6 +449,36 @@ export default async function CaminDetailPage({
                     />
                   </div>
                 )}
+
+                {/* Description */}
+                <div className="p-6 rounded-xl bg-white border border-navy-deep/10">
+                  <h2 className="font-heading text-lg font-bold text-navy-deep mb-4">
+                    Despre {titleCase(camin.name)}
+                  </h2>
+                  {camin.description && camin.description.trim() ? (
+                    <p className="text-sm text-navy-deep/70 leading-relaxed">
+                      {camin.description}
+                    </p>
+                  ) : (
+                    <p className="text-sm text-navy-deep/50 italic">
+                      Momentan fără descriere.
+                    </p>
+                  )}
+                </div>
+
+                {/* Owner CTA */}
+                <div className="p-6 rounded-xl bg-gold/5 border border-gold/20">
+                  <p className="text-sm text-navy-deep/70 mb-3">
+                    Ești proprietarul acestui cămin de bătrâni și dorești modificări / actualizări? Contactează echipa Seniore.ro.
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 bg-gold text-navy-deep px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-gold/20"
+                  >
+                    <Phone className="size-4" />
+                    Contact
+                  </Link>
+                </div>
               </div>
 
               {/* Right: Sidebar */}
