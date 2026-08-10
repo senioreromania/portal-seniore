@@ -50,9 +50,18 @@ export function AddCaminForm({ onClose, onSaved }: { onClose: () => void; onSave
       return;
     }
 
+    const slugBase = `${form.nume}-${form.oras}`
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .substring(0, 80);
+
     const { error } = await supabase.from("camine").insert({
       user_id: user.id,
       nume: form.nume,
+      slug: slugBase,
       judet: form.judet,
       oras: form.oras,
       adresa: form.adresa || null,

@@ -17,9 +17,10 @@ import {
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
 import { JsonLd } from "@/components/json-ld";
-import { buildCaminMetadata, nursingHomeJsonLd, breadcrumbJsonLd, faqCaminJsonLd, normalizeJudet, SITE_NAME } from "@/lib/seo";
+import { buildCaminMetadata, nursingHomeJsonLd, breadcrumbJsonLd, faqCaminJsonLd, normalizeJudet, SITE_NAME, SITE_URL, slugifyJudet } from "@/lib/seo";
 import { FaqSection } from "@/components/faq-section";
 import { PromoteCaminButton } from "./promote-button";
+import { createClient } from "@/lib/supabase-server";
 import camineData from "@/data/camine-director.json";
 
 type Camin = {
@@ -43,8 +44,43 @@ type Camin = {
   localitate: string;
 };
 
+export const revalidate = 3600;
+
 export function generateStaticParams() {
   return (camineData as Camin[]).map((c) => ({ slug: c.slug }));
+}
+
+async function getCaminFromSupabase(slug: string): Promise<Camin | null> {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("camine")
+    .select("*")
+    .eq("slug", slug)
+    .eq("status", "approved")
+    .single();
+
+  if (!data) return null;
+
+  return {
+    slug: data.slug || `sb-${data.id}`,
+    name: data.nume,
+    phone: data.telefon || "",
+    internationalPhone: data.telefon || "",
+    website: data.website || "",
+    address: data.adresa || "",
+    lat: data.lat || 0,
+    lng: data.lng || 0,
+    judet: data.judet || "",
+    rating: data.rating || 0,
+    reviews: data.reviews || 0,
+    licensed: data.licensed || false,
+    capacity: data.capacity ? String(data.capacity) : "",
+    licenseNumber: data.license_number || "",
+    licenseDate: "",
+    cui: "",
+    serviceType: (data.servicii && Array.isArray(data.servicii)) ? data.servicii.join(", ") : "",
+    localitate: data.oras || "",
+  };
 }
 
 export async function generateMetadata({
@@ -53,9 +89,17 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const camin = (camineData as Camin[]).find((c) => c.slug === slug);
+  let camin: Camin | undefined = (camineData as Camin[]).find((c) => c.slug === slug);
+
   if (!camin) {
-    return { title: `Cămin negăsit — ${SITE_NAME}` };
+    camin = await getCaminFromSupabase(slug) ?? undefined;
+  }
+
+  if (!camin) {
+    return {
+      title: `Cămin negăsit — ${SITE_NAME}`,
+      robots: { index: false, follow: false },
+    };
   }
   return buildCaminMetadata(camin);
 }
@@ -66,7 +110,11 @@ export default async function CaminDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const camin = (camineData as Camin[]).find((c) => c.slug === slug);
+  let camin: Camin | undefined = (camineData as Camin[]).find((c) => c.slug === slug);
+
+  if (!camin) {
+    camin = await getCaminFromSupabase(slug) ?? undefined;
+  }
 
   if (!camin) {
     return (

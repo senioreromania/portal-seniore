@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import camineData from "@/data/camine-director.json";
 import { SITE_URL, slugifyJudet, normalizeJudet } from "@/lib/seo";
 import { articleMetas } from "@/app/stiri/article-metas";
+import { createClient } from "@/lib/supabase-server";
 
 type Camin = {
   slug: string;
@@ -33,7 +34,9 @@ const staticPages: {
   { url: "/cookies", priority: 0.3, changeFrequency: "yearly" },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 3600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticEntries: MetadataRoute.Sitemap = staticPages.map((p) => ({
@@ -43,6 +46,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: p.priority,
   }));
 
+  // JSON care homes
+  const jsonSlugs = new Set(camine.map((c) => c.slug));
   const caminEntries: MetadataRoute.Sitemap = camine.map((c) => ({
     url: `${SITE_URL}/camine/${c.slug}`,
     lastModified: now,
@@ -50,6 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // Merge judete and orase from both sources
   const judeteSet = new Set<string>();
   const oraseMap = new Map<string, Set<string>>();
   camine.forEach((c) => {
@@ -62,6 +68,42 @@ export default function sitemap(): MetadataRoute.Sitemap {
       }
     }
   });
+
+  // Supabase approved care homes (only those not already in JSON)
+  const supabaseEntries: MetadataRoute.Sitemap = [];
+  try {
+    const supabase = await createClient();
+    const { data: sbCamine } = await supabase
+      .from("camine")
+      .select("slug, judet, oras")
+      .eq("status", "approved")
+      .not("slug", "is", null);
+
+    if (sbCamine) {
+      for (const c of sbCamine) {
+        if (c.slug && !jsonSlugs.has(c.slug)) {
+          supabaseEntries.push({
+            url: `${SITE_URL}/camine/${c.slug}`,
+            lastModified: now,
+            changeFrequency: "weekly" as const,
+            priority: 0.8,
+          });
+
+          // Add judete and orase from Supabase care homes
+          const judet = normalizeJudet(c.judet || "");
+          if (judet) {
+            judeteSet.add(judet);
+            if (c.oras) {
+              if (!oraseMap.has(judet)) oraseMap.set(judet, new Set());
+              oraseMap.get(judet)!.add(c.oras);
+            }
+          }
+        }
+      }
+    }
+  } catch {
+    // Supabase not available, skip
+  }
 
   const judetEntries: MetadataRoute.Sitemap = Array.from(judeteSet).map((j) => ({
     url: `${SITE_URL}/judet/${slugifyJudet(j)}`,
@@ -89,5 +131,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
-  return [...staticEntries, ...stiriEntries, ...judetEntries, ...oraseEntries, ...caminEntries];
+  return [...staticEntries, ...stiriEntries, ...judetEntries, ...oraseEntries, ...caminEntries, ...supabaseEntries];
 }
