@@ -321,17 +321,19 @@ export default async function JudetPage({
                     const count = camineInJudet.filter(
                       (c) => c.localitate === oras
                     ).length;
+                    const orasSlug = slugifyJudet(oras);
                     return (
-                      <span
+                      <Link
                         key={oras}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-navy-deep/8 text-sm text-navy-deep/70"
+                        href={`/judet/${slug}/${orasSlug}`}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-navy-deep/8 text-sm text-navy-deep/70 hover:border-gold/30 hover:text-gold transition-all"
                       >
                         <MapPin className="size-3 text-gold" />
                         {oras}
                         <span className="text-xs text-navy-deep/30">
                           ({count})
                         </span>
-                      </span>
+                      </Link>
                     );
                   })}
                 </div>
@@ -356,6 +358,27 @@ export default async function JudetPage({
                     <ChevronRight className="size-4 text-navy-deep/20 group-hover:text-gold group-hover:translate-x-0.5 transition-all" />
                   </Link>
                 ))}
+              </div>
+            </div>
+
+            {/* SEO contextual links */}
+            <div className="mt-12 pt-8 border-t border-navy-deep/10 text-center">
+              <h2 className="font-heading text-lg font-bold text-navy-deep mb-4">
+                Alte detalii
+              </h2>
+              <div className="space-y-3 text-sm text-navy-deep/60 leading-relaxed max-w-3xl mx-auto text-left">
+                <p>
+                  În județul {judet} există {camineInJudet.length} de cămine de bătrâni și centre de îngrijire a vârstnicilor, din care {licensed.length} sunt licențiate de <a href="https://mmuncii.gov.ro/acreditare-furnizori-si-servicii-sociale/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Ministerul Muncii, Familiei, Tineretului și Solidarității Sociale</a>. Lista completă a căminelor licențiate la nivel național este publicată de <a href="https://mmuncii.gov.ro/wp-content/uploads/2026/03/10032026_Camine_PV.pdf" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">MMPS (PDF)</a>, iar pe site-ul nostru poți consulta <Link href="/camine-autorizate" className="text-gold hover:underline font-medium">căminele licențiate din întreaga țară</Link>.
+                </p>
+                <p>
+                  Conform <a href="https://legislatie.just.ro/Public/DetaliiDocument/21309" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Legii nr. 17/2000 privind asistența socială a persoanelor vârstnice</a> și <a href="https://www.cdep.ro/ords/pls/legis/legis_pck.htp_act?ida=113748" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Legii nr. 197/2012 privind asigurarea calității serviciilor sociale</a>, toate centrele rezidențiale pentru vârstnici trebuie să dețină licență de funcționare. Pentru informații despre pensii și drepturi de asigurări sociale, consultă <a href="https://www.cnpp.ro/web/guest/home" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Casa Națională de Pensii Publice</a>.
+                </p>
+                <p>
+                  Dacă ai nevoie de sprijin pentru îngrijirea unui vârstnic cu demență, <a href="https://alz.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Societatea Română Alzheimer</a> oferă consiliere și resurse. <a href="https://caritasromania.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Confederația Caritas România</a> și <a href="https://cag.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Fundația Crucea Alb-Galbenă</a> oferă servicii de îngrijire la domiciliu pentru vârstnici. Alte resurse: <a href="https://cnoppv.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Consiliul Național al Organizațiilor de Pensionari</a> și <a href="https://seniorinet.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Federația SenioriNET</a>.
+                </p>
+                <p>
+                  Pe site-ul nostru găsești și <Link href="/resurse" className="text-gold hover:underline font-medium">legislație și resurse</Link> despre căminele de bătrâni, <Link href="/stiri" className="text-gold hover:underline font-medium">știri despre căminele de bătrâni</Link> din România, sau poți afla <Link href="/cum-functioneaza" className="text-gold hover:underline font-medium">cum funcționează Seniore.ro</Link>. Pentru a adăuga un cămin în director, accesează pagina de <Link href="/contact" className="text-gold hover:underline font-medium">contact</Link>.
+                </p>
               </div>
             </div>
 

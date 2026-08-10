@@ -144,6 +144,26 @@ export default function AdaugaCentruPage() {
             </div>
           </div>
         </section>
+
+        {/* SEO contextual links */}
+        <section className="py-12 bg-paper border-t border-navy-deep/5">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className="font-heading text-lg font-bold text-navy-deep mb-4">
+              Alte detalii
+            </h2>
+            <div className="space-y-3 text-sm text-navy-deep/60 leading-relaxed max-w-3xl mx-auto text-left">
+              <p>
+                Seniore.ro indexează cămine de bătrâni din toate județele României. Cauți un <Link href="/camine" className="text-gold hover:underline font-medium">cămin de bătrâni</Link> sau <Link href="/camine-autorizate" className="text-gold hover:underline font-medium">cămine licențiate MMJS</Link>? Accesează paginile dedicate. Conform <a href="https://www.cdep.ro/ords/pls/legis/legis_pck.htp_act?ida=113748" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Legii nr. 197/2012 privind asigurarea calității serviciilor sociale</a>, centrele rezidențiale trebuie să dețină licență de funcționare emisă de <a href="https://mmuncii.gov.ro/acreditare-furnizori-si-servicii-sociale/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Ministerul Muncii, Familiei, Tineretului și Solidarității Sociale</a>.
+              </p>
+              <p>
+                Pentru informații despre drepturile persoanelor vârstnice, consultă <a href="https://legislatie.just.ro/Public/DetaliiDocument/21309" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Legea nr. 17/2000 privind asistența socială a persoanelor vârstnice</a>. Pentru sprijin în îngrijirea vârstnicilor cu demență, <a href="https://alz.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Societatea Română Alzheimer</a> oferă consiliere. <a href="https://www.cnpp.ro/web/guest/home" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Casa Națională de Pensii Publice</a> oferă informații despre pensii și drepturi de asigurări sociale.
+              </p>
+              <p>
+                Pe site-ul nostru găsești și <Link href="/resurse" className="text-gold hover:underline font-medium">legislație și resurse</Link>, <Link href="/stiri" className="text-gold hover:underline font-medium">știri despre căminele de bătrâni</Link>, sau poți afla mai multe <Link href="/despre" className="text-gold hover:underline font-medium">despre Seniore.ro</Link>.
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
       <SiteFooter />
     </>

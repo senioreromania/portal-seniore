@@ -479,6 +479,25 @@ export default async function CaminDetailPage({
                     Contact
                   </Link>
                 </div>
+
+                {/* SEO contextual links */}
+                <div className="p-6 rounded-xl bg-white border border-navy-deep/10">
+                  <h2 className="font-heading text-lg font-bold text-navy-deep mb-4">
+                    Alte detalii
+                  </h2>
+                  <p className="text-sm text-navy-deep/60 leading-relaxed">
+                    {camin.name} este un cămin de bătrâni din {camin.localitate || camin.judet}, indexat în portalul <Link href="/camine" className="text-gold hover:underline font-medium">Seniore.ro</Link>. Cauți și alte opțiuni? Vezi <Link href={`/judet/${slugifyJudet(camin.judet)}`} className="text-gold hover:underline font-medium">cămine de bătrâni în {camin.judet}</Link> sau <Link href="/camine-autorizate" className="text-gold hover:underline font-medium">cămine licențiate MMJS</Link> din întreaga țară.
+                  </p>
+                  <p className="text-sm text-navy-deep/60 leading-relaxed mt-3">
+                    Conform <a href="https://www.cdep.ro/ords/pls/legis/legis_pck.htp_act?ida=113748" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Legii nr. 197/2012 privind asigurarea calității serviciilor sociale</a>, centrele rezidențiale pentru vârstnici trebuie să dețină licență de funcționare emisă de <a href="https://mmuncii.gov.ro/acreditare-furnizori-si-servicii-sociale/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Ministerul Muncii, Familiei, Tineretului și Solidarității Sociale</a>. {camin.licensed ? `${camin.name} figurează în lista oficială a căminelor licențiate.` : `Recomandăm să verifici direct la centru statusul de licențiere.`} Lista completă a căminelor licențiate este publicată de <a href="https://mmuncii.gov.ro/wp-content/uploads/2026/03/10032026_Camine_PV.pdf" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">MMPS (PDF)</a>.
+                  </p>
+                  <p className="text-sm text-navy-deep/60 leading-relaxed mt-3">
+                    Pentru informații despre drepturile persoanelor vârstnice, consultă <a href="https://legislatie.just.ro/Public/DetaliiDocument/21309" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Legea nr. 17/2000 privind asistența socială a persoanelor vârstnice</a>. Dacă ai nevoie de sprijin pentru îngrijirea unui vârstnic cu demență, <a href="https://alz.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Societatea Română Alzheimer</a> oferă consiliere și resurse. Pentru informații despre pensii și drepturi de asigurări sociale, poți accesa <a href="https://www.cnpp.ro/web/guest/home" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Casa Națională de Pensii Publice</a>.
+                  </p>
+                  <p className="text-sm text-navy-deep/60 leading-relaxed mt-3">
+                    Alte resurse utile: <a href="https://caritasromania.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Confederația Caritas România</a> — îngrijire la domiciliu pentru vârstnici, <a href="https://cnoppv.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Consiliul Național al Organizațiilor de Pensionari</a>, <a href="https://seniorinet.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Federația SenioriNET</a> și <a href="https://www.adivromania.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Asociația Directorilor Instituțiilor pentru Vârstnici (A.D.I.V.)</a>. Pe site-ul nostru găsești și <Link href="/resurse" className="text-gold hover:underline font-medium">legislație și resurse</Link> sau <Link href="/stiri" className="text-gold hover:underline font-medium">știri despre căminele de bătrâni</Link> din România.
+                  </p>
+                </div>
               </div>
 
               {/* Right: Sidebar */}

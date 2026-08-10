@@ -96,10 +96,42 @@ export default function HomePage() {
       },
       {
         "@type": "Question",
+        name: "Cât costă un cămin de bătrâni în România?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Prețurile variază în funcție de tipul centrului (public sau privat), gradul de dependență al rezidentului și serviciile incluse. Centrele publice au coplături între 1.500 și 3.000 lei/lună, iar cele private pornesc de la 3.500 lei/lună. Contactează direct fiecare centru pentru un deviz personalizat.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Care e diferența dintre un cămin public și unul privat?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Căminele publice sunt gestionate de autoritățile locale și au tarife subvenționate, dar liste de așteptare mai lungi. Căminele private oferă servicii personalizate, camere individuale și facilități suplimentare, la tarife mai ridicate. Ambele tipuri trebuie să aibă licență MMJS pentru a opera legal.",
+        },
+      },
+      {
+        "@type": "Question",
         name: "Cum adaug centrul meu în director?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "Accesează pagina /cum-functioneaza și completează formularul cu datele centrului tău. Adăugarea este gratuită. Pentru vizibilitate extinsă poți opta pentru un listing premium.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Ce servicii oferă un cămin de bătrâni?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Căminele de bătrâni oferă cazare, masă, asistență în activitățile zilnice, supraveghere medicală, administrarea medicației, activități recreative și suport psihologic. Unele centre oferă și servicii specializate pentru persoane cu demență, Alzheimer sau dependență avansată.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Pot vizita un cămin de bătrâni înainte de a decide?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Da, recomandăm vizitarea centrului înainte de a lua o decizie. Contactează căminul direct pentru a programa o vizită. Verifică condițiile de cazare, curățenia, atmosfera, raportul personal-rezident și serviciile medicale incluse.",
         },
       },
     ],

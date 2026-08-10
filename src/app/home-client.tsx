@@ -17,6 +17,7 @@ import {
   Building2,
   Navigation,
   ChevronRight,
+  ChevronDown,
   Scale,
   FileText,
   Newspaper,
@@ -705,106 +706,177 @@ export function HomeClient({
           </div>
         </section>
 
-        {/* ===== SEO Content ===== */}
+        {/* ===== SEO Content + FAQ ===== */}
         <section className="py-16 md:py-20 bg-navy-deep/3">
-          <div className="max-w-4xl mx-auto px-6">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={0}
-              className="prose prose-navy max-w-none"
-            >
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-navy-deep mb-6">
-                Cum alegi un cămin de bătrâni în România
-              </h2>
-              <div className="space-y-4 text-navy-deep/60 leading-relaxed">
-                <p>
-                  Alegerea unui <strong>cămin de bătrâni</strong> potrivit
-                  pentru cei dragi este o decizie importantă. În România,
-                  există sute de centre de îngrijire a vârstnicilor, atât
-                  publice cât și private, iar portalul nostru te ajută să
-                  găsești rapid opțiunile disponibile în județul tău.
-                </p>
-                <p>
-                  Un <strong>cămin de bătrâni licențiat</strong> este autorizat
-                  de Ministerul Muncii, Familiei, Tineretului și Solidarității
-                  Sociale (MMJS) și trebuie să îndeplinească standarde specifice
-                  de calitate: personal calificat, condiții de cazare, mese
-                  regulate, asistență medicală și activități recreative. Din
-                  cele {totalCamine} de cămine indexate în portalul nostru,{" "}
-                  {licensedCount} sunt licențiate.
-                </p>
-                <p>
-                  Când cauți un <strong>centru de îngrijire pentru
-                  vârstnici</strong>, verifică: statusul de licențiere,
-                  capacitatea centrului, serviciile oferite (îngrijire medicală,
-                  asistență socială, recuperare), prețurile și recenziile de
-                  la alte familii. Folosește filtrele din portalul nostru
-                  pentru a găsi rapid cămine licențiate sau cu telefon de
-                  contact direct.
-                </p>
-                <p>
-                  Portalul nostru acoperă toate județele României. Indiferent
-                  dacă cauți un cămin de bătrâni în București, Cluj, Timișoara,
-                  Iași, Constanța, Brașov sau orice alt județ, poți folosi
-                  pagina dedicată județului respectiv pentru a vedea toate
-                  centrele din zonă.
-                </p>
-              </div>
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+              {/* Left: SEO Content */}
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                custom={0}
+                className="prose prose-navy max-w-none"
+              >
+                <h2 className="font-heading text-2xl md:text-3xl font-bold text-navy-deep mb-6">
+                  Cum alegi un cămin de bătrâni în România
+                </h2>
+                <div className="space-y-4 text-navy-deep/60 leading-relaxed">
+                  <p>
+                    Alegerea unui <strong>cămin de bătrâni</strong> potrivit
+                    pentru cei dragi este o decizie importantă. În România,
+                    există sute de centre de îngrijire a vârstnicilor, atât
+                    publice cât și private, iar <Link href="/camine" className="text-gold hover:underline font-medium">portalul nostru</Link> te ajută să
+                    găsești rapid opțiunile disponibile în județul tău.
+                  </p>
+                  <p>
+                    Un <strong>cămin de bătrâni licențiat</strong> este autorizat
+                    de <a href="https://mmuncii.gov.ro/acreditare-furnizori-si-servicii-sociale/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Ministerul Muncii, Familiei, Tineretului și Solidarității Sociale (MMJS)</a> și trebuie să îndeplinească standarde specifice
+                    de calitate: personal calificat, condiții de cazare, mese
+                    regulate, asistență medicală și activități recreative. Din
+                    cele {totalCamine} de cămine indexate în portalul nostru,{" "}
+                    <Link href="/camine-autorizate" className="text-gold hover:underline font-medium">{licensedCount} sunt licențiate</Link>.
+                  </p>
+                  <p>
+                    Când cauți un <strong>centru de îngrijire pentru
+                    vârstnici</strong>, verifică: statusul de licențiere,
+                    capacitatea centrului, serviciile oferite (îngrijire medicală,
+                    asistență socială, recuperare), prețurile și recenziile de
+                    la alte familii. Conform <a href="https://www.cdep.ro/ords/pls/legis/legis_pck.htp_act?ida=113748" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Legii nr. 197/2012 privind asigurarea calității serviciilor sociale</a>, toate centrele rezidențiale trebuie să dețină licență de funcționare. Folosește filtrele din portalul nostru
+                    pentru a găsi rapid <Link href="/camine-autorizate" className="text-gold hover:underline font-medium">cămine licențiate</Link> sau cu telefon de
+                    contact direct.
+                  </p>
+                  <p>
+                    Portalul nostru acoperă toate județele României. Indiferent
+                    dacă cauți un <Link href="/judet/bucuresti" className="text-gold hover:underline font-medium">cămin de bătrâni în București</Link>, <Link href="/judet/cluj" className="text-gold hover:underline font-medium">Cluj</Link>, <Link href="/judet/timis" className="text-gold hover:underline font-medium">Timiș</Link>, <Link href="/judet/iasi" className="text-gold hover:underline font-medium">Iași</Link>, <Link href="/judet/constanta" className="text-gold hover:underline font-medium">Constanța</Link>, <Link href="/judet/brasov" className="text-gold hover:underline font-medium">Brașov</Link> sau orice alt județ, poți folosi
+                    pagina dedicată județului respectiv pentru a vedea toate
+                    centrele din zonă.
+                  </p>
+                  <p>
+                    Pentru familiile care se confruntă cu afecțiuni neurodegenerative, <a href="https://alz.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Societatea Română Alzheimer</a> oferă resurse și consiliere pentru îngrijirea vârstnicilor cu demență. De asemenea, <a href="https://legislatie.just.ro/Public/DetaliiDocument/21309" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Legea nr. 17/2000 privind asistența socială a persoanelor vârstnice</a> reglementează drepturile și serviciile de care beneficiază seniorii din România.
+                  </p>
+                  <p>
+                    Dacă ești interesat să adaugi centrul tău în director, accesează pagina <Link href="/cum-functioneaza" className="text-gold hover:underline font-medium">Cum funcționează Seniore.ro</Link>. Pentru informații despre legislație și resurse, vizitează secțiunea <Link href="/resurse" className="text-gold hover:underline font-medium">Legislație și resurse</Link>, iar pentru <a href="https://www.cnpp.ro/web/guest/home" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">pensii și drepturi de asigurări sociale</a>, poți consulta Casa Națională de Pensii Publice.
+                  </p>
+                </div>
 
-              <div className="grid sm:grid-cols-3 gap-4 mt-8">
-                <Link
-                  href="/camine"
-                  className="group flex items-center gap-3 p-4 rounded-xl bg-white border border-navy-deep/8 hover:border-gold/30 transition-all"
-                >
-                  <div className="flex items-center justify-center size-10 rounded-lg bg-gold/10">
-                    <Building2 className="size-5 text-gold" />
-                  </div>
-                  <div>
-                    <div className="font-heading text-sm font-semibold text-navy-deep group-hover:text-gold transition-colors">
-                      Portal cămine
+                <div className="grid sm:grid-cols-3 gap-4 mt-8">
+                  <Link
+                    href="/camine"
+                    className="group flex items-center gap-3 p-4 rounded-xl bg-white border border-navy-deep/8 hover:border-gold/30 transition-all"
+                  >
+                    <div className="flex items-center justify-center size-10 rounded-lg bg-gold/10">
+                      <Building2 className="size-5 text-gold" />
                     </div>
-                    <div className="text-xs text-navy-deep/40">
-                      {totalCamine} centre indexate
+                    <div>
+                      <div className="font-heading text-sm font-semibold text-navy-deep group-hover:text-gold transition-colors">
+                        Portal cămine
+                      </div>
+                      <div className="text-xs text-navy-deep/40">
+                        {totalCamine} centre indexate
+                      </div>
                     </div>
-                  </div>
-                </Link>
-                <Link
-                  href="/camine-autorizate"
-                  className="group flex items-center gap-3 p-4 rounded-xl bg-white border border-navy-deep/8 hover:border-gold/30 transition-all"
-                >
-                  <div className="flex items-center justify-center size-10 rounded-lg bg-gold/10">
-                    <ShieldCheck className="size-5 text-gold" />
-                  </div>
-                  <div>
-                    <div className="font-heading text-sm font-semibold text-navy-deep group-hover:text-gold transition-colors">
-                      Cămine licențiate
+                  </Link>
+                  <Link
+                    href="/camine-autorizate"
+                    className="group flex items-center gap-3 p-4 rounded-xl bg-white border border-navy-deep/8 hover:border-gold/30 transition-all"
+                  >
+                    <div className="flex items-center justify-center size-10 rounded-lg bg-gold/10">
+                      <ShieldCheck className="size-5 text-gold" />
                     </div>
-                    <div className="text-xs text-navy-deep/40">
-                      {licensedCount} autorizate MMJS
+                    <div>
+                      <div className="font-heading text-sm font-semibold text-navy-deep group-hover:text-gold transition-colors">
+                        Cămine licențiate
+                      </div>
+                      <div className="text-xs text-navy-deep/40">
+                        {licensedCount} autorizate MMJS
+                      </div>
                     </div>
-                  </div>
-                </Link>
-                <Link
-                  href="/resurse"
-                  className="group flex items-center gap-3 p-4 rounded-xl bg-white border border-navy-deep/8 hover:border-gold/30 transition-all"
-                >
-                  <div className="flex items-center justify-center size-10 rounded-lg bg-gold/10">
-                    <Scale className="size-5 text-gold" />
-                  </div>
-                  <div>
-                    <div className="font-heading text-sm font-semibold text-navy-deep group-hover:text-gold transition-colors">
-                      Legislație
+                  </Link>
+                  <Link
+                    href="/resurse"
+                    className="group flex items-center gap-3 p-4 rounded-xl bg-white border border-navy-deep/8 hover:border-gold/30 transition-all"
+                  >
+                    <div className="flex items-center justify-center size-10 rounded-lg bg-gold/10">
+                      <Scale className="size-5 text-gold" />
                     </div>
-                    <div className="text-xs text-navy-deep/40">
-                      Acte normative
+                    <div>
+                      <div className="font-heading text-sm font-semibold text-navy-deep group-hover:text-gold transition-colors">
+                        Legislație
+                      </div>
+                      <div className="text-xs text-navy-deep/40">
+                        Acte normative
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </div>
-            </motion.div>
+                  </Link>
+                </div>
+              </motion.div>
+
+              {/* Right: FAQ */}
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={fadeUp}
+              >
+                <div className="mb-6">
+                  <h2 className="font-heading text-2xl md:text-3xl font-bold text-navy-deep mb-3">
+                    Întrebări frecvente
+                  </h2>
+                  <p className="text-navy-deep/50 text-sm">
+                    Răspunsuri la cele mai comune întrebări despre căminele de bătrâni din România
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  {[
+                    {
+                      q: "Câte cămine de bătrâni sunt în România?",
+                      a: `Portalul nostru indexează ${totalCamine} cămine de bătrâni și centre de îngrijire pentru vârstnici la nivel național, din care ${licensedCount} sunt licențiate de Ministerul Muncii.`,
+                    },
+                    {
+                      q: "Cum găsesc un cămin de bătrâni în județul meu?",
+                      a: "Folosește portalul nostru național de la pagina /camine și filtrează după județ. Poți vizita și pagina dedicată județului tău pentru a vedea toate căminele din zona ta.",
+                    },
+                    {
+                      q: "Ce înseamnă cămin licențiat?",
+                      a: "Un cămin de bătrâni licențiat este autorizat de Ministerul Muncii, Familiei, Tineretului și Solidarității Sociale (MMJS) pentru a furniza servicii sociale rezidențiale. Verifică statusul de licențiere pe pagina fiecărui cămin.",
+                    },
+                    {
+                      q: "Cât costă un cămin de bătrâni în România?",
+                      a: "Prețurile variază în funcție de tipul centrului (public sau privat), gradul de dependență al rezidentului și serviciile incluse. Centrele publice au coplături între 1.500 și 3.000 lei/lună, iar cele private pornesc de la 3.500 lei/lună. Contactează direct fiecare centru pentru un deviz personalizat.",
+                    },
+                    {
+                      q: "Care e diferența dintre un cămin public și unul privat?",
+                      a: "Căminele publice sunt gestionate de autoritățile locale și au tarife subvenționate, dar liste de așteptare mai lungi. Căminele private oferă servicii personalizate, camere individuale și facilități suplimentare, la tarife mai ridicate. Ambele tipuri trebuie să aibă licență MMJS pentru a opera legal.",
+                    },
+                    {
+                      q: "Ce servicii oferă un cămin de bătrâni?",
+                      a: "Căminele de bătrâni oferă cazare, masă, asistență în activitățile zilnice, supraveghere medicală, administrarea medicației, activități recreative și suport psihologic. Unele centre oferă și servicii specializate pentru persoane cu demență, Alzheimer sau dependență avansată.",
+                    },
+                    {
+                      q: "Pot vizita un cămin de bătrâni înainte de a decide?",
+                      a: "Da, recomandăm vizitarea centrului înainte de a lua o decizie. Contactează căminul direct pentru a programa o vizită. Verifică condițiile de cazare, curățenia, atmosfera, raportul personal-rezident și serviciile medicale incluse.",
+                    },
+                    {
+                      q: "Cum adaug centrul meu în director?",
+                      a: "Accesează pagina /cum-functioneaza și completează formularul cu datele centrului tău. Adăugarea este gratuită. Pentru vizibilitate extinsă poți opta pentru un listing premium.",
+                    },
+                  ].map((item, i) => (
+                    <details key={i} className="group bg-white rounded-xl border border-navy-deep/10 overflow-hidden">
+                      <summary className="flex items-center justify-between gap-4 p-5 cursor-pointer font-heading text-sm font-semibold text-navy-deep hover:bg-gold/5 transition-colors">
+                        {item.q}
+                        <ChevronDown className="size-5 shrink-0 text-gold transition-transform group-open:rotate-180" />
+                      </summary>
+                      <div className="px-5 pb-5 text-sm text-navy-deep/60 leading-relaxed">
+                        {item.a}
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
       </main>

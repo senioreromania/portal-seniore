@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
+import Link from "next/link";
 import { Search, Filter, X } from "lucide-react";
 import { titleCase } from "@/lib/seo";
 import camineData from "@/data/camine-autorizate.json";
@@ -309,6 +310,26 @@ export default function CamineAutorizatePage() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* SEO contextual links */}
+        <section className="py-12 bg-paper border-t border-navy-deep/5">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className="font-heading text-lg font-bold text-navy-deep mb-4">
+              Alte detalii
+            </h2>
+            <div className="space-y-3 text-sm text-navy-deep/60 leading-relaxed max-w-3xl mx-auto text-left">
+              <p>
+                Lista căminelor licențiate de pe această pagine este extrasă din documentul oficial publicat de <a href="https://mmuncii.gov.ro/wp-content/uploads/2026/03/10032026_Camine_PV.pdf" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Ministerul Muncii, Familiei, Tineretului și Solidarității Sociale (PDF)</a>. Procedura de licențiere este reglementată de <a href="https://www.cdep.ro/ords/pls/legis/legis_pck.htp_act?ida=113748" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Legea nr. 197/2012 privind asigurarea calității serviciilor sociale</a> și de <a href="https://legislatie.just.ro/Public/DetaliiDocument/181107" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">HG nr. 867/2015 — Nomenclatorul serviciilor sociale</a>.
+              </p>
+              <p>
+                Pentru informații despre drepturile persoanelor vârstnice, consultă <a href="https://legislatie.just.ro/Public/DetaliiDocument/21309" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Legea nr. 17/2000 privind asistența socială a persoanelor vârstnice</a>. Dacă ai nevoie de sprijin pentru îngrijirea unui vârstnic cu demență, <a href="https://alz.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Societatea Română Alzheimer</a> oferă consiliere și resurse.
+              </p>
+              <p>
+                Pe site-ul nostru poți folosi <Link href="/camine" className="text-gold hover:underline font-medium">portalul căminelor de bătrâni</Link> pentru a căuta după județ și oraș, să consulți <Link href="/resurse" className="text-gold hover:underline font-medium">legislație și resurse</Link>, sau să afli <Link href="/cum-functioneaza" className="text-gold hover:underline font-medium">cum funcționează Seniore.ro</Link>.
+              </p>
+            </div>
           </div>
         </section>
 

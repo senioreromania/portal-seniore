@@ -262,6 +262,27 @@ export default async function OrasPage({
               ))}
             </div>
 
+            {/* SEO contextual links */}
+            <div className="mt-10 pt-8 border-t border-navy-deep/10">
+              <h2 className="font-heading text-lg font-bold text-navy-deep mb-4">
+                Alte detalii
+              </h2>
+              <div className="space-y-3 text-sm text-navy-deep/60 leading-relaxed max-w-3xl">
+                <p>
+                  În {orasName}, județul {judet}, există {camineInOras.length} de cămine de bătrâni și centre de îngrijire a vârstnicilor, din care {licensed.length} sunt licențiate de <a href="https://mmuncii.gov.ro/acreditare-furnizori-si-servicii-sociale/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Ministerul Muncii, Familiei, Tineretului și Solidarității Sociale</a>. Poți vedea și <Link href={`/judet/${slug}`} className="text-gold hover:underline font-medium">toate căminele de bătrâni din județul {judet}</Link> sau <Link href="/camine-autorizate" className="text-gold hover:underline font-medium">căminele licențiate din întreaga țară</Link>.
+                </p>
+                <p>
+                  Conform <a href="https://legislatie.just.ro/Public/DetaliiDocument/21309" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Legii nr. 17/2000 privind asistența socială a persoanelor vârstnice</a> și <a href="https://www.cdep.ro/ords/pls/legis/legis_pck.htp_act?ida=113748" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Legii nr. 197/2012 privind asigurarea calității serviciilor sociale</a>, centrele rezidențiale pentru vârstnici trebuie să dețină licență de funcționare. Lista oficială a căminelor licențiate este publicată de <a href="https://mmuncii.gov.ro/wp-content/uploads/2026/03/10032026_Camine_PV.pdf" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">MMPS (PDF)</a>.
+                </p>
+                <p>
+                  Pentru sprijin în îngrijirea vârstnicilor cu demență, <a href="https://alz.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Societatea Română Alzheimer</a> oferă consiliere și resurse. <a href="https://caritasromania.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Confederația Caritas România</a> și <a href="https://cag.ro/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Fundația Crucea Alb-Galbenă</a> oferă servicii de îngrijire la domiciliu. Pentru informații despre pensii, consultă <a href="https://www.cnpp.ro/web/guest/home" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Casa Națională de Pensii Publice</a>.
+                </p>
+                <p>
+                  Pe site-ul nostru găsești și <Link href="/resurse" className="text-gold hover:underline font-medium">legislație și resurse</Link>, <Link href="/stiri" className="text-gold hover:underline font-medium">știri despre căminele de bătrâni</Link>, sau poți afla <Link href="/cum-functioneaza" className="text-gold hover:underline font-medium">cum funcționează Seniore.ro</Link>.
+                </p>
+              </div>
+            </div>
+
             <FaqSection
               title={`Întrebări frecvente — cămine de bătrâni în ${orasName}`}
               items={[
