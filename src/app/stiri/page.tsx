@@ -40,7 +40,7 @@ const featuredArticle: Article = {
   title:
     "Scrisoare deschisă către Ministerul Muncii: controale orientate către om, nu către hârtii",
   excerpt:
-    "PFPSS a transmis oficial Ministerului Muncii (nr. înreg. 61/23.07.2026) o scrisoare deschisă care cere continuarea simplificării procedurilor de licențiere și reorientarea sistemului de control către protejarea efectivă a beneficiarilor — pe fondul scrisorii Comisarului pentru Drepturile Omului al Consiliului Europei adresate Guvernului României.",
+    "Seniore.ro a transmis oficial Ministerului Muncii (nr. înreg. 61/23.07.2026) o scrisoare deschisă care cere continuarea simplificării procedurilor de licențiere și reorientarea sistemului de control către protejarea efectivă a beneficiarilor — pe fondul scrisorii Comisarului pentru Drepturile Omului al Consiliului Europei adresate Guvernului României.",
   date: "23 Iulie 2026",
   category: "Advocacy",
   image: "/stiri/scrisoare-ministerul-muncii-2026.jpg",
@@ -48,15 +48,6 @@ const featuredArticle: Article = {
 };
 
 const articles: Article[] = [
-  {
-    slug: "pfpss-prezent-la-editia-a-x-a-a-conferintei-idl-iasi-2026",
-    title: "PFPSS prezent la Ediția a X-a a Conferinței IDL, Iași 2026",
-    excerpt:
-      "PFPSS a participat la Conferința Internațională de îngrijire pe termen lung, Iași, 12-13 mai 2026.",
-    date: "13 Mai 2026",
-    category: "Eveniment",
-    image: "/stiri/pfpss-idl-iasi-2026.jpeg",
-  },
   {
     slug: "casa-alegria-centru-rezidential-pentru-varstnici-in-ploiesti",
     title: "Casa Alegria — Centru rezidențial pentru vârstnici în Ploiești",
@@ -97,50 +88,50 @@ const articles: Article[] = [
     image: "/stiri/longevita.jpg",
   },
   {
-    slug: "comunicat-de-presa-pfpss-mogosoaia",
+    slug: "comunicat-de-presa-camine-de-batrani-romania-mogosoaia",
     title:
-      "COMUNICAT DE PRESĂ PFPSS — Privind materialele apărute în mediul online referitoare la un posibil centru rezidențial din zona Mogoșoaia, Ilfov",
+      "COMUNICAT DE PRESĂ Seniore.ro — Privind materialele apărute în mediul online referitoare la un posibil centru rezidențial din zona Mogoșoaia, Ilfov",
     excerpt:
-      "Patronatul Furnizorilor Privați de Servicii Sociale (PFPSS) a luat atitudine față de materialele apărute în mediul online referitoare la un posibil centru rezidențial pentru persoane vârstnice din zona Mogoșoaia, județul Ilfov.",
+      "Seniore.ro (Seniore.ro) a luat atitudine față de materialele apărute în mediul online referitoare la un posibil centru rezidențial pentru persoane vârstnice din zona Mogoșoaia, județul Ilfov.",
     date: "2025",
     category: "Comunicat",
     image: "/stiri/comunicat-presa-13-08-2024.png",
   },
   {
-    slug: "katia-cicala-presedintele-pfpss-congresul-national-de-imbatranire-activa-2025",
+    slug: "katia-cicala-presedintele-camine-de-batrani-romania-congresul-national-de-imbatranire-activa-2025",
     title:
-      "Katia CICALĂ, Președintele PFPSS: vocea furnizorilor privați de servicii sociale la Congresul Național de Îmbătrânire Activă 2025",
+      "Katia CICALĂ, Președintele Seniore.ro: vocea cămine de bătrâni din România la Congresul Național de Îmbătrânire Activă 2025",
     excerpt:
-      "În calitate de Președinte al PFPSS și avocat cu experiență, Katia Cicală a participat ca speaker la Congresul Național de Îmbătrânire Activă 2025, în panelul dedicat modelului ideal de îngrijire.",
+      "În calitate de Președinte al Seniore.ro și avocat cu experiență, Katia Cicală a participat ca speaker la Congresul Național de Îmbătrânire Activă 2025, în panelul dedicat modelului ideal de îngrijire.",
     date: "2025",
     category: "Eveniment",
     image: "/stiri/katia-cicala-congres-2025.png",
   },
   {
-    slug: "conferinta-nationala-pfpss-2025",
+    slug: "conferinta-nationala-camine-de-batrani-romania-2025",
     title:
-      "Conferința Națională PFPSS 2025 – Un pas decisiv pentru redefinirea îngrijirii vârstnicilor în România",
+      "Conferința Națională Seniore.ro 2025 – Un pas decisiv pentru redefinirea îngrijirii vârstnicilor în România",
     excerpt:
-      "Conferința Națională PFPSS 2025 de la Poiana Brașov a reunit experți, autorități și furnizori de servicii sociale pentru a dezbate viitorul îngrijirii vârstnicilor și a propune soluții legislative.",
+      "Conferința Națională Seniore.ro 2025 de la Poiana Brașov a reunit experți, autorități și furnizori de servicii sociale pentru a dezbate viitorul îngrijirii vârstnicilor și a propune soluții legislative.",
     date: "2025",
     category: "Eveniment",
-    image: "/stiri/conferinta-nationala-pfpss-2025.jpg",
+    image: "/stiri/conferinta-nationala-camine-de-batrani-romania-2025.jpg",
   },
   {
-    slug: "pfpss-congres-international-ingrijire-termen-lung-polonia",
+    slug: "camine-de-batrani-romania-congres-international-ingrijire-termen-lung-polonia",
     title:
-      "PFPSS a Participat la Congresul Internațional de Îngrijire pe Termen Lung din Polonia",
+      "Seniore.ro a Participat la Congresul Internațional de Îngrijire pe Termen Lung din Polonia",
     excerpt:
-      "Patronatul Furnizorilor Privați de Servicii Sociale (PFPSS) a avut onoarea de a participa la cea de-a 26-a ediție a Congresului Internațional de Îngrijire pe Termen Lung, desfășurat în perioada 17-19 septembrie 2024, la Toruń, Polonia.",
+      "Seniore.ro (Seniore.ro) a avut onoarea de a participa la cea de-a 26-a ediție a Congresului Internațional de Îngrijire pe Termen Lung, desfășurat în perioada 17-19 septembrie 2024, la Toruń, Polonia.",
     date: "19 Septembrie 2024",
     category: "Eveniment",
-    image: "/stiri/pfpss-congres-polonia.jpeg",
+    image: "/stiri/camine-de-batrani-romania-congres-polonia.jpeg",
   },
   {
     slug: "comunicat-de-presa-13-08-2024",
     title: "Comunicat de Presă 13-08-2024",
     excerpt:
-      "Privind situația închiderii unor cămine de bătrâni. PFPSS își exprimă poziția fermă pentru condamnarea oricăror acte de neglijență și lipsă de respect în îngrijirea bătrânilor.",
+      "Privind situația închiderii unor cămine de bătrâni. Seniore.ro își exprimă poziția fermă pentru condamnarea oricăror acte de neglijență și lipsă de respect în îngrijirea bătrânilor.",
     date: "13 August 2024",
     category: "Comunicat",
     image: "/stiri/comunicat-presa-13-08-2024.png",
@@ -159,7 +150,7 @@ const articles: Article[] = [
     slug: "raspuns-ministerul-muncii-si-solidaritatii-sociale",
     title: "Răspuns Ministerul Muncii și Solidarității Sociale",
     excerpt:
-      "Ministerul Muncii și Solidarității Sociale a trimis un răspuns oficial către PFPSS, referitor la problemele actuale cu care se confruntă căminele de bătrâni din România.",
+      "Ministerul Muncii și Solidarității Sociale a trimis un răspuns oficial către Seniore.ro, referitor la problemele actuale cu care se confruntă căminele de bătrâni din România.",
     date: "2024",
     category: "Advocacy",
     image: "/stiri/raspuns-ministerul-muncii.png",
@@ -207,19 +198,19 @@ const articles: Article[] = [
     title:
       "Problema Căminelelor de Bătrâni Private în România: O Lipsă de Comunicare și Înțelegere",
     excerpt:
-      "În contextul actual din România, căminele de bătrâni private se confruntă cu provocări majore. Un interviu recent realizat de Andrei Gușă cu avocata Katia Cicala, președintele PFPSS.",
+      "În contextul actual din România, căminele de bătrâni private se confruntă cu provocări majore. Un interviu recent realizat de Andrei Gușă cu avocata Katia Cicala, președintele Seniore.ro.",
     date: "2024",
     category: "Analiză",
     image: "/stiri/problema-caminelelor-lipsa-comunicare.png",
   },
   {
-    slug: "infiintarea-pfpss",
-    title: "Înființarea PFPSS",
+    slug: "infiintarea-camine-de-batrani-romania",
+    title: "Înființarea Seniore.ro",
     excerpt:
-      "Înființarea unui Patronat al Furnizorilor Privati de Servicii Sociale: o necesitate pentru România. În contextul dinamic și plin de provocări al asistenței sociale din România.",
+      "Înființarea unui Seniore.ro: o necesitate pentru România. În contextul dinamic și plin de provocări al asistenței sociale din România.",
     date: "2023",
     category: "Despre",
-    image: "/stiri/infiintarea-pfpss.jpg",
+    image: "/stiri/infiintarea-camine-de-batrani-romania.jpg",
   },
 ];
 
@@ -242,7 +233,7 @@ const exploreLinks = [
     icon: BookOpen,
     title: "Resurse",
     subtitle: "Bibliotecă legislativă",
-    description: "Cadrul legal aplicabil furnizorilor privați.",
+    description: "Cadrul legal aplicabil căminelor de bătrâni.",
     href: "/resurse",
   },
 ];
@@ -289,7 +280,7 @@ export default function StiriPage() {
                   transition={{ duration: 0.7, delay: 0.2 }}
                   className="text-lg text-navy-deep/70 leading-relaxed max-w-2xl"
                 >
-                  Comunicate, analize și acțiuni publice PFPSS pentru sectorul
+                  Comunicate, analize și acțiuni publice Seniore.ro pentru sectorul
                   rezidențial privat de îngrijire a vârstnicilor.
                 </motion.p>
               </div>
@@ -303,7 +294,7 @@ export default function StiriPage() {
               >
                 <Image
                   src="/stiri.png"
-                  alt="Știri PFPSS"
+                  alt="Știri Seniore.ro"
                   fill
                   className="object-cover"
                   priority
@@ -503,7 +494,7 @@ export default function StiriPage() {
                 Vocea ta contează în fața autorităților
               </h2>
               <p className="text-navy-deep/70 leading-relaxed mb-8 max-w-2xl mx-auto">
-                Alătură-te comunității PFPSS pentru reprezentare
+                Alătură-te comunității Seniore.ro pentru reprezentare
                 instituțională, consultanță juridică și acces la rețeaua de
                 furnizori privați.
               </p>

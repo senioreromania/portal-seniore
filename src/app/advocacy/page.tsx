@@ -73,16 +73,16 @@ const exploreLinks = [
     title: "Legislație",
     subtitle: "Bibliotecă de acte normative",
     description:
-      "Cadrul legal aplicabil furnizorilor privați, actualizat.",
-    href: "/legislatie",
+      "Cadrul legal aplicabil căminelor de bătrâni, actualizat.",
+    href: "/resurse",
   },
   {
     icon: Gavel,
-    title: "Membri",
-    subtitle: "Rețeaua națională PFPSS",
+    title: "Cămine Premium",
+    subtitle: "Rețeaua națională Seniore.ro",
     description:
-      "Criterii, beneficii și cum poți deveni membru.",
-    href: "/membri",
+      "Criterii, beneficii și cum poți deveni Cămin Premium.",
+    href: "/cum-functioneaza",
   },
   {
     icon: Megaphone,
@@ -137,8 +137,8 @@ export default function AdvocacyPage() {
                   transition={{ duration: 0.7, delay: 0.2 }}
                   className="text-lg text-navy-deep/70 leading-relaxed max-w-2xl"
                 >
-                  PFPSS coordonează campanii, petiții și poziții oficiale prin
-                  care apără interesele furnizorilor privați și ale beneficiarilor.
+                  Seniore.ro coordonează campanii, petiții și poziții oficiale prin
+                  care apără interesele căminelor de bătrâni și ale beneficiarilor.
                 </motion.p>
               </div>
 
@@ -151,7 +151,7 @@ export default function AdvocacyPage() {
               >
                 <Image
                   src="/advocacy.png"
-                  alt="Advocacy PFPSS"
+                  alt="Advocacy Seniore.ro"
                   fill
                   className="object-cover"
                   priority
@@ -177,10 +177,10 @@ export default function AdvocacyPage() {
                 De la dosarul tehnic la decizia publică
               </h2>
               <p className="text-navy-deep/60 mt-4 leading-relaxed">
-                Fiecare campanie pornește dintr-o nevoie reală a membrilor: o
-                analiză legislativă, o consultare cu specialiștii, o poziție
-                oficială și, când este nevoie, o petiție publică sau o acțiune
-                în instanță.
+                Fiecare campanie pornește dintr-o nevoie reală a căminelor
+                de bătrâni: o analiză legislativă, o consultare cu
+                specialiștii, o poziție oficială și, când este nevoie, o
+                petiție publică sau o acțiune în instanță.
               </p>
             </motion.div>
 
@@ -318,19 +318,19 @@ export default function AdvocacyPage() {
               custom={0}
             >
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-navy-deep mb-4 text-balance">
-                Vocea ta contează în fața autorităților
+                Înregistrează-ți căminul în Portalul Seniore.ro
               </h2>
               <p className="text-navy-deep/70 leading-relaxed mb-8 max-w-2xl mx-auto">
-                Alătură-te comunității PFPSS pentru reprezentare
+                Alătură-te comunității Seniore.ro pentru reprezentare
                 instituțională, consultanță juridică și acces la rețeaua de
                 furnizori privați.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link
-                  href="/inscriere"
+                  href="/cum-functioneaza"
                   className="group inline-flex items-center gap-2 bg-navy-deep text-paper px-8 py-3.5 rounded-sm font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-navy-deep/20"
                 >
-                  Devino membru
+                  Înregistrează-te
                   <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link

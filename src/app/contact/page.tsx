@@ -30,24 +30,24 @@ const faqs = [
   {
     question: "În cât timp primesc răspuns?",
     answer:
-      "Echipa PFPSS răspunde în maximum 48 de ore lucrătoare la toate solicitările primite prin formularul online sau email. Pentru chestiuni urgente, vă recomandăm să ne contactați telefonic.",
+      "Echipa Seniore.ro răspunde în maximum 48 de ore lucrătoare la toate solicitările primite prin formularul online sau email. Pentru chestiuni urgente, vă recomandăm să ne contactați telefonic.",
   },
   {
     question: "Pot solicita o întâlnire la sediu?",
     answer:
-      "Da. Pentru a programa o întâlnire la sediul PFPSS, vă rugăm să trimiteți o solicitare prin formularul de contact sau la office@pfpss.ro, indicând subiectul dorit și intervalul preferat.",
+      "Da. Pentru a programa o întâlnire la sediul Seniore.ro, vă rugăm să trimiteți o solicitare prin formularul de contact sau la office@seniore.ro, indicând subiectul dorit și intervalul preferat.",
   },
   {
     question: "Cui mă adresez pentru presă?",
     answer:
-      "Pentru solicitări din partea presei și a jurnaliștilor, vă rugăm să scrieți la office@pfpss.ro sau să sunați la 0732 009 000, menționând clar 'Pentru presă' în subiectul mesajului.",
+      "Pentru solicitări din partea presei și a jurnaliștilor, vă rugăm să scrieți la office@seniore.ro sau să sunați la 0785 598 779, menționând clar 'Pentru presă' în subiectul mesajului.",
   },
 ];
 
 const exploreLinks = [
   {
     title: "Membri",
-    subtitle: "Rețeaua națională PFPSS",
+    subtitle: "Rețeaua națională Seniore.ro",
     description: "Criterii, beneficii și cum poți deveni membru.",
     href: "/membri",
   },
@@ -60,7 +60,7 @@ const exploreLinks = [
   {
     title: "Legislație",
     subtitle: "Bibliotecă de acte normative",
-    description: "Cadrul legal aplicabil furnizorilor privați, actualizat.",
+    description: "Cadrul legal aplicabil căminelor de bătrâni, actualizat.",
     href: "/resurse",
   },
 ];
@@ -96,7 +96,7 @@ export default function ContactPage() {
                 >
                   <Sparkles className="size-3.5 text-navy-deep" />
                   <span className="text-xs font-medium text-navy-deep uppercase tracking-widest">
-                    Contact PFPSS
+                    Contact Seniore.ro
                   </span>
                 </motion.div>
 
@@ -106,7 +106,7 @@ export default function ContactPage() {
                   transition={{ duration: 0.7, delay: 0.1 }}
                   className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold text-navy-deep leading-[1.1] text-balance mb-6"
                 >
-                  Vorbește cu echipa PFPSS
+                  Vorbește cu echipa Seniore.ro
                 </motion.h1>
 
                 <motion.p
@@ -131,7 +131,7 @@ export default function ContactPage() {
               >
                 <Image
                   src="/contact.png"
-                  alt="Contact PFPSS"
+                  alt="Contact Seniore.ro"
                   fill
                   className="object-cover"
                   priority
@@ -162,7 +162,7 @@ export default function ContactPage() {
 
                 <div className="space-y-4">
                   <a
-                    href="tel:+40732009000"
+                    href="tel:+40785598779"
                     className="group flex items-center gap-4 p-6 rounded-xl bg-white border border-navy-deep/10 hover:border-gold/30 transition-all duration-300 hover:shadow-lg hover:shadow-navy-deep/5"
                   >
                     <div className="flex items-center justify-center size-12 rounded-lg bg-gold/10 group-hover:bg-gold transition-colors duration-300">
@@ -173,13 +173,13 @@ export default function ContactPage() {
                         Telefon
                       </div>
                       <div className="font-heading text-lg font-semibold text-navy-deep">
-                        0732 009 000
+                        0785 598 779
                       </div>
                     </div>
                   </a>
 
                   <a
-                    href="mailto:office@pfpss.ro"
+                    href="mailto:office@seniore.ro"
                     className="group flex items-center gap-4 p-6 rounded-xl bg-white border border-navy-deep/10 hover:border-gold/30 transition-all duration-300 hover:shadow-lg hover:shadow-navy-deep/5"
                   >
                     <div className="flex items-center justify-center size-12 rounded-lg bg-gold/10 group-hover:bg-gold transition-colors duration-300">
@@ -190,7 +190,7 @@ export default function ContactPage() {
                         Email
                       </div>
                       <div className="font-heading text-lg font-semibold text-navy-deep">
-                        office@pfpss.ro
+                        office@seniore.ro
                       </div>
                     </div>
                   </a>

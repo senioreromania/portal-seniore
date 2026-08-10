@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "asociatia-resedinta-bunicilor",
+    "highlight": "Cămin cu rating 5 stele în Constanța",
+    "description": "Centru rezidențial licențiat cu îngrijire de excepție pentru vârstnici, evaluat maxim de familiile beneficiare.",
+    "featured": true
+  },
+  {
+    "slug": "asociatia-salvati-batranii-saucesti",
+    "highlight": "Asociație non-profit cu rating 5 stele",
+    "description": "Cămin de bătrâni în Bacău, recunoscut pentru dedicarea și calitatea serviciilor oferite.",
+    "featured": true
+  },
+  {
+    "slug": "asociatia-casa-plina",
+    "highlight": "Cămin licențiat în Teleorman — 4.9 stele",
+    "description": "Centru de îngrijire cu atmosferă familială, personal calificat și servicii complete.",
+    "featured": true
+  },
+  {
+    "slug": "fundatia-crestina-diakonia-filiala-targu-mures",
+    "highlight": "Fundație cu tradiție în Mureș — 4.9 stele",
+    "description": "Centru rezidențial cu abordare creștină, îngrijire medicală și asistență socială completă.",
+    "featured": true
+  },
+  {
+    "slug": "asociatia-luminita-serii",
+    "highlight": "Cămin premium în Timiș — 4.8 stele",
+    "description": "Servicii rezidențiale de calitate superioară pentru vârstnici, cu personal dedicat și condiții excelente.",
+    "featured": true
+  },
+  {
+    "slug": "asociatia-de-caritate-proiect-theodora",
+    "highlight": "Centru de îngrijire în Cluj — 4.6 stele",
+    "description": "Cămin de bătrâni cu asistență medicală, activități recreative și îngrijire personalizată.",
+    "featured": true
+  }
+]

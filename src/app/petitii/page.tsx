@@ -81,7 +81,7 @@ export default function PetitiiPage() {
                 >
                   <Sparkles className="size-3.5 text-navy-deep" />
                   <span className="text-xs font-medium text-navy-deep uppercase tracking-widest">
-                    Petiții PFPSS
+                    Petiții Seniore.ro
                   </span>
                 </motion.div>
 
@@ -91,7 +91,7 @@ export default function PetitiiPage() {
                   transition={{ duration: 0.7, delay: 0.1 }}
                   className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold text-navy-deep leading-[1.1] text-balance mb-6"
                 >
-                  Vocea furnizorilor privați de servicii sociale
+                  Vocea cămine de bătrâni din România
                 </motion.h1>
 
                 <motion.p
@@ -115,7 +115,7 @@ export default function PetitiiPage() {
               >
                 <Image
                   src="/petitii.png"
-                  alt="Petiții PFPSS"
+                  alt="Petiții Seniore.ro"
                   fill
                   className="object-cover"
                   priority
@@ -274,7 +274,7 @@ export default function PetitiiPage() {
               <p className="text-navy-deep/70 leading-relaxed mb-8 max-w-2xl mx-auto">
                 Ai identificat o problemă legislativă sau administrativă care
                 afectează furnizorii privați de servicii sociale? Scrie-ne, iar
-                echipa juridică PFPSS va evalua oportunitatea unei noi petiții
+                echipa juridică Seniore.ro va evalua oportunitatea unei noi petiții
                 oficiale.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">

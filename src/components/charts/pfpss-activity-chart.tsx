@@ -12,12 +12,12 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
-export function PfpssActivityChart() {
+export function CamineActivityChart() {
   const data = {
     labels: ["Ian", "Feb", "Mar", "Apr", "Mai", "Iun", "Iul"],
     datasets: [
       {
-        label: "Acțiuni PFPSS",
+        label: "Acțiuni Seniore.ro",
         data: [4, 6, 3, 8, 5, 7, 9],
         backgroundColor: "rgba(201, 169, 97, 0.6)",
         borderColor: "#c9a961",

@@ -6,11 +6,8 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   Scale,
-  FileText,
-  Download,
   Sparkles,
   ChevronRight,
-  Lock,
   ExternalLink,
   BookOpen,
   Gavel,
@@ -132,16 +129,6 @@ const legislation = [
   },
 ];
 
-const publicDocuments = [
-  {
-    title:
-      "Scrisoare deschisă către Ministerul Muncii — simplificarea licențierii (nr. 61/23.07.2026)",
-    description:
-      "Solicitare oficială privind continuarea simplificării procedurilor de licențiere și orientarea controalelor către protejarea efectivă a beneficiarilor, pe fondul scrisorii Comisarului pentru Drepturile Omului al Consiliului Europei.",
-    href: "/documents/scrisoare-deschisa-ministerul-muncii-2026-07-23.pdf",
-  },
-];
-
 const exploreLinks = [
   {
     icon: Gavel,
@@ -152,10 +139,10 @@ const exploreLinks = [
   },
   {
     icon: BookOpen,
-    title: "Membri",
+    title: "Cămine Premium",
     subtitle: "Rețeaua națională",
-    description: "Criterii, beneficii și cum poți deveni membru.",
-    href: "/membri",
+    description: "Criterii, beneficii și cum poți deveni Cămin Premium.",
+    href: "/cum-functioneaza",
   },
   {
     icon: ShieldCheck,
@@ -190,7 +177,7 @@ export default function ResursePage() {
                 >
                   <Sparkles className="size-3.5 text-navy-deep" />
                   <span className="text-xs font-medium text-navy-deep uppercase tracking-widest">
-                    Resurse PFPSS
+                    Resurse Seniore.ro
                   </span>
                 </motion.div>
 
@@ -210,7 +197,8 @@ export default function ResursePage() {
                   className="text-lg text-navy-deep/70 leading-relaxed max-w-2xl"
                 >
                   Cadrul normativ, mereu actualizat. Legislație relevantă,
-                  documente publice de guvernanță și resurse pentru membri.
+                  documente publice de guvernanță și resurse pentru căminele
+                  de bătrâni.
                 </motion.p>
               </div>
 
@@ -223,7 +211,7 @@ export default function ResursePage() {
               >
                 <Image
                   src="/resurse.png"
-                  alt="Resurse PFPSS"
+                  alt="Resurse Seniore.ro"
                   fill
                   className="object-cover"
                   priority
@@ -293,108 +281,6 @@ export default function ResursePage() {
           </div>
         </section>
 
-        {/* Documente publice */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              variants={fadeUp}
-              custom={0}
-              className="max-w-2xl mb-14"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="flex items-center justify-center size-10 rounded-lg bg-gold/10">
-                  <FileText className="size-5 text-gold" />
-                </div>
-                <div className="w-12 h-px bg-gold" />
-              </div>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-navy-deep leading-tight text-balance">
-                Documente publice
-              </h2>
-              <p className="text-navy-deep/60 mt-4 leading-relaxed">
-                Tot ce ține de guvernanța și activitatea PFPSS, accesibil
-                oricui — fără autentificare.
-              </p>
-            </motion.div>
-
-            {/* Poziții publice */}
-            <div className="mb-10">
-              <h3 className="font-heading text-xl font-semibold text-navy-deep mb-6">
-                Poziții publice
-              </h3>
-              <div className="space-y-4">
-                {publicDocuments.map((doc, i) => (
-                  <motion.a
-                    key={doc.title}
-                    href={doc.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-50px" }}
-                    variants={fadeUp}
-                    custom={i + 1}
-                    className="group block p-6 rounded-xl border border-navy-deep/10 bg-paper hover:border-gold/30 transition-all duration-300 hover:shadow-lg hover:shadow-navy-deep/5"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="flex items-center justify-center size-12 rounded-lg bg-gold/10 shrink-0">
-                        <Download className="size-6 text-gold" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-heading text-lg font-semibold text-navy-deep mb-2 group-hover:text-gold transition-colors">
-                          {doc.title}
-                        </h4>
-                        <p className="text-sm text-navy-deep/60 leading-relaxed">
-                          {doc.description}
-                        </p>
-                        <span className="inline-flex items-center gap-1 mt-3 text-sm font-semibold text-navy-deep group-hover:text-gold transition-colors">
-                          Deschide
-                          <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
-                        </span>
-                      </div>
-                    </div>
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-
-            {/* Documente doar pentru membri */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={fadeUp}
-              custom={2}
-              className="p-6 rounded-xl border border-navy-deep/10 bg-paper"
-            >
-              <div className="flex items-start gap-4">
-                <div className="flex items-center justify-center size-12 rounded-lg bg-navy-deep/5 shrink-0">
-                  <Lock className="size-6 text-navy-deep/40" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-heading text-xl font-semibold text-navy-deep mb-3">
-                    Documente doar pentru membri
-                  </h3>
-                  <p className="text-navy-deep/60 leading-relaxed mb-4">
-                    Modele detaliate de contracte, proceduri ISO, fișe de post,
-                    arhivă întâlniri, consultanță juridică și template-uri de
-                    răspuns la control sunt disponibile în zona privată.
-                  </p>
-                  <Link
-                    href="/login"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-navy-deep hover:text-gold transition-colors"
-                  >
-                    Autentificare membri
-                    <ArrowRight className="size-4" />
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
         {/* Explorează mai departe */}
         <section className="py-20 bg-paper">
           <div className="max-w-7xl mx-auto px-6">
@@ -460,19 +346,19 @@ export default function ResursePage() {
               custom={0}
             >
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-navy-deep mb-4 text-balance">
-                Vocea ta contează în fața autorităților
+                Înregistrează-ți căminul în Portalul Seniore.ro
               </h2>
               <p className="text-navy-deep/70 leading-relaxed mb-8 max-w-2xl mx-auto">
-                Alătură-te comunității PFPSS pentru reprezentare
+                Alătură-te comunității Seniore.ro pentru reprezentare
                 instituțională, consultanță juridică și acces la rețeaua de
                 furnizori privați.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link
-                  href="/inscriere"
+                  href="/cum-functioneaza"
                   className="group inline-flex items-center gap-2 bg-navy-deep text-paper px-8 py-3.5 rounded-sm font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-navy-deep/20"
                 >
-                  Devino membru
+                  Înregistrează-te
                   <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link

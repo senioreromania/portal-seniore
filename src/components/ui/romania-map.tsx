@@ -170,7 +170,7 @@ export function RomaniaMap({ className = "" }: { className?: string }) {
                       fill="#faf8f3"
                       textAnchor="middle"
                     >
-                      PFPSS
+                      Seniore.ro
                     </text>
                   </>
                 ) : (

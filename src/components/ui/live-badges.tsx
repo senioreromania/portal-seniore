@@ -53,7 +53,7 @@ const badgeSets: Badge[][] = [
     { icon: Clock, label: "Retrase 2026", value: "52", color: "green" },
     { icon: BarChart3, label: "Emise 2024", value: "847", color: "navy" },
   ],
-  // PFPSS activity — Activitatea PFPSS
+  // Seniore.ro activity — Activitatea Seniore.ro
   [
     { icon: BarChart3, label: "Petiții", value: "42", color: "gold" },
     { icon: Landmark, label: "Scrisori", value: "18", color: "navy" },

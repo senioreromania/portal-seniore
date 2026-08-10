@@ -55,15 +55,15 @@ const criteria = [
   },
   {
     icon: Scale,
-    title: "Cod Etic și Statut PFPSS",
+    title: "Cod Etic și Statut Seniore.ro",
     description:
-      "Asumarea voluntară a Codului Etic și a Statutului patronatului prin semnătură.",
+      "Asumarea voluntară a Codului Etic și a Statutului portalului prin semnătură.",
   },
   {
     icon: CheckCircle2,
     title: "Cotizație anuală",
     description:
-      "Achitarea cotizației anuale stabilite de Adunarea Generală a membrilor PFPSS.",
+      "Achitarea cotizației anuale stabilite de Adunarea Generală a membrilor Seniore.ro.",
   },
 ];
 
@@ -102,7 +102,7 @@ const benefits = [
     icon: Megaphone,
     title: "Vizibilitate publică",
     description:
-      "Promovare în campaniile de advocacy și comunicare publică ale patronatului.",
+      "Promovare în campaniile de advocacy și comunicare publică ale portalului.",
   },
 ];
 
@@ -119,14 +119,14 @@ const steps = [
     icon: Search,
     title: "Validare dosar",
     description:
-      "Echipa PFPSS verifică acreditarea, licențele active și conformitatea cu criteriile.",
+      "Echipa Seniore.ro verifică acreditarea, licențele active și conformitatea cu criteriile.",
   },
   {
     num: "03",
     icon: ThumbsUp,
     title: "Aprobare Board",
     description:
-      "Cererea este analizată și votată în următoarea ședință a boardului PFPSS.",
+      "Cererea este analizată și votată în următoarea ședință a boardului Seniore.ro.",
   },
   {
     num: "04",
@@ -160,7 +160,7 @@ export default function MembriPage() {
                 >
                   <Sparkles className="size-3.5 text-navy-deep" />
                   <span className="text-xs font-medium text-navy-deep uppercase tracking-widest">
-                    Membri PFPSS
+                    Membri Seniore.ro
                   </span>
                 </motion.div>
 
@@ -179,7 +179,7 @@ export default function MembriPage() {
                   transition={{ duration: 0.7, delay: 0.2 }}
                   className="text-lg md:text-xl text-navy-deep/70 leading-relaxed max-w-2xl"
                 >
-                  Membrii PFPSS sunt centre rezidențiale, organizații
+                  Membrii Seniore.ro sunt centre rezidențiale, organizații
                   neguvernamentale și operatori privați acreditați care
                   împărtășesc misiunea de a oferi îngrijire demnă vârstnicilor
                   din România.
@@ -202,7 +202,7 @@ export default function MembriPage() {
                     href="/despre"
                     className="inline-flex items-center gap-2 bg-transparent text-navy-deep px-7 py-3.5 rounded-sm font-semibold text-sm ring-1 ring-navy-deep/15 transition-all duration-300 hover:bg-navy-deep/5"
                   >
-                    Despre PFPSS
+                    Despre Seniore.ro
                   </Link>
                 </motion.div>
               </div>
@@ -216,7 +216,7 @@ export default function MembriPage() {
               >
                 <Image
                   src="/membrii.png"
-                  alt="Membri PFPSS"
+                  alt="Membri Seniore.ro"
                   fill
                   className="object-cover"
                   priority
@@ -247,7 +247,7 @@ export default function MembriPage() {
                 Criterii de aderare
               </h2>
               <p className="text-navy-deep/60 mt-4 leading-relaxed">
-                Pentru a deveni membru PFPSS, organizația trebuie să îndeplinească
+                Pentru a deveni membru Seniore.ro, organizația trebuie să îndeplinească
                 următoarele criterii. Procesul este transparent și se bazează
                 exclusiv pe conformitatea cu standardele legale și profesionale.
               </p>
@@ -304,7 +304,7 @@ export default function MembriPage() {
                 Beneficiile calității de membru
               </h2>
               <p className="text-navy-deep/60 mt-4 leading-relaxed">
-                Membrii PFPSS beneficiază de un pachet integrat de servicii
+                Membrii Seniore.ro beneficiază de un pachet integrat de servicii
                 profesionale — de la reprezentare instituțională până la
                 consultanță juridică și acces la o rețea națională de furnizori.
               </p>
@@ -447,7 +447,7 @@ export default function MembriPage() {
                   Sunteți furnizor privat de servicii sociale?
                 </h2>
                 <p className="text-lg text-paper/60 leading-relaxed mb-8">
-                  Alăturați-vă PFPSS pentru a beneficia de reprezentare
+                  Alăturați-vă Seniore.ro pentru a beneficia de reprezentare
                   instituțională, consultanță juridică și acces la resurse
                   profesionale. Echipa noastră vă va contacta în maximum 48 de
                   ore lucrătoare.

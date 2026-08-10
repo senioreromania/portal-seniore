@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
+import { JsonLd } from "@/components/json-ld";
+import { newsArticleJsonLd, breadcrumbJsonLd, SITE_NAME } from "@/lib/seo";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -42,29 +44,24 @@ const articles: Record<string, Article> = {
     title:
       "Scrisoare deschisă către Ministerul Muncii: controale orientate către om, nu către hârtii",
     excerpt:
-      "PFPSS a transmis oficial Ministerului Muncii (nr. înreg. 61/23.07.2026) o scrisoare deschisă care cere continuarea simplificării procedurilor de licențiere și reorientarea sistemului de control către protejarea efectivă a beneficiarilor — pe fondul scrisorii Comisarului pentru Drepturile Omului al Consiliului Europei adresate Guvernului României.",
+      "Seniore.ro a transmis oficial Ministerului Muncii (nr. înreg. 61/23.07.2026) o scrisoare deschisă care cere continuarea simplificării procedurilor de licențiere și reorientarea sistemului de control către protejarea efectivă a beneficiarilor — pe fondul scrisorii Comisarului pentru Drepturile Omului al Consiliului Europei adresate Guvernului României.",
     date: "23 Iulie 2026",
     category: "Advocacy",
     image: "/stiri/scrisoare-ministerul-muncii-2026.jpg",
     pdfHref: "/documents/scrisoare-deschisa-ministerul-muncii-2026-07-23.pdf",
     paragraphs: [
-      "Patronatul Furnizorilor Privați de Servicii Sociale (PFPSS) a transmis miercuri, 23 iulie 2026, o scrisoare deschisă domnului Dragoș-Nicolae Pîslaru, ministrul Muncii, Familiei, Tineretului și Solidarității Sociale, prin care solicită continuarea procesului de simplificare a procedurilor de licențiere și orientarea sistemului de control către protejarea efectivă a beneficiarilor.",
-      "Demersul vine în contextul scrisorii adresate Guvernului României de Comisarul pentru Drepturile Omului al Consiliului Europei, domnul Michael O'Flaherty — document care readuce în atenția autorităților necesitatea unei reforme profunde a sistemului de asistență socială. Comisarul constată, între altele, un deficit persistent de servicii de îngrijire, exact în contextul îmbătrânirii populației și al creșterii nevoilor: nevoia reală de servicii depășește capacitatea actuală a sistemului public, iar extinderea acestei capacități nu este posibilă fără încurajarea și sprijinirea furnizorilor privați licențiați.",
-      "PFPSS apreciază că aceste concluzii confirmă faptul că problemele sistemului românesc nu sunt generate de existența unor proceduri insuficient de birocratice, ci de incapacitatea autorităților de a identifica și opri, la timp, activitățile desfășurate complet în afara cadrului legal. Experiența ultimilor ani arată că furnizorii licențiați au fost supuși unui număr foarte mare de controale și obligații documentare, în timp ce numeroase centre ilegale au funcționat ani de zile fără a fi oprite.",
+      "Seniore.ro (Seniore.ro) a transmis miercuri, 23 iulie 2026, o scrisoare deschisă domnului Dragoș-Nicolae Pîslaru, ministrul Muncii, Familiei, Tineretului și Solidarității Sociale, prin care solicită continuarea procesului de simplificare a procedurilor de licențiere și orientarea sistemului de control către protejarea efectivă a beneficiarilor.",
+      "Demersul vine în contextul scrisorii adresate Guvernului României de Comisarul pentru Drepturile Omului al Consiliului Europei, domnul Michael O'Flaherty — document care readuce în atenția autorităților necesitatea unei reforme profunde a sistemului de asistență socială. Comisarul constată, între altele, un deficit persistent de servicii de îngrijire, exact în contextul îmbătrânirii populației și al creșterii nevoilor: nevoia reală de servicii depășește capacitatea actuală a sistemului public, iar extinderea acestei capacități nu este posibilă fără încurajarea și sprijinirea căminelor de bătrâni licențiați.",
+      "Seniore.ro apreciază că aceste concluzii confirmă faptul că problemele sistemului românesc nu sunt generate de existența unor proceduri insuficient de birocratice, ci de incapacitatea autorităților de a identifica și opri, la timp, activitățile desfășurate complet în afara cadrului legal. Experiența ultimilor ani arată că furnizorii licențiați au fost supuși unui număr foarte mare de controale și obligații documentare, în timp ce numeroase centre ilegale au funcționat ani de zile fără a fi oprite.",
       "Excesul de birocrație consumă resurse financiare și umane care ar trebui direcționate către creșterea calității serviciilor, angajarea și pregătirea personalului, investiții în îngrijirea beneficiarilor și dezvoltarea de noi locuri pentru persoanele vulnerabile. Așa cum recomandă și Comisarul, inspecțiile trebuie să urmărească în primul rând respectarea drepturilor și bunăstării beneficiarilor — nu exclusiv îndeplinirea unor standarde formale.",
-      "În scrisoare, PFPSS solicită Ministerului Muncii: (1) continuarea simplificării procedurilor de licențiere și relicențiere; (2) eliminarea cerințelor administrative care nu contribuie real la calitatea serviciilor; (3) diferențierea clară între furnizorii autorizați și cei care operează ilegal; (4) orientarea controalelor către evaluarea efectivă a calității și a respectării drepturilor beneficiarilor; (5) deschiderea mecanismelor publice de finanțare — subvenții, decontări, fonduri europene — către toți furnizorii licențiați, indiferent de forma juridică de organizare; (6) constituirea unui grup permanent de lucru cu reprezentanții furnizorilor privați.",
+      "În scrisoare, Seniore.ro solicită Ministerului Muncii: (1) continuarea simplificării procedurilor de licențiere și relicențiere; (2) eliminarea cerințelor administrative care nu contribuie real la calitatea serviciilor; (3) diferențierea clară între furnizorii autorizați și cei care operează ilegal; (4) orientarea controalelor către evaluarea efectivă a calității și a respectării drepturilor beneficiarilor; (5) deschiderea mecanismelor publice de finanțare — subvenții, decontări, fonduri europene — către toți furnizorii licențiați, indiferent de forma juridică de organizare; (6) constituirea unui grup permanent de lucru cu reprezentanții căminelor de bătrâni.",
       "Un punct central al scrisorii este neutralitatea formei juridice: accesul la finanțarea publică trebuie condiționat de deținerea licenței de funcționare și de calitatea serviciilor, nu de forma de organizare a furnizorului. Limitarea acestor mecanisme la asociații și fundații lasă nevalorificată capacitatea investițională a societăților comerciale licențiate — iar un model funcțional există deja în sănătate, unde furnizorii privați, indiferent de forma juridică, contractează servicii cu casele de asigurări.",
-      "Documentul integral, înregistrat la minister cu nr. 61/23.07.2026, poate fi descărcat mai jos. Acțiunea continuă demersurile PFPSS pentru un cadru de licențiere echitabil — inclusiv petiția privind eliminarea autorizației ISU dintre documentele obligatorii pentru licențiere, deschisă semnăturilor pe pfpss.ro/petitii.",
+      "Documentul integral, înregistrat la minister cu nr. 61/23.07.2026, poate fi descărcat mai jos. Acțiunea continuă demersurile Seniore.ro pentru un cadru de licențiere echitabil — inclusiv petiția privind eliminarea autorizației ISU dintre documentele obligatorii pentru licențiere, deschisă semnăturilor pe camine-de-batrani-romania.ro/petitii.",
     ],
   },
 };
 
 const relatedArticles = [
-  {
-    slug: "pfpss-prezent-la-editia-a-x-a-a-conferintei-idl-iasi-2026",
-    title: "PFPSS prezent la Ediția a X-a a Conferinței IDL, Iași 2026",
-    date: "17 Mai 2026",
-  },
   {
     slug: "casa-alegria-centru-rezidential-pentru-varstnici-in-ploiesti",
     title: "Casa Alegria — Centru rezidențial pentru vârstnici în Ploiești",
@@ -110,6 +107,23 @@ export default function ArticlePage({
 
   return (
     <>
+      <JsonLd
+        data={newsArticleJsonLd({
+          title: article.title,
+          description: article.excerpt,
+          slug: article.slug,
+          image: article.image,
+          date: article.date,
+          author: SITE_NAME,
+        })}
+      />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Acasă", url: "/" },
+          { name: "Știri", url: "/stiri" },
+          { name: article.title, url: `/stiri/${article.slug}` },
+        ])}
+      />
       <SiteHeader />
       <main className="flex-1">
         {/* Hero */}
@@ -259,7 +273,7 @@ export default function ArticlePage({
               className="mt-6 p-6 rounded-xl bg-gold/5 border border-gold/20"
             >
               <p className="text-sm text-navy-deep/70 leading-relaxed mb-3">
-                Acțiunea continuă demersurile PFPSS pentru un cadru de licențiere
+                Acțiunea continuă demersurile Seniore.ro pentru un cadru de licențiere
                 echitabil — inclusiv petiția privind eliminarea autorizației ISU
                 dintre documentele obligatorii pentru licențiere.
               </p>

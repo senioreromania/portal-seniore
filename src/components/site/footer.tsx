@@ -3,13 +3,18 @@ import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
-  Navigare: [
+  "Cămine de bătrâni": [
+    { href: "/camine", label: "Portal cămine" },
+    { href: "/camine-autorizate", label: "Cămine licențiate" },
+    { href: "/cum-functioneaza", label: "Cum funcționează" },
+  ],
+  Organizație: [
     { href: "/despre", label: "Despre noi" },
+    { href: "/membri", label: "Membri" },
     { href: "/advocacy", label: "Advocacy" },
     { href: "/petitii", label: "Petiții" },
-    { href: "/resurse", label: "Resurse" },
     { href: "/stiri", label: "Știri" },
-    { href: "/inscriere", label: "Devino membru" },
+    { href: "/resurse", label: "Legislație" },
     { href: "/contact", label: "Contact" },
   ],
   Legal: [
@@ -23,27 +28,27 @@ export function SiteFooter() {
   return (
     <footer className="pt-20 pb-10 bg-paper border-t border-navy-deep/10 text-navy-deep">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-12 md:gap-10 mb-12">
+        <div className="grid md:grid-cols-5 gap-8 md:gap-8 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="mb-6">
               <Image
-                src="/logo-pfpss.png"
-                alt="PFPSS — Patronatul Furnizorilor Privați de Servicii Sociale"
-                width={200}
-                height={58}
-                className="h-12 w-auto mb-3"
+                src="/logo-seniore.png"
+                alt="Seniore.ro — Cămine de bătrâni în România"
+                width={180}
+                height={54}
+                className="h-12 w-auto"
               />
             </div>
             <p className="text-sm text-navy-deep/70 leading-relaxed max-w-md">
-              Patronatul Furnizorilor Privați de Servicii Sociale din România
-              este organizația reprezentativă a sectorului rezidențial privat de
-              îngrijire a vârstnicilor.
+              Seniore.ro — Azile și cămine de bătrâni în România. Găsește
+              azil licențiat în județul tău — prețuri, contact, hartă și
+              direcții. Platformă dezvoltată de Seniore.ro.
             </p>
             <dl className="mt-6 text-xs text-navy-deep/60 space-y-1">
               <div className="flex gap-2">
                 <dt className="font-semibold">Denumire:</dt>
-                <dd>Patronatul Furnizorilor Privați de Servicii Sociale</dd>
+                <dd>Seniore.ro</dd>
               </div>
               <div className="flex gap-2">
                 <dt className="font-semibold">CUI:</dt>
@@ -69,19 +74,19 @@ export function SiteFooter() {
               <li className="flex gap-3 items-start">
                 <Phone className="size-4 shrink-0 text-gold mt-0.5" />
                 <a
-                  href="tel:+40732009000"
+                  href="tel:+40785598779"
                   className="hover:text-gold transition-colors"
                 >
-                  0732 009 000
+                  0785 598 779
                 </a>
               </li>
               <li className="flex gap-3 items-start">
                 <Mail className="size-4 shrink-0 text-gold mt-0.5" />
                 <a
-                  href="mailto:office@pfpss.ro"
+                  href="mailto:office@seniore.ro"
                   className="hover:text-gold transition-colors"
                 >
-                  office@pfpss.ro
+                  office@seniore.ro
                 </a>
               </li>
               <li className="flex gap-3 items-start">
@@ -97,10 +102,29 @@ export function SiteFooter() {
           {/* Links */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-widest mb-6">
-              Navigare
+              Cămine de bătrâni
             </h4>
             <ul className="space-y-3 text-sm">
-              {footerLinks.Navigare.map((link) => (
+              {footerLinks["Cămine de bătrâni"].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="hover:text-gold transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Links 2 */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-widest mb-6">
+              Organizație
+            </h4>
+            <ul className="space-y-3 text-sm">
+              {footerLinks["Organizație"].map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -158,7 +182,7 @@ export function SiteFooter() {
 
         <div className="pt-6 border-t border-navy-deep/10 text-center">
           <span className="text-xs text-navy-deep/50">
-            © {new Date().getFullYear()} PFPSS. Toate drepturile rezervate.
+            © {new Date().getFullYear()} Portal Cămine de Bătrâni Seniore.ro. Toate drepturile rezervate.
           </span>
         </div>
       </div>

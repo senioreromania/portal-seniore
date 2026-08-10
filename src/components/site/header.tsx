@@ -4,36 +4,35 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Globe, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Acasă" },
-  { href: "/despre", label: "Despre" },
-  { href: "/membri", label: "Membri" },
-  { href: "/advocacy", label: "Advocacy" },
-  { href: "/resurse", label: "Resurse" },
+  { href: "/camine", label: "Cămine de bătrâni" },
+  { href: "/camine-autorizate", label: "Licențiate" },
+  { href: "/cum-functioneaza", label: "Cum funcționează" },
   { href: "/stiri", label: "Știri" },
-  { href: "/camine", label: "Cămine" },
-  { href: "/petitii", label: "Petiții" },
+  { href: "/resurse", label: "Legislație" },
+  { href: "/advocacy", label: "Advocacy" },
+  { href: "/despre", label: "Despre" },
   { href: "/contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full glass border-b border-navy-deep/10">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 shrink-0">
+          <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image
-              src="/logo-pfpss.png"
-              alt="PFPSS — Patronatul Furnizorilor Privați de Servicii Sociale"
+              src="/logo-seniore.png"
+              alt="Seniore.ro — Cămine de bătrâni în România"
               width={160}
-              height={46}
+              height={48}
               priority
               className="h-10 w-auto"
             />
@@ -55,58 +54,12 @@ export function SiteHeader() {
 
           {/* Right actions */}
           <div className="flex items-center gap-4">
-            {/* Language selector */}
-            <div className="relative hidden sm:block">
-              <button
-                onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-1 text-sm text-navy-deep/70 hover:text-navy-deep transition-colors"
-              >
-                <Globe className="size-4" />
-                <span>RO</span>
-                <ChevronDown className="size-3" />
-              </button>
-              <AnimatePresence>
-                {langOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute right-0 mt-2 w-32 rounded-md border border-navy-deep/10 bg-white shadow-lg py-1"
-                  >
-                    <Link
-                      href="/"
-                      className="block px-4 py-2 text-sm text-navy-deep hover:bg-paper transition-colors"
-                      onClick={() => setLangOpen(false)}
-                    >
-                      Română
-                    </Link>
-                    <Link
-                      href="/en"
-                      className="block px-4 py-2 text-sm text-navy-deep hover:bg-paper transition-colors"
-                      onClick={() => setLangOpen(false)}
-                    >
-                      English
-                    </Link>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
             {/* Login button */}
             <Link
-              href="/login"
-              className="hidden sm:inline-flex items-center text-sm font-semibold text-navy-deep hover:text-gold transition-colors"
+              href="/cum-functioneaza"
+              className="hidden sm:inline-flex items-center bg-gold text-navy-deep px-5 py-2 rounded-sm text-sm font-semibold hover:bg-gold-light transition-colors"
             >
-              Login membri
-            </Link>
-
-            {/* Signup button */}
-            <Link
-              href="/signup"
-              className="hidden sm:inline-flex items-center bg-navy-deep text-paper px-5 py-2 rounded-sm text-sm font-semibold hover:bg-navy-light transition-colors"
-            >
-              Devino membru
+              Adaugă centrul tău
             </Link>
 
             {/* Mobile menu button */}
@@ -143,18 +96,11 @@ export function SiteHeader() {
                 </Link>
               ))}
               <Link
-                href="/login"
-                className="py-3 text-sm font-semibold text-navy-deep hover:text-gold transition-colors"
+                href="/cum-functioneaza"
+                className="py-3 mt-2 inline-flex items-center justify-center bg-gold text-navy-deep px-5 py-2.5 rounded-sm text-sm font-semibold"
                 onClick={() => setMobileOpen(false)}
               >
-                Login membri
-              </Link>
-              <Link
-                href="/signup"
-                className="py-3 mt-2 inline-flex items-center justify-center bg-navy-deep text-paper px-5 py-2.5 rounded-sm text-sm font-semibold"
-                onClick={() => setMobileOpen(false)}
-              >
-                Devino membru
+                Adaugă centrul tău
               </Link>
             </nav>
           </motion.div>

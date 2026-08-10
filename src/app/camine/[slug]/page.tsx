@@ -16,6 +16,9 @@ import {
 } from "lucide-react";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
+import { JsonLd } from "@/components/json-ld";
+import { buildCaminMetadata, nursingHomeJsonLd, breadcrumbJsonLd, faqCaminJsonLd, normalizeJudet, SITE_NAME } from "@/lib/seo";
+import { FaqSection } from "@/components/faq-section";
 import camineData from "@/data/camine-director.json";
 
 type Camin = {
@@ -51,14 +54,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const camin = (camineData as Camin[]).find((c) => c.slug === slug);
   if (!camin) {
-    return { title: "Cămin negăsit — PFPSS" };
+    return { title: `Cămin negăsit — ${SITE_NAME}` };
   }
-  return {
-    title: `${camin.name} — Cămin de bătrâni${camin.judet ? ` ${camin.judet}` : ""} | PFPSS`,
-    description: `${camin.name}${camin.address ? `, ${camin.address}` : ""}${
-      camin.phone ? ` — Tel: ${camin.phone}` : ""
-    }${camin.licensed ? " — Licențiat MMJS" : ""}`,
-  };
+  return buildCaminMetadata(camin);
 }
 
 export default async function CaminDetailPage({
@@ -83,7 +81,7 @@ export default async function CaminDetailPage({
               className="inline-flex items-center gap-2 text-gold font-semibold hover:underline"
             >
               <ArrowLeft className="size-4" />
-              Înapoi la director
+              Înapoi la portal
             </Link>
           </div>
         </main>
@@ -104,12 +102,22 @@ export default async function CaminDetailPage({
     : "";
 
   // Find related in same judet
+  const caminJudet = normalizeJudet(camin.judet);
   const related = (camineData as Camin[])
-    .filter((c) => c.judet === camin.judet && c.slug !== camin.slug)
+    .filter((c) => normalizeJudet(c.judet) === caminJudet && c.slug !== camin.slug)
     .slice(0, 4);
 
   return (
     <>
+      <JsonLd data={nursingHomeJsonLd(camin)} />
+      <JsonLd data={faqCaminJsonLd(camin)} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Acasă", url: "/" },
+          { name: "Portal cămine", url: "/camine" },
+          { name: camin.name, url: `/camine/${camin.slug}` },
+        ])}
+      />
       <SiteHeader />
       <main className="flex-1">
         {/* Breadcrumb */}
@@ -124,7 +132,7 @@ export default async function CaminDetailPage({
                 href="/camine"
                 className="hover:text-navy-deep transition-colors"
               >
-                Director cămine
+                Portal cămine
               </Link>
               <ChevronRight className="size-3.5" />
               <span className="text-navy-deep/70 truncate">{camin.name}</span>
@@ -168,20 +176,27 @@ export default async function CaminDetailPage({
 
             {/* Quick stats */}
             <div className="flex flex-wrap gap-2 sm:gap-3 mt-6">
-              {camin.rating && (
+              {camin.rating && Number(camin.rating) > 0 ? (
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/60 border border-navy-deep/10">
                   <Star className="size-4 text-gold fill-gold" />
                   <span className="text-sm font-semibold text-navy-deep">
                     {camin.rating}
                   </span>
-                  {camin.reviews && (
+                  {camin.reviews && Number(camin.reviews) > 0 && (
                     <span className="text-xs text-navy-deep/40">
-                      ({camin.reviews} recenzii)
+                      ({camin.reviews} recenzii Google)
                     </span>
                   )}
                 </div>
+              ) : (
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/60 border border-navy-deep/10">
+                  <Star className="size-4 text-navy-deep/30" />
+                  <span className="text-sm text-navy-deep/50">
+                    Fără Google Reviews
+                  </span>
+                </div>
               )}
-              {camin.capacity && (
+              {camin.capacity && Number(camin.capacity) > 0 && (
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/60 border border-navy-deep/10">
                   <Users className="size-4 text-navy-deep/50" />
                   <span className="text-sm font-semibold text-navy-deep">
@@ -400,7 +415,7 @@ export default async function CaminDetailPage({
                       href="/contact"
                       className="group inline-flex items-center gap-2 w-full justify-center bg-gold text-navy-deep px-5 py-3 rounded-lg font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-gold/20"
                     >
-                      Contact PFPSS
+                      Contact Seniore.ro
                     </Link>
                   )}
                 </div>
@@ -441,11 +456,85 @@ export default async function CaminDetailPage({
                 className="group inline-flex items-center gap-2 text-navy-deep font-semibold text-sm hover:text-gold transition-colors"
               >
                 <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
-                Înapoi la directorul căminelor
+                Înapoi la portalul căminelor
               </Link>
             </div>
           </div>
         </section>
+
+        <FaqSection
+          title={`Întrebări frecvente — ${camin.name}`}
+          items={[
+            {
+              question: `${camin.name} este licențiat?`,
+              answer: camin.licensed
+                ? `Da, ${camin.name} are licență MMJS (Ministerul Muncii, Familiei, Tineretului și Solidarității Sociale) pentru furnizarea de servicii sociale rezidențiale.${camin.licenseNumber ? ` Număr licență: ${camin.licenseNumber}.` : ""}${camin.licenseDate ? ` Data licențierii: ${camin.licenseDate}.` : ""}`
+                : `${camin.name} nu apare în lista oficială a căminelor licențiate de MMJS. Recomandăm să contactezi direct centrul pentru a verifica statusul de licențiere și autorizațiile actuale.`,
+            },
+            ...(camin.capacity ? [{
+              question: `Câte locuri are ${camin.name}?`,
+              answer: `${camin.name} are o capacitate de ${camin.capacity} locuri. Contactează centrul pentru a verifica disponibilitatea.`,
+            }] : []),
+            ...(camin.address || camin.localitate || camin.judet ? [{
+              question: `Unde se află ${camin.name}?`,
+              answer: `${camin.name} se află la ${[camin.address, camin.localitate, camin.judet].filter(Boolean).join(", ")}.${camin.lat && camin.lng ? " Poți vedea locația exactă pe harta de pe această pagină și obține direcții pe Google Maps." : ""}`,
+            }] : []),
+            ...(camin.phone ? [{
+              question: `Cum contactez ${camin.name}?`,
+              answer: camin.website ? (
+                <>
+                  Poți contacta {camin.name} la numărul de telefon{" "}
+                  <a href={`tel:${camin.internationalPhone || camin.phone}`} className="text-gold font-semibold hover:underline">
+                    {camin.phone}
+                  </a>
+                  . De asemenea, poți vizita website-ul oficial:{" "}
+                  <a href={camin.website} target="_blank" rel="noopener noreferrer" className="text-gold font-semibold hover:underline">
+                    {camin.website.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                  </a>
+                </>
+              ) : (
+                <>
+                  Poți contacta {camin.name} la numărul de telefon{" "}
+                  <a href={`tel:${camin.internationalPhone || camin.phone}`} className="text-gold font-semibold hover:underline">
+                    {camin.phone}
+                  </a>
+                  .
+                </>
+              ),
+            }] : camin.website ? [{
+              question: `Cum contactez ${camin.name}?`,
+              answer: (
+                <>
+                  Poți contacta {camin.name} prin website-ul oficial:{" "}
+                  <a href={camin.website} target="_blank" rel="noopener noreferrer" className="text-gold font-semibold hover:underline">
+                    {camin.website.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                  </a>
+                  .
+                </>
+              ),
+            }] : [{
+              question: `Cum obțin informații despre ${camin.name}?`,
+              answer: `Pentru informații despre ${camin.name}, poți folosi harta de pe această pagină pentru a obține direcții sau ne poți contacta prin portalul nostru.`,
+            }]),
+            ...(camin.serviceType ? [{
+              question: `Ce tip de servicii oferă ${camin.name}?`,
+              answer: `${camin.name} oferă servicii de tip: ${camin.serviceType}.`,
+            }] : []),
+          ]}
+        />
+
+        {/* Back */}
+        <div className="pb-12 bg-paper">
+          <div className="max-w-5xl mx-auto px-6">
+            <Link
+              href="/camine"
+              className="group inline-flex items-center gap-2 text-navy-deep font-semibold text-sm hover:text-gold transition-colors"
+            >
+              <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
+              Înapoi la portalul căminelor
+            </Link>
+          </div>
+        </div>
       </main>
       <SiteFooter />
     </>

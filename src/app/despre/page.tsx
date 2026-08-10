@@ -5,17 +5,12 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  Scale,
-  Award,
   Users,
-  FileText,
   Shield,
-  Lightbulb,
   Heart,
   Handshake,
   Target,
   Eye,
-  Download,
 } from "lucide-react";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
@@ -31,101 +26,60 @@ const fadeUp = {
 
 const directions = [
   {
-    icon: Scale,
-    title: "Reprezentare",
+    icon: Eye,
+    title: "Transparență",
     description:
-      "Vocea sectorului privat în fața Ministerului Muncii, ANPC și a Parlamentului.",
+      "Informații complete și verificate pentru fiecare cămin — locație, servicii, prețuri, licențe.",
   },
   {
-    icon: Award,
-    title: "Standarde",
+    icon: Target,
+    title: "Căutare simplă",
     description:
-      "Ghiduri de bune practici și un Cod Etic obligatoriu pentru toți membrii.",
+      "Filtre pe județ, oraș și tip de servicii. Familia găsește rapid căminul potrivit.",
   },
   {
     icon: Users,
-    title: "Comunitate",
+    title: "Vizibilitate",
     description:
-      "Întâlniri lunare, schimburi de experiență și parteneriate internaționale.",
+      "Fiecare cămin are o pagină proprie, clară și profesională, în fața familiilor care caută.",
   },
 ];
 
 const values = [
   {
     num: "01",
-    icon: Award,
-    title: "Excelență",
+    icon: Shield,
+    title: "Accuratețe",
     description:
-      "Promovăm cele mai înalte standarde de calitate în toate aspectele activității de îngrijire.",
+      "Informații verificate și actualizate pentru fiecare cămin în parte.",
   },
   {
     num: "02",
-    icon: Lightbulb,
-    title: "Inovație",
+    icon: Eye,
+    title: "Claritate",
     description:
-      "Încurajăm gândirea creativă pentru a dezvolta soluții eficiente la provocările sociale.",
+      "Date prezentate simplu și logic, ușor de înțeles pentru orice familie.",
   },
   {
     num: "03",
-    icon: Shield,
-    title: "Integritate",
+    icon: Target,
+    title: "Accesibilitate",
     description:
-      "Acționăm cu onestitate, transparență și responsabilitate în toate inițiativele noastre.",
+      "Căutare rapidă, filtre intuitive, rezultate relevante — gratuit, pentru toți.",
   },
   {
     num: "04",
     icon: Handshake,
-    title: "Colaborare",
+    title: "Încredere",
     description:
-      "Credem în forța parteneriatelor și a lucrului în echipă pentru obiective comune.",
+      "Un portal la care familiile revin pentru că găsesc ce caută, fără surprize.",
   },
   {
     num: "05",
     icon: Heart,
-    title: "Respect",
+    title: "Grijă",
     description:
-      "Tratăm cu demnitate beneficiarii, furnizorii și partenerii din întreg ecosistemul social.",
-  },
-];
-
-const team = [
-  {
-    name: "Katia-Constanța Cicală",
-    role: "Advocacy & Reprezentare instituțională",
-    description:
-      "Conduce demersurile de advocacy și reprezentarea instituțională a furnizorilor privați în relația cu autoritățile publice.",
-    photo: "/team/katia-cicala.jpg",
-  },
-  {
-    name: "Georgeta-Liliana Folea",
-    role: "Relația cu membrii & Standarde de calitate",
-    description:
-      "Coordonează relația cu membrii și standardele de calitate aplicate în centrele rezidențiale.",
-    photo: "/team/georgeta-folea.jpeg",
-  },
-  {
-    name: "Loredana Maghiar",
-    role: "Parteneriate & Reprezentare națională/internațională",
-    description:
-      "Responsabilă pentru dezvoltarea de parteneriate și reprezentarea PFPSS în forurile naționale și internaționale.",
-    photo: "/team/loredana-maghiar.jpg",
-  },
-  {
-    name: "Tania Ivan",
-    role: "Comunicare publică & Relația cu presa",
-    description:
-      "Coordonează comunicarea publică, relația cu presa și inițiativele de informare ale PFPSS.",
-    photo: "/team/tania-ivan.jpg",
-  },
-];
-
-const documents = [
-  {
-    title:
-      "Scrisoare deschisă către Ministerul Muncii — simplificarea licențierii (nr. 61/23.07.2026)",
-    description:
-      "Solicitare oficială privind continuarea simplificării procedurilor de licențiere și orientarea controalelor către protejarea efectivă a beneficiarilor, pe fondul scrisorii Comisarului pentru Drepturile Omului al Consiliului Europei.",
-    href: "https://pfpss.ro/documents/scrisoare-deschisa-ministerul-muncii-2026-07-23.pdf",
+      "Înțelegem că în spatele fiecărei căutări este o familie și o decizie importantă.",
   },
 ];
 
@@ -152,7 +106,7 @@ export default function DesprePage() {
                 >
                   <span className="size-2 rounded-full bg-gold animate-pulse" />
                   <span className="text-xs font-medium text-navy-deep/70 uppercase tracking-widest">
-                    Despre PFPSS
+                    Despre Seniore.ro
                   </span>
                 </motion.div>
                 <motion.h1
@@ -161,7 +115,7 @@ export default function DesprePage() {
                   transition={{ duration: 0.7, delay: 0.1 }}
                   className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold text-navy-deep leading-[1.1] text-balance mb-6"
                 >
-                  Unitate pentru demnitate — vocea furnizorilor privați de servicii sociale.
+                  Portal național al căminelor de bătrâni din România.
                 </motion.h1>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -169,10 +123,11 @@ export default function DesprePage() {
                   transition={{ duration: 0.7, delay: 0.2 }}
                   className="text-lg text-navy-deep/70 leading-relaxed max-w-2xl mx-auto lg:mx-0"
                 >
-                  PFPSS reunește profesioniștii din sectorul rezidențial privat de
-                  îngrijire a vârstnicilor din România. Prin advocacy, colaborare și
-                  educație sprijinim furnizorii în efortul de a oferi servicii la
-                  cele mai înalte standarde europene.
+                  Seniore.ro este portalul național al căminelor de bătrâni din
+                  România. Oferă familiilor un instrument clar de căutare și
+                  comparare, iar căminelor — vizibilitate și transparență.
+                  Printr-un portal actualizat și informat, Seniore.ro face
+                  legătura între nevoile familiilor și serviciile disponibile.
                 </motion.p>
               </div>
               {/* Image */}
@@ -215,14 +170,12 @@ export default function DesprePage() {
                   </h2>
                 </div>
                 <p className="text-navy-deep/70 leading-relaxed">
-                  Susținem activ furnizorii privați din domeniul asistenței
-                  sociale, oferindu-le o platformă de exprimare, resurse
-                  valoroase și oportunități de networking. Ne străduim să fim
-                  pilonul central pentru membrii noștri în interacțiunile cu
-                  autoritățile, agențiile guvernamentale și partenerii
-                  internaționali, pledând pentru un mediu legislativ optim și
-                  recunoașterea contribuției vitale a sectorului privat în
-                  asistența socială din România.
+                  Să construim cel mai complet și mai ușor de folosit portal
+                  de cămine de bătrâni din România. Fiecare familie să poată
+                  găsi rapid informațiile de care are nevoie — locație,
+                  servicii, prețuri, contact — iar fiecare cămin să aibă
+                  posibilitatea să se prezinte clar și transparent în fața
+                  familiilor care caută îngrijire pentru cei dragi.
                 </p>
               </motion.div>
 
@@ -243,12 +196,11 @@ export default function DesprePage() {
                   </h2>
                 </div>
                 <p className="text-navy-deep/70 leading-relaxed">
-                  Ne imaginăm o Românie în care calitatea accesului la
-                  asistență socială este garantată pentru toți, indiferent de
-                  dificultățile întâmpinate. Prin unitate, inovare și
-                  angajament neîntrerupt, remodelăm peisajul asistenței sociale
-                  pentru a răspunde eficient și flexibil la nevoile reale ale
-                  comunității.
+                  O Românie în care fiecare familie are acces la informația
+                  necesară pentru a lua cea mai bună decizie privind îngrijirea
+                  vârstnicilor. Un portal național transparent, actualizat și
+                  ușor de parcurs, care pune legătura directă între familiile
+                  care caută și căminele care oferă servicii de calitate.
                 </p>
               </motion.div>
             </div>
@@ -267,7 +219,7 @@ export default function DesprePage() {
               className="text-center max-w-2xl mx-auto mb-12"
             >
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-navy-deep mb-4 text-balance">
-                Trei direcții care ghidează patronatul
+                Trei direcții care ghidează portalul
               </h2>
             </motion.div>
             <div className="grid md:grid-cols-3 gap-6">
@@ -356,205 +308,25 @@ export default function DesprePage() {
                 Angajamentul nostru
               </h2>
               <p className="text-lg text-navy-deep/70 leading-relaxed mb-6">
-                La PFPSS credem că demnitatea fiecărei persoane este un drept
-                fundamental. Sub motto-ul „Unitate pentru Demnitate", promovăm
-                și protejăm acest principiu în toate activitățile noastre. Într-o
-                lume în care provocările sociale devin tot mai complexe, unitatea
-                dintre furnizori este cheia unui standard înalt de îngrijire
-                pentru cei mai vulnerabili membri ai comunității.
+                La Seniore.ro credem că informația corectă este primul pas
+                către o decizie bună. Când o familie caută un cămin pentru un
+                vârstnic drag, are nevoie de claritate, nu de confuzie. De aceea
+                construim un portal național în care fiecare cămin este
+                prezentat complet, onest și la obiect — locație, servicii,
+                prețuri, contact.
               </p>
               <p className="text-lg text-navy-deep/70 leading-relaxed mb-8">
-                Ne adresăm tuturor furnizorilor privați de servicii sociale care
-                împărtășesc viziunea noastră despre un serviciu umanitar centrat
-                pe demnitatea umană.
+                Ne adresăm tuturor căminelor de bătrâni din România care vor să
+                fie găsite de familiile care au nevoie de ele.
               </p>
               <Link
-                href="/inscriere"
+                href="/cum-functioneaza"
                 className="group inline-flex items-center gap-2 bg-navy-deep text-paper px-8 py-3.5 rounded-sm font-semibold text-sm ring-1 ring-navy-deep transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-navy-deep/20"
               >
-                Alăturați-vă PFPSS
+                Înregistrează-te
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </motion.div>
-          </div>
-        </section>
-
-        {/* Documente publice */}
-        <section className="py-20 bg-paper">
-          <div className="max-w-7xl mx-auto px-6">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              variants={fadeUp}
-              custom={0}
-              className="text-center max-w-2xl mx-auto mb-12"
-            >
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <FileText className="size-8 text-gold" />
-                <h2 className="font-heading text-3xl md:text-4xl font-bold text-navy-deep text-balance">
-                  Documente publice
-                </h2>
-              </div>
-              <p className="text-navy-deep/60">
-                Tot ce ține de guvernanța și activitatea PFPSS, accesibil
-                oricui — fără autentificare. Documentele detaliate pentru
-                membri se găsesc în zona privată.
-              </p>
-            </motion.div>
-
-            <div className="max-w-3xl mx-auto space-y-6">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={fadeUp}
-                custom={1}
-                className="mb-8"
-              >
-                <h3 className="font-heading text-xl font-semibold text-navy-deep mb-4">
-                  Poziții publice
-                </h3>
-                {documents.map((doc) => (
-                  <a
-                    key={doc.title}
-                    href={doc.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block p-6 rounded-xl border border-navy-deep/10 bg-white hover:border-gold/30 transition-all duration-300 hover:shadow-lg hover:shadow-navy-deep/5"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="flex items-center justify-center size-12 rounded-lg bg-gold/10 shrink-0">
-                        <Download className="size-6 text-gold" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-heading text-lg font-semibold text-navy-deep mb-2 group-hover:text-gold transition-colors">
-                          {doc.title}
-                        </h4>
-                        <p className="text-sm text-navy-deep/60 leading-relaxed">
-                          {doc.description}
-                        </p>
-                        <span className="inline-flex items-center gap-1 mt-3 text-sm font-semibold text-navy-deep group-hover:text-gold transition-colors">
-                          Deschide
-                          <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
-                        </span>
-                      </div>
-                    </div>
-                  </a>
-                ))}
-              </motion.div>
-
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={fadeUp}
-                custom={2}
-                className="p-6 rounded-xl border border-navy-deep/10 bg-white"
-              >
-                <h3 className="font-heading text-xl font-semibold text-navy-deep mb-3">
-                  Documente doar pentru membri
-                </h3>
-                <p className="text-navy-deep/60 leading-relaxed mb-4">
-                  Modele detaliate de contracte, proceduri ISO, fișe de post,
-                  arhivă întâlniri, consultanță juridică și template-uri de
-                  răspuns la control sunt disponibile în zona privată.
-                </p>
-                <Link
-                  href="/login"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-navy-deep hover:text-gold transition-colors"
-                >
-                  Autentificare membri
-                  <ArrowRight className="size-4" />
-                </Link>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Conducerea */}
-        <section className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              variants={fadeUp}
-              custom={0}
-              className="text-center max-w-2xl mx-auto mb-6"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-deep/5 border border-navy-deep/10 mb-6">
-                <span className="size-2 rounded-full bg-gold animate-pulse" />
-                <span className="text-xs font-medium text-navy-deep/70 uppercase tracking-widest">
-                  Echipa
-                </span>
-              </div>
-              <h2 className="font-heading text-3xl md:text-5xl font-bold text-navy-deep mb-4 text-balance">
-                Conducerea PFPSS
-              </h2>
-              <p className="text-navy-deep/60 leading-relaxed">
-                Boardul patronatului este format din reprezentanți aleși de
-                Adunarea Generală a membrilor și sprijiniți de o echipă
-                executivă dedicată.
-              </p>
-            </motion.div>
-
-            <motion.p
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              variants={fadeUp}
-              custom={1}
-              className="text-center max-w-3xl mx-auto mb-16 text-navy-deep/50 leading-relaxed text-sm"
-            >
-              Boardul PFPSS este ales de Adunarea Generală a membrilor pentru un
-              mandat de patru ani și răspunde public pentru direcția strategică
-              a patronatului. Echipa executivă asigură implementarea zilnică și
-              coordonarea proiectelor.
-            </motion.p>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {team.map((member, i) => (
-                <motion.div
-                  key={member.name}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-50px" }}
-                  variants={fadeUp}
-                  custom={i + 1}
-                  className="group relative rounded-2xl overflow-hidden bg-paper ring-1 ring-navy-deep/10 hover:ring-gold/30 transition-all duration-500 hover:shadow-2xl hover:shadow-navy-deep/10"
-                >
-                  {/* Photo */}
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image
-                      src={member.photo}
-                      alt={member.name}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    />
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/20 to-transparent" />
-                    {/* Name + role on image */}
-                    <div className="absolute bottom-0 left-0 right-0 p-5">
-                      <div className="w-10 h-0.5 bg-gold mb-3 transition-all duration-500 group-hover:w-16" />
-                      <h3 className="font-heading text-lg font-semibold text-paper leading-tight mb-1">
-                        {member.name}
-                      </h3>
-                      <p className="text-xs font-medium text-gold/90 uppercase tracking-wide">
-                        {member.role}
-                      </p>
-                    </div>
-                  </div>
-                  {/* Description */}
-                  <div className="p-5">
-                    <p className="text-sm text-navy-deep/60 leading-relaxed">
-                      {member.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -569,19 +341,19 @@ export default function DesprePage() {
               custom={0}
             >
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-navy-deep mb-4 text-balance">
-                Vocea ta contează în fața autorităților
+                Înregistrează-ți căminul în Portalul Seniore.ro
               </h2>
               <p className="text-navy-deep/70 leading-relaxed mb-8 max-w-2xl mx-auto">
-                Alătură-te comunității PFPSS pentru reprezentare
+                Alătură-te comunității Seniore.ro pentru reprezentare
                 instituțională, consultanță juridică și acces la rețeaua de
                 furnizori privați.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link
-                  href="/inscriere"
+                  href="/cum-functioneaza"
                   className="group inline-flex items-center gap-2 bg-navy-deep text-paper px-8 py-3.5 rounded-sm font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-navy-deep/20"
                 >
-                  Devino membru
+                  Înregistrează-te
                   <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
