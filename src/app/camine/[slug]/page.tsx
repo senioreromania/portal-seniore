@@ -19,6 +19,7 @@ import { SiteFooter } from "@/components/site/footer";
 import { JsonLd } from "@/components/json-ld";
 import { buildCaminMetadata, nursingHomeJsonLd, breadcrumbJsonLd, faqCaminJsonLd, normalizeJudet, SITE_NAME } from "@/lib/seo";
 import { FaqSection } from "@/components/faq-section";
+import { PromoteCaminButton } from "./promote-button";
 import camineData from "@/data/camine-director.json";
 
 type Camin = {
@@ -419,6 +420,9 @@ export default async function CaminDetailPage({
                     </Link>
                   )}
                 </div>
+
+                {/* Promote CTA */}
+                <PromoteCaminButton caminSlug={camin.slug} />
 
                 {/* Related */}
                 {related.length > 0 && (

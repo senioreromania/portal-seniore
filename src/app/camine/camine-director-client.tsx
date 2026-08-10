@@ -15,10 +15,12 @@ import {
   Sparkles,
   ChevronRight,
   Users,
+  Crown,
 } from "lucide-react";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
 import { normalizeJudet } from "@/lib/seo";
+import { createClient } from "@/lib/supabase-browser";
 import camineRaw from "@/data/camine-director.json";
 
 type Camin = {
@@ -37,9 +39,10 @@ type Camin = {
   licenseNumber: string;
   localitate: string;
   serviceType: string;
+  isPremium?: boolean;
 };
 
-const camineData = camineRaw as Camin[];
+const jsonCamine = camineRaw as Camin[];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -59,6 +62,55 @@ export function CamineDirectorClient() {
   const [licensedOnly, setLicensedOnly] = useState(false);
   const [withPhoneOnly, setWithPhoneOnly] = useState(false);
   const [page, setPage] = useState(1);
+  const [supabaseCamine, setSupabaseCamine] = useState<Camin[]>([]);
+
+  // Fetch approved camine from Supabase
+  useEffect(() => {
+    async function fetchSupabaseCamine() {
+      try {
+        const supabase = createClient();
+        const { data } = await supabase
+          .from("camine")
+          .select("*")
+          .eq("status", "approved");
+
+        if (data) {
+          const mapped: Camin[] = data.map((c: Record<string, unknown>) => ({
+            slug: `sb-${c.id}`,
+            name: c.nume as string,
+            phone: (c.telefon as string) || "",
+            website: (c.website as string) || "",
+            address: (c.adresa as string) || "",
+            lat: 0,
+            lng: 0,
+            judet: c.judet as string,
+            rating: 0,
+            reviews: 0,
+            licensed: false,
+            capacity: "",
+            licenseNumber: "",
+            localitate: c.oras as string,
+            serviceType: "",
+            isPremium: c.is_premium as boolean,
+          }));
+          setSupabaseCamine(mapped);
+        }
+      } catch {
+        // Supabase not configured or error — continue with JSON only
+      }
+    }
+    fetchSupabaseCamine();
+  }, []);
+
+  // Merge JSON + Supabase, premium first
+  const camineData = useMemo(() => {
+    const all = [...jsonCamine, ...supabaseCamine];
+    return all.sort((a, b) => {
+      if (a.isPremium && !b.isPremium) return -1;
+      if (!a.isPremium && b.isPremium) return 1;
+      return 0;
+    });
+  }, [supabaseCamine]);
 
   // Preia parametrii din URL (de la hero search)
   useEffect(() => {
@@ -335,9 +387,17 @@ export function CamineDirectorClient() {
                           <h3 className="font-heading text-base font-semibold text-navy-deep leading-snug group-hover:text-gold transition-colors line-clamp-2">
                             {cam.name}
                           </h3>
-                          {cam.licensed && (
-                            <ShieldCheck className="size-5 text-gold shrink-0" />
-                          )}
+                          <div className="flex items-center gap-1.5 shrink-0">
+                            {cam.isPremium && (
+                              <span className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-gold/15 text-gold font-semibold border border-gold/20">
+                                <Crown className="size-3" />
+                                Premium
+                              </span>
+                            )}
+                            {cam.licensed && (
+                              <ShieldCheck className="size-5 text-gold shrink-0" />
+                            )}
+                          </div>
                         </div>
 
                         {cam.address && (

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Playfair_Display } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { buildHomeMetadata, websiteJsonLd, SITE_URL } from "@/lib/seo";
@@ -25,11 +26,11 @@ export const metadata: Metadata = {
     apple: "/logo-seniore.png",
   },
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
     googleBot: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,
       "max-video-preview": -1,
@@ -51,6 +52,18 @@ export default function RootLayout({
         <JsonLd data={websiteJsonLd()} />
       </head>
       <body className="min-h-full flex flex-col bg-paper w-full">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-6LQ7HMECW2"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-6LQ7HMECW2');
+          `}
+        </Script>
         {children}
         <Toaster position="top-right" richColors />
       </body>

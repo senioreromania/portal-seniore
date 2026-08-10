@@ -9,12 +9,11 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Acasă" },
-  { href: "/camine", label: "Cămine de bătrâni" },
+  { href: "/camine", label: "Lista Cămine" },
   { href: "/camine-autorizate", label: "Licențiate" },
   { href: "/cum-functioneaza", label: "Cum funcționează" },
   { href: "/stiri", label: "Știri" },
   { href: "/resurse", label: "Legislație" },
-  { href: "/advocacy", label: "Advocacy" },
   { href: "/despre", label: "Despre" },
   { href: "/contact", label: "Contact" },
 ];
@@ -54,9 +53,15 @@ export function SiteHeader() {
 
           {/* Right actions */}
           <div className="flex items-center gap-4">
-            {/* Login button */}
             <Link
-              href="/cum-functioneaza"
+              href="/login"
+              className="hidden sm:inline-flex items-center text-sm font-medium text-navy-deep/70 hover:text-navy-deep transition-colors"
+            >
+              Contul meu
+            </Link>
+            {/* CTA button */}
+            <Link
+              href="/inregistrare"
               className="hidden sm:inline-flex items-center bg-gold text-navy-deep px-5 py-2 rounded-sm text-sm font-semibold hover:bg-gold-light transition-colors"
             >
               Adaugă centrul tău
@@ -96,7 +101,14 @@ export function SiteHeader() {
                 </Link>
               ))}
               <Link
-                href="/cum-functioneaza"
+                href="/login"
+                className="py-3 text-sm font-medium text-navy-deep hover:text-gold transition-colors border-b border-navy-deep/5"
+                onClick={() => setMobileOpen(false)}
+              >
+                Contul meu
+              </Link>
+              <Link
+                href="/inregistrare"
                 className="py-3 mt-2 inline-flex items-center justify-center bg-gold text-navy-deep px-5 py-2.5 rounded-sm text-sm font-semibold"
                 onClick={() => setMobileOpen(false)}
               >

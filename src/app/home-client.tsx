@@ -463,7 +463,7 @@ export function HomeClient({
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
-                  href="/cum-functioneaza"
+                  href="/inregistrare"
                   className="inline-flex items-center justify-center gap-2 bg-gold text-navy-deep px-6 py-3.5 rounded-lg font-semibold text-sm transition-all hover:bg-gold-light hover:shadow-lg hover:shadow-gold/20"
                 >
                   <PlusCircle className="size-4" />

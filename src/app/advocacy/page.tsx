@@ -327,7 +327,7 @@ export default function AdvocacyPage() {
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link
-                  href="/cum-functioneaza"
+                  href="/inregistrare"
                   className="group inline-flex items-center gap-2 bg-navy-deep text-paper px-8 py-3.5 rounded-sm font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-navy-deep/20"
                 >
                   Înregistrează-te
