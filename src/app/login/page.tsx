@@ -6,6 +6,7 @@ import { LoginForm } from "./login-form";
 export const metadata: Metadata = {
   title: "Conectare | Seniore.ro",
   description: "Conectează-te la contul tău Seniore.ro.",
+  robots: { index: false, follow: false },
 };
 
 export default async function LoginPage({

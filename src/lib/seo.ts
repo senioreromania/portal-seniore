@@ -94,7 +94,7 @@ export function slugifyJudet(judet: string): string {
 export function buildHomeMetadata(): Metadata {
   return {
     title: {
-      default: "Azil și Cămin de Bătrâni în România — Portal Național 2026",
+      default: "Cămine de Bătrâni în România — Portal Național Camine de Batrani România",
       template: "%s | Seniore.ro",
     },
     description: SITE_DESCRIPTION,
@@ -108,7 +108,7 @@ export function buildHomeMetadata(): Metadata {
       },
     },
     openGraph: {
-      title: "Azil și Cămin de Bătrâni în România — Portal Național",
+      title: "Cămine de Bătrâni în România — Portal Național Camine de Batrani România",
       description: SITE_DESCRIPTION,
       url: SITE_URL,
       siteName: SITE_NAME,
@@ -118,7 +118,7 @@ export function buildHomeMetadata(): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Azil și Cămin de Bătrâni în România — Portal Național",
+      title: "Cămine de Bătrâni în România — Portal Național Camine de Batrani România",
       description: SITE_DESCRIPTION,
       images: [`${SITE_URL}/og-image.jpg`],
     },

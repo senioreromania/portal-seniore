@@ -10,7 +10,6 @@ const footerLinks = {
   ],
   Organizație: [
     { href: "/despre", label: "Despre noi" },
-    { href: "/membri", label: "Membri" },
     { href: "/advocacy", label: "Advocacy" },
     { href: "/petitii", label: "Petiții" },
     { href: "/stiri", label: "Știri" },
@@ -46,14 +45,6 @@ export function SiteFooter() {
               direcții. Platformă dezvoltată de Seniore.ro.
             </p>
             <dl className="mt-6 text-xs text-navy-deep/60 space-y-1">
-              <div className="flex gap-2">
-                <dt className="font-semibold">Denumire:</dt>
-                <dd>Seniore.ro</dd>
-              </div>
-              <div className="flex gap-2">
-                <dt className="font-semibold">CUI:</dt>
-                <dd>50457026</dd>
-              </div>
               <div className="flex gap-2">
                 <dt className="font-semibold">Sediu:</dt>
                 <dd>

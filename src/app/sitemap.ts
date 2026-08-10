@@ -27,7 +27,6 @@ const staticPages: {
   { url: "/advocacy", priority: 0.4, changeFrequency: "monthly" },
   { url: "/petitii", priority: 0.4, changeFrequency: "monthly" },
   { url: "/resurse", priority: 0.5, changeFrequency: "monthly" },
-  { url: "/membri", priority: 0.4, changeFrequency: "monthly" },
   { url: "/contact", priority: 0.5, changeFrequency: "monthly" },
   { url: "/confidentialitate", priority: 0.3, changeFrequency: "yearly" },
   { url: "/termeni", priority: 0.3, changeFrequency: "yearly" },

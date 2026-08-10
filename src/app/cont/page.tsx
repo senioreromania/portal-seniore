@@ -8,6 +8,7 @@ import { AccountClient } from "./account-client";
 export const metadata: Metadata = {
   title: "Contul meu | Seniore.ro",
   description: "Gestionează-ți contul și căminele adăugate.",
+  robots: { index: false, follow: false },
 };
 
 export default async function ContPage() {

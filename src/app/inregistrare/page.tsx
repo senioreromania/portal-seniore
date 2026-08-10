@@ -7,6 +7,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Înregistrare | Seniore.ro",
   description: "Creează un cont pe Seniore.ro pentru a-ți adăuga căminul.",
+  robots: { index: false, follow: false },
 };
 
 export default async function InregistrarePage({
