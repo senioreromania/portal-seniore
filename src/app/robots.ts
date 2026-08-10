@@ -4,8 +4,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: "/",
-      disallow: ["/centru/", "/cont/", "/admin/", "/api/"],
+      disallow: "/",
     },
     sitemap: "https://www.seniore.ro/sitemap.xml",
     host: "https://www.seniore.ro",
