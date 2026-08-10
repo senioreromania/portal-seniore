@@ -51,11 +51,11 @@ export async function generateMetadata({
     title: { absolute: title },
     description,
     keywords: [
-      `azil de bătrâni ${judetNormalized}`,
       `cămin de bătrâni ${judetNormalized}`,
-      `azile de bătrâni ${judetNormalized}`,
+      `cămin de bătrâni ${judetNormalized}`,
       `cămine de bătrâni ${judetNormalized}`,
-      `azil batrani ${judetNormalized}`,
+      `cămine de bătrâni ${judetNormalized}`,
+      `cămin batrani ${judetNormalized}`,
     ],
     alternates: {
       canonical: `${SITE_URL}/judet/${slugifyJudet(judetNormalized)}`,
@@ -64,7 +64,7 @@ export async function generateMetadata({
       title,
       description,
       url: `${SITE_URL}/judet/${slugifyJudet(judetNormalized)}`,
-      siteName: "Seniore.ro — Azile și cămine de bătrâni în România",
+      siteName: "Seniore.ro — Cămine de bătrâni în România",
       locale: "ro_RO",
       type: "website",
       images: [{ url: `${SITE_URL}/og-image.jpg`, width: 1200, height: 630 }],

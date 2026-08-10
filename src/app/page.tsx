@@ -55,7 +55,7 @@ export default function HomePage() {
 
   const featured = camine
     .filter((c) => c.licensed && c.rating)
-    .sort((a, b) => Number(b.rating) - Number(a.rating))
+    .sort(() => Math.random() - 0.5)
     .slice(0, 6);
 
   const premiumCamine = premiumList

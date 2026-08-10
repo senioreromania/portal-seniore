@@ -21,6 +21,7 @@ import {
   faqJudetJsonLd,
   normalizeJudet,
   slugifyJudet,
+  titleCase,
   type Camin,
 } from "@/lib/seo";
 import { FaqSection } from "@/components/faq-section";
@@ -248,7 +249,7 @@ export default async function JudetPage({
                     >
                       <div className="flex items-start justify-between gap-3 mb-3">
                         <h3 className="font-heading text-base font-semibold text-navy-deep leading-snug group-hover:text-gold transition-colors line-clamp-2">
-                          {cam.name}
+                          {titleCase(cam.name)}
                         </h3>
                         {cam.licensed && (
                           <ShieldCheck className="size-5 text-gold shrink-0" />
@@ -362,25 +363,25 @@ export default async function JudetPage({
         </section>
 
         <FaqSection
-          title={`Întrebări frecvente — azile și cămine de bătrâni în ${judet}`}
+          title={`Întrebări frecvente — cămine de bătrâni în ${judet}`}
           items={[
             {
-              question: `Câte azile și cămine de bătrâni sunt în județul ${judet}?`,
-              answer: `În județul ${judet} sunt ${camineInJudet.length} azile și cămine de bătrâni indexate în portalul nostru, din care ${licensed.length} sunt licențiate de Ministerul Muncii, Familiei, Tineretului și Solidarității Sociale (MMJS).`,
+              question: `Câte cămine de bătrâni sunt în județul ${judet}?`,
+              answer: `În județul ${judet} sunt ${camineInJudet.length} cămine de bătrâni indexate în portalul nostru, din care ${licensed.length} sunt licențiate de Ministerul Muncii, Familiei, Tineretului și Solidarității Sociale (MMJS).`,
             },
             {
-              question: `Care sunt localitățile cu azile de bătrâni în județul ${judet}?`,
+              question: `Care sunt localitățile cu cămine de bătrâni în județul ${judet}?`,
               answer: orase.length > 0
-                ? `Azile și cămine de bătrâni din ${judet} se găsesc în următoarele localități: ${orase.join(", ")}.`
-                : `Informațiile despre localitățile cu azile în ${judet} sunt actualizate periodic pe pagina fiecărui județ.`,
+                ? `Cămine de bătrâni din ${judet} se găsesc în următoarele localități: ${orase.join(", ")}.`
+                : `Informațiile despre localitățile cu cămine de bătrâni în ${judet} sunt actualizate periodic pe pagina fiecărui județ.`,
             },
             {
               question: `Ce prețuri au căminele de bătrâni în județul ${judet}?`,
-              answer: `Prețurile la azilele și căminele de bătrâni din ${judet} variază în funcție de tipul centrului (public sau privat), gradul de dependență al rezidentului și serviciile incluse. Centrele publice au coplături între 1.500 și 3.000 lei/lună, iar cele private pornesc de la 3.500 lei/lună. Contactează direct fiecare centru pentru un deviz personalizat.`,
+              answer: `Prețurile la căminele de bătrâni din ${judet} variază în funcție de tipul centrului (public sau privat), gradul de dependență al rezidentului și serviciile incluse. Centrele publice au coplături între 1.500 și 3.000 lei/lună, iar cele private pornesc de la 3.500 lei/lună. Contactează direct fiecare centru pentru un deviz personalizat.`,
             },
             {
-              question: `Cum aleg un azil de bătrâni în județul ${judet}?`,
-              answer: `Pentru a alege un azil sau cămin de bătrâni în ${judet}, verifică: 1) dacă centrul are licență MMJS, 2) capacitatea și raportul personal-rezident, 3) serviciile medicale incluse, 4) locația și accesul familiei, 5) prețul și ce include tariful. Recomandăm vizitarea centrului înainte de decizie.`,
+              question: `Cum aleg un cămin de bătrâni în județul ${judet}?`,
+              answer: `Pentru a alege un cămin de bătrâni în ${judet}, verifică: 1) dacă centrul are licență MMJS, 2) capacitatea și raportul personal-rezident, 3) serviciile medicale incluse, 4) locația și accesul familiei, 5) prețul și ce include tariful. Recomandăm vizitarea centrului înainte de decizie.`,
             },
             {
               question: `Ce este un cămin de bătrâni licențiat?`,

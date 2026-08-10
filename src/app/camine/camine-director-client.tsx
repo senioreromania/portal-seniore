@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
-import { normalizeJudet } from "@/lib/seo";
+import { normalizeJudet, titleCase } from "@/lib/seo";
 import { createClient } from "@/lib/supabase-browser";
 import camineRaw from "@/data/camine-director.json";
 
@@ -219,7 +219,7 @@ export function CamineDirectorClient() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold text-navy-deep leading-[1.1] text-balance mb-6"
             >
-              Seniore.ro — Cămine și azile de bătrâni în România
+              Seniore.ro — Cămine de bătrâni în România
             </motion.h1>
 
             <motion.p
@@ -385,7 +385,7 @@ export function CamineDirectorClient() {
                       >
                         <div className="flex items-start justify-between gap-3 mb-3">
                           <h3 className="font-heading text-base font-semibold text-navy-deep leading-snug group-hover:text-gold transition-colors line-clamp-2">
-                            {cam.name}
+                            {titleCase(cam.name)}
                           </h3>
                           <div className="flex items-center gap-1.5 shrink-0">
                             {cam.isPremium && (

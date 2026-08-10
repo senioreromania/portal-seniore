@@ -21,6 +21,7 @@ import {
   faqOrasJsonLd,
   normalizeJudet,
   slugifyJudet,
+  titleCase,
   type Camin,
 } from "@/lib/seo";
 import { FaqSection } from "@/components/faq-section";
@@ -180,7 +181,7 @@ export default async function OrasPage({
               Cămine de bătrâni în {orasName}
             </h1>
             <p className="text-lg text-navy-deep/70 max-w-2xl">
-              {camineInOras.length} azile și cămine de bătrâni în {orasName}, județul {judet}.
+              {camineInOras.length} cămine de bătrâni în {orasName}, județul {judet}.
               Prețuri, contact, hartă, licență și direcții pentru fiecare centru.
             </p>
           </div>
@@ -221,7 +222,7 @@ export default async function OrasPage({
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1 min-w-0">
                       <h2 className="font-heading text-lg font-bold text-navy-deep group-hover:text-gold transition-colors mb-1">
-                        {camin.name}
+                        {titleCase(camin.name)}
                       </h2>
                       <div className="flex flex-wrap items-center gap-3 text-sm text-navy-deep/50">
                         {camin.localitate && (
@@ -262,19 +263,19 @@ export default async function OrasPage({
             </div>
 
             <FaqSection
-              title={`Întrebări frecvente — azile și cămine de bătrâni în ${orasName}`}
+              title={`Întrebări frecvente — cămine de bătrâni în ${orasName}`}
               items={[
                 {
-                  question: `Câte azile și cămine de bătrâni sunt în ${orasName}, județul ${judet}?`,
-                  answer: `În ${orasName}, județul ${judet}, sunt ${camineInOras.length} azile și cămine de bătrâni indexate, din care ${licensed.length} sunt licențiate MMJS.`,
+                  question: `Câte cămine de bătrâni sunt în ${orasName}, județul ${judet}?`,
+                  answer: `În ${orasName}, județul ${judet}, sunt ${camineInOras.length} cămine de bătrâni indexate, din care ${licensed.length} sunt licențiate MMJS.`,
                 },
                 {
-                  question: `Care azile din ${orasName} sunt licențiate?`,
+                  question: `Care cămine din ${orasName} sunt licențiate?`,
                   answer: `Din cele ${camineInOras.length} centre din ${orasName}, ${licensed.length} au licență MMJS activă. Verifică statusul de licențiere pe pagina fiecărui cămin.`,
                 },
                 {
                   question: `Cum găsesc un cămin de bătrâni în ${orasName}?`,
-                  answer: `Pe această pagină găsești toate ${camineInOras.length} azilele și căminele de bătrâni din ${orasName}, ${judet}. Fiecare centru are pagină proprie cu date de contact, hartă, capacitate și status de licențiere.`,
+                  answer: `Pe această pagină găsești toate ${camineInOras.length} căminele de bătrâni din ${orasName}, ${judet}. Fiecare centru are pagină proprie cu date de contact, hartă, capacitate și status de licențiere.`,
                 },
               ]}
             />

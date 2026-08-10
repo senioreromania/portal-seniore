@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
-import { slugifyJudet, normalizeJudet } from "@/lib/seo";
+import { slugifyJudet, normalizeJudet, titleCase } from "@/lib/seo";
 
 type Camin = {
   slug: string;
@@ -45,13 +45,6 @@ type Camin = {
   serviceType: string;
 };
 
-function titleCase(str: string): string {
-  return str
-    .toLowerCase()
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -556,7 +549,7 @@ export function HomeClient({
                         </div>
 
                         <h3 className="font-heading text-base font-semibold text-navy-deep leading-snug group-hover:text-gold transition-colors line-clamp-2 mb-3 pr-10">
-                          {cam.name}
+                          {titleCase(cam.name)}
                         </h3>
 
                         {cam.address && (
@@ -736,7 +729,7 @@ export function HomeClient({
                   găsești rapid opțiunile disponibile în județul tău.
                 </p>
                 <p>
-                  Un <strong>azil de bătrâni licențiat</strong> este autorizat
+                  Un <strong>cămin de bătrâni licențiat</strong> este autorizat
                   de Ministerul Muncii, Familiei, Tineretului și Solidarității
                   Sociale (MMJS) și trebuie să îndeplinească standarde specifice
                   de calitate: personal calificat, condiții de cazare, mese

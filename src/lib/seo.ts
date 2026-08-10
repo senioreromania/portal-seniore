@@ -1,22 +1,23 @@
 import type { Metadata } from "next";
 
 export const SITE_URL = "https://www.seniore.ro";
-export const SITE_NAME = "Seniore.ro — Cămine de bătrâni în România";
+export const SITE_NAME = "Seniore.ro — Portal cu toate Căminele de Bătrâni din România";
 export const SITE_DESCRIPTION =
-  "Cămine de bătrâni în România. Găsește cămin licențiat în județul tău — prețuri, contact, hartă, capacitate. Listă completă de cămine de bătrâni, case de bătrâni și centre de îngrijire pentru vârstnici.";
+  "Portal cu toate căminele de bătrâni din România. Găsește cămin licențiat în județul tău — prețuri, contact, hartă, capacitate. Listă completă de cămine de bătrâni, case de bătrâni și centre de îngrijire pentru vârstnici.";
+
+export function titleCase(str: string): string {
+  const smallWords = new Set(["srl", "srld", "de", "la", "și", "din", "în", "cu", "pentru", "pe", "la", "al", "ai", "ale", "lei"]);
+  return str
+    .toLowerCase()
+    .split(/\s+/)
+    .map((word, i) => {
+      if (i > 0 && smallWords.has(word.replace(/[._-]/g, ""))) return word;
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(" ");
+}
 
 export const KEYWORDS = [
-  "azil de bătrâni",
-  "azil batrani",
-  "azil de batrani",
-  "azile de bătrâni",
-  "azile batrani",
-  "azil batrani pret",
-  "azil de bătrâni preț",
-  "azil de bătrâni licențiat",
-  "azil de bătrâni România",
-  "azil batrani Bucuresti",
-  "azil de bătrâni București",
   "cămin de bătrâni",
   "camin de batrani",
   "camine batrani",
@@ -24,6 +25,12 @@ export const KEYWORDS = [
   "camin batrani pret",
   "cămin de bătrâni preț",
   "cămin de bătrâni licențiat",
+  "cămin de bătrâni România",
+  "camin batrani Bucuresti",
+  "cămin de bătrâni București",
+  "toate căminele de bătrâni",
+  "portal cămine de bătrâni",
+  "listă cămine de bătrâni",
   "casă de bătrâni",
   "case de bătrâni",
   "case batrani",
@@ -94,7 +101,7 @@ export function slugifyJudet(judet: string): string {
 export function buildHomeMetadata(): Metadata {
   return {
     title: {
-      default: "Cămine de Bătrâni în România — Portal Național Camine de Batrani România",
+      default: "Portal cu toate Căminele de Bătrâni din România — Seniore.ro",
       template: "%s | Seniore.ro",
     },
     description: SITE_DESCRIPTION,
@@ -108,7 +115,7 @@ export function buildHomeMetadata(): Metadata {
       },
     },
     openGraph: {
-      title: "Cămine de Bătrâni în România — Portal Național Camine de Batrani România",
+      title: "Portal cu toate Căminele de Bătrâni din România — Seniore.ro",
       description: SITE_DESCRIPTION,
       url: SITE_URL,
       siteName: SITE_NAME,
@@ -118,7 +125,7 @@ export function buildHomeMetadata(): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Cămine de Bătrâni în România — Portal Național Camine de Batrani România",
+      title: "Portal cu toate Căminele de Bătrâni din România — Seniore.ro",
       description: SITE_DESCRIPTION,
       images: [`${SITE_URL}/og-image.jpg`],
     },
@@ -127,24 +134,23 @@ export function buildHomeMetadata(): Metadata {
 
 export function buildCamineListMetadata(): Metadata {
   return {
-    title: "Cămine și Azile de Bătrâni în România — Listă Completă",
+    title: "Toate Căminele de Bătrâni din România — Listă Completă",
     description:
-      "Toate căminele și azilele de bătrâni din România. Filtrează după județ, licență, capacitate. Date de contact, hartă, prețuri și direcții pentru fiecare cămin de bătrâni.",
+      "Portal cu toate căminele de bătrâni din România. Filtrează după județ, licență, capacitate. Date de contact, hartă, prețuri și direcții pentru fiecare cămin de bătrâni.",
     keywords: [
       ...KEYWORDS,
-      "listă azile de bătrâni",
       "listă cămine de bătrâni",
       "portal cămine bătrâni",
       "cămine bătrâni România",
-      "azile bătrâni România",
+      "toate căminele de bătrâni",
     ],
     alternates: {
       canonical: `${SITE_URL}/camine`,
     },
     openGraph: {
-      title: "Cămine și Azile de Bătrâni în România — Listă Completă",
+      title: "Toate Căminele de Bătrâni din România — Listă Completă",
       description:
-        "Toate căminele și azilele de bătrâni din România. Filtrează după județ, licență, capacitate.",
+        "Portal cu toate căminele de bătrâni din România. Filtrează după județ, licență, capacitate.",
       url: `${SITE_URL}/camine`,
       siteName: SITE_NAME,
       locale: "ro_RO",
@@ -153,8 +159,8 @@ export function buildCamineListMetadata(): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Cămine și Azile de Bătrâni în România — Listă Completă",
-      description: "Toate căminele și azilele de bătrâni din România. Filtrează după județ, licență, capacitate.",
+      title: "Toate Căminele de Bătrâni din România — Listă Completă",
+      description: "Portal cu toate căminele de bătrâni din România. Filtrează după județ, licență, capacitate.",
       images: [`${SITE_URL}/og-image.jpg`],
     },
   };
@@ -164,7 +170,7 @@ export function buildCaminMetadata(camin: Camin): Metadata {
   const localitate = camin.localitate || "";
   const judet = normalizeJudet(camin.judet) || "";
   const locPart = localitate ? ` ${localitate},` : judet ? ` ${judet}` : "";
-  const title = `${camin.name} — Azil/Cămin de bătrâni${locPart} | Seniore.ro`;
+  const title = `${camin.name} — Cămin de bătrâni${locPart} | Seniore.ro`;
   const descParts = [
     `${camin.name}`,
     localitate ? ` din ${localitate}, ${judet}` : judet ? ` din județul ${judet}` : "",
@@ -179,15 +185,13 @@ export function buildCaminMetadata(camin: Camin): Metadata {
     title,
     description: descParts.join(""),
     keywords: [
-      `azil de bătrâni ${judet}`,
       `cămin de bătrâni ${judet}`,
-      `azil de bătrâni ${localitate}`,
       `cămin de bătrâni ${localitate}`,
       `casă de bătrâni ${judet}`,
       `îngrijire bătrâni ${judet}`,
       camin.name,
       `centru vârstnici ${judet}`,
-      `azil batrani ${localitate}`,
+      `camin batrani ${localitate}`,
       `home pentru bătrâni ${judet}`,
     ],
     alternates: {
@@ -226,7 +230,7 @@ export function buildJudetMetadata(judet: string, count: number): Metadata {
       `îngrijire bătrâni ${judet}`,
       `centru vârstnici ${judet}`,
       `home pentru bătrâni ${judet}`,
-      `azil batrani ${judet}`,
+      `camin batrani ${judet}`,
     ],
     alternates: {
       canonical: `${SITE_URL}/judet/${slugifyJudet(judet)}`,
@@ -257,13 +261,11 @@ export function buildOrasMetadata(oras: string, judet: string, count: number): M
     title: { absolute: title },
     description,
     keywords: [
-      `azil de bătrâni ${oras}`,
       `cămin de bătrâni ${oras}`,
-      `azile de bătrâni ${oras}`,
+      `cămine de bătrâni ${oras}`,
       `casă de bătrâni ${oras}`,
       `îngrijire bătrâni ${oras}`,
       `centru vârstnici ${oras}`,
-      `azil de bătrâni ${oras} ${judet}`,
       `cămin de bătrâni ${oras} ${judet}`,
     ],
     alternates: {
@@ -322,12 +324,12 @@ export function buildStiriListMetadata(): Metadata {
   return buildStaticPageMetadata({
     title: "Știri din domeniul îngrijirii vârstnicilor — Seniore.ro",
     description:
-      "Știri, comunicate și analize despre căminele și azilele de bătrâni din România. Legislație, licențiere, reforme și evenimente din sectorul asistenței sociale.",
+      "Știri, comunicate și analize despre căminele de bătrâni din România. Legislație, licențiere, reforme și evenimente din sectorul asistenței sociale.",
     path: "/stiri",
     keywords: [
       ...KEYWORDS,
       "știri cămine bătrâni",
-      "știri azile bătrâni",
+      "știri cămine bătrâni",
       "legislație asistență socială",
       "licențiere cămine",
     ],
@@ -527,21 +529,21 @@ export function faqJudetJsonLd(opts: {
 
   questions.push({
     "@type": "Question",
-    name: `Câte azile și cămine de bătrâni sunt în județul ${judet}?`,
+    name: `Câte cămine de bătrâni sunt în județul ${judet}?`,
     acceptedAnswer: {
       "@type": "Answer",
-      text: `În județul ${judet} sunt ${count} azile și cămine de bătrâni indexate în portalul nostru, din care ${licensed} sunt licențiate de Ministerul Muncii, Familiei, Tineretului și Solidarității Sociale (MMJS).`,
+      text: `În județul ${judet} sunt ${count} cămine de bătrâni indexate în portalul nostru, din care ${licensed} sunt licențiate de Ministerul Muncii, Familiei, Tineretului și Solidarității Sociale (MMJS).`,
     },
   });
 
   questions.push({
     "@type": "Question",
-    name: `Care sunt localitățile cu azile de bătrâni în județul ${judet}?`,
+    name: `Care sunt localitățile cu cămine de bătrâni în județul ${judet}?`,
     acceptedAnswer: {
       "@type": "Answer",
       text: orase.length > 0
-        ? `Cămine și azile de bătrâni în județul ${judet} se găsesc în următoarele localități: ${orase.join(", ")}.`
-        : `Informațiile despre localitățile cu azile în ${judet} sunt actualizate periodic pe pagina fiecărui județ.`,
+        ? `Cămine de bătrâni în județul ${judet} se găsesc în următoarele localități: ${orase.join(", ")}.`
+        : `Informațiile despre localitățile cu cămine de bătrâni în ${judet} sunt actualizate periodic pe pagina fiecărui județ.`,
     },
   });
 
@@ -550,16 +552,16 @@ export function faqJudetJsonLd(opts: {
     name: `Ce prețuri au căminele de bătrâni în județul ${judet}?`,
     acceptedAnswer: {
       "@type": "Answer",
-      text: `Prețurile la azilele și căminele de bătrâni din ${judet} variază în funcție de tipul centrului (public sau privat), gradul de dependență al rezidentului și serviciile incluse. Centrele publice au coplături între 1.500 și 3.000 lei/lună, iar cele private pornesc de la 3.500 lei/lună. Contactează direct fiecare centru pentru un deviz personalizat.`,
+      text: `Prețurile la căminele de bătrâni din ${judet} variază în funcție de tipul centrului (public sau privat), gradul de dependență al rezidentului și serviciile incluse. Centrele publice au coplături între 1.500 și 3.000 lei/lună, iar cele private pornesc de la 3.500 lei/lună. Contactează direct fiecare centru pentru un deviz personalizat.`,
     },
   });
 
   questions.push({
     "@type": "Question",
-    name: `Cum aleg un azil de bătrâni în județul ${judet}?`,
+    name: `Cum aleg un cămin de bătrâni în județul ${judet}?`,
     acceptedAnswer: {
       "@type": "Answer",
-      text: `Pentru a alege un azil sau cămin de bătrâni în ${judet}, verifică: 1) dacă centrul are licență MMJS, 2) capacitatea și raportul personal-rezident, 3) serviciile medicale incluse, 4) locația și accesul familiei, 5) prețul și ce include tariful. Recomandăm vizitarea centrului înainte de decizie.`,
+      text: `Pentru a alege un cămin de bătrâni în ${judet}, verifică: 1) dacă centrul are licență MMJS, 2) capacitatea și raportul personal-rezident, 3) serviciile medicale incluse, 4) locația și accesul familiei, 5) prețul și ce include tariful. Recomandăm vizitarea centrului înainte de decizie.`,
     },
   });
 
@@ -683,16 +685,16 @@ export function faqOrasJsonLd(opts: {
 
   questions.push({
     "@type": "Question",
-    name: `Câte azile și cămine de bătrâni sunt în ${oras}, județul ${judet}?`,
+    name: `Câte cămine de bătrâni sunt în ${oras}, județul ${judet}?`,
     acceptedAnswer: {
       "@type": "Answer",
-      text: `În ${oras}, județul ${judet}, sunt ${count} azile și cămine de bătrâni indexate, din care ${licensed} sunt licențiate MMJS.`,
+      text: `În ${oras}, județul ${judet}, sunt ${count} cămine de bătrâni indexate, din care ${licensed} sunt licențiate MMJS.`,
     },
   });
 
   questions.push({
     "@type": "Question",
-    name: `Care azile din ${oras} sunt licențiate?`,
+    name: `Care cămine din ${oras} sunt licențiate?`,
     acceptedAnswer: {
       "@type": "Answer",
       text: `Din cele ${count} centre din ${oras}, ${licensed} au licență MMJS activă. Verifică statusul de licențiere pe pagina fiecărui cămin.`,
@@ -704,7 +706,7 @@ export function faqOrasJsonLd(opts: {
     name: `Cum găsesc un cămin de bătrâni în ${oras}?`,
     acceptedAnswer: {
       "@type": "Answer",
-      text: `Pe această pagină găsești toate ${count} azilele și căminele de bătrâni din ${oras}, ${judet}. Fiecare centru are pagină proprie cu date de contact, hartă, capacitate și status de licențiere.`,
+      text: `Pe această pagină găsești toate ${count} căminele de bătrâni din ${oras}, ${judet}. Fiecare centru are pagină proprie cu date de contact, hartă, capacitate și status de licențiere.`,
     },
   });
 

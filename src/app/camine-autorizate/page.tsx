@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
 import { Search, Filter, X } from "lucide-react";
+import { titleCase } from "@/lib/seo";
 import camineData from "@/data/camine-autorizate.json";
 
 type Camin = {
@@ -206,7 +207,7 @@ export default function CamineAutorizatePage() {
                       {c.furnizor}
                     </td>
                     <td className="px-3 py-2.5 text-navy-deep/70">
-                      {c.denumire}
+                      {titleCase(c.denumire)}
                     </td>
                     <td className="px-3 py-2.5 whitespace-nowrap">
                       {c.judet}
@@ -249,7 +250,7 @@ export default function CamineAutorizatePage() {
                       {c.tip}
                     </span>
                     <h3 className="font-semibold text-navy-deep text-sm leading-snug">
-                      {c.denumire}
+                      {titleCase(c.denumire)}
                     </h3>
                   </div>
                   <span className="text-xs text-navy-deep/40 whitespace-nowrap">

@@ -17,7 +17,7 @@ import {
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
 import { JsonLd } from "@/components/json-ld";
-import { buildCaminMetadata, nursingHomeJsonLd, breadcrumbJsonLd, faqCaminJsonLd, normalizeJudet, SITE_NAME, SITE_URL, slugifyJudet } from "@/lib/seo";
+import { buildCaminMetadata, nursingHomeJsonLd, breadcrumbJsonLd, faqCaminJsonLd, normalizeJudet, SITE_NAME, SITE_URL, slugifyJudet, titleCase } from "@/lib/seo";
 import { FaqSection } from "@/components/faq-section";
 import { PromoteCaminButton } from "./promote-button";
 import { createClient } from "@/lib/supabase-server";
@@ -201,7 +201,7 @@ export default async function CaminDetailPage({
               </div>
               <div className="flex-1 min-w-0">
                 <h1 className="font-heading text-xl sm:text-2xl md:text-4xl font-bold text-navy-deep leading-tight text-balance">
-                  {camin.name}
+                  {titleCase(camin.name)}
                 </h1>
                 {camin.judet && (
                   <div className="flex items-center gap-2 text-sm text-navy-deep/50 mt-2">
