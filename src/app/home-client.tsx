@@ -307,9 +307,10 @@ export function HomeClient({
 
         {/* ===== Cămine Premium ===== */}
         {premiumCamine.length > 0 && (
-          <section className="relative py-16 md:py-24 overflow-hidden bg-gold/20">
-            <div className="absolute inset-0 bg-gradient-to-br from-gold/20 via-gold/10 to-[#b8964f]/10" />
-            <div className="absolute top-1/3 right-0 w-[500px] h-[400px] bg-navy-deep/5 rounded-full blur-[140px]" />
+          <section className="relative py-16 md:py-24 overflow-hidden bg-navy-deep">
+            <div className="absolute inset-0 bg-gradient-to-b from-navy-deep via-[#0d1520] to-navy-deep" />
+            <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-gold/10 rounded-full blur-[120px]" />
+            <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-gold/8 rounded-full blur-[100px]" />
 
             <div className="max-w-7xl mx-auto px-6 relative">
               <motion.div
@@ -320,17 +321,17 @@ export function HomeClient({
                 custom={0}
                 className="text-center mb-12"
               >
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-deep text-gold border border-gold/30 mb-5">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/40 mb-5">
                   <Crown className="size-4 text-gold" />
                   <span className="text-xs font-semibold text-gold uppercase tracking-widest">
                     Premium
                   </span>
                 </div>
-                <h2 className="font-heading text-2xl md:text-4xl font-bold text-navy-deep mb-3">
+                <h2 className="font-heading text-2xl md:text-4xl font-bold text-paper mb-3">
                   Cămine de bătrâni PREMIUM
                 </h2>
-                <p className="text-navy-deep/60 max-w-2xl mx-auto">
-                  Cămine de bătrâni Partenere Seniore.ro
+                <p className="text-paper/50 max-w-2xl mx-auto">
+                  Partenere Seniore.ro
                 </p>
               </motion.div>
 
@@ -346,13 +347,16 @@ export function HomeClient({
                   >
                     <Link
                       href={`/camine/${cam.slug}`}
-                      className="group relative block h-full rounded-2xl overflow-hidden bg-white border-2 border-navy-deep/10 hover:border-gold transition-all duration-300 hover:shadow-2xl hover:shadow-gold/15"
+                      className="group relative block h-full rounded-2xl overflow-hidden bg-[#111d2e] border border-gold/20 hover:border-gold/60 transition-all duration-500 hover:shadow-2xl hover:shadow-gold/25 hover:-translate-y-1"
                     >
+                      {/* Glow effect on hover */}
+                      <div className="absolute -inset-0.5 bg-gradient-to-b from-gold/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10" />
+
                       {/* Premium + Rating badges row */}
-                      <div className="flex items-center justify-between px-4 py-2 bg-navy-deep">
+                      <div className="flex items-center justify-between px-4 py-2.5 bg-gradient-to-r from-gold/15 to-gold/5 border-b border-gold/20">
                         <div className="flex items-center gap-1.5">
                           <Crown className="size-3.5 text-gold" />
-                          <span className="text-xs font-bold uppercase tracking-wide text-white">Premium</span>
+                          <span className="text-xs font-bold uppercase tracking-wide text-gold">Premium</span>
                         </div>
                         {cam.rating && (
                           <div className="flex items-center gap-1.5">
@@ -363,59 +367,59 @@ export function HomeClient({
                       </div>
 
                       {/* Title band */}
-                      <div className="h-20 bg-gradient-to-r from-navy-deep via-navy-deep to-[#1a2535] flex flex-col justify-center px-5">
-                        <h3 className="font-heading text-lg font-bold text-white leading-snug line-clamp-2">
+                      <div className="px-5 pt-5 pb-4">
+                        <h3 className="font-heading text-lg font-bold text-white leading-snug line-clamp-2 group-hover:text-gold transition-colors duration-300">
                           {titleCase(cam.name)}
                         </h3>
-                        <p className="text-xs text-gold/80 mt-0.5 line-clamp-1">
+                        <p className="text-sm text-gold/70 mt-1 line-clamp-1">
                           {cam.highlight}
                         </p>
                       </div>
 
-                      <div className="p-5">
-                        <div className="flex items-center gap-1.5 mb-2">
+                      <div className="px-5 pb-5">
+                        <div className="flex items-center gap-1.5 mb-3">
                           <ShieldCheck className="size-4 text-gold" />
                           <span className="text-xs font-semibold text-gold uppercase tracking-wide">
                             Licențiat MMJS
                           </span>
                         </div>
 
-                        <p className="text-sm text-navy-deep/60 leading-relaxed mb-3 line-clamp-2">
+                        <p className="text-sm text-white/80 leading-relaxed mb-3 line-clamp-2">
                           {cam.description}
                         </p>
 
                         {cam.address && (
-                          <div className="flex items-start gap-2 text-sm text-navy-deep/50 mb-3">
-                            <MapPin className="size-4 shrink-0 mt-0.5" />
+                          <div className="flex items-start gap-2 text-sm text-white/70 mb-3">
+                            <MapPin className="size-4 shrink-0 mt-0.5 text-gold/60" />
                             <span className="line-clamp-1">{cam.address}</span>
                           </div>
                         )}
 
-                        <div className="flex items-center gap-3 text-xs text-navy-deep/40 mb-3">
+                        <div className="flex items-center gap-3 text-xs text-white/70 mb-4">
                           {cam.judet && (
                             <span className="inline-flex items-center gap-1">
-                              <MapPin className="size-3" />
+                              <MapPin className="size-3 text-gold/60" />
                               {cam.judet}
                             </span>
                           )}
                           {cam.capacity && (
                             <span className="inline-flex items-center gap-1">
-                              <Users className="size-3" />
+                              <Users className="size-3 text-gold/60" />
                               {cam.capacity} locuri
                             </span>
                           )}
                         </div>
 
-                        <div className="flex items-center justify-between pt-3 border-t border-navy-deep/5">
+                        <div className="flex items-center justify-between pt-3 border-t border-gold/10">
                           {cam.phone && (
-                            <span className="inline-flex items-center gap-1 text-xs text-navy-deep/50">
-                              <Phone className="size-3" />
+                            <span className="inline-flex items-center gap-1 text-xs text-white/70">
+                              <Phone className="size-3 text-gold/60" />
                               Telefon
                             </span>
                           )}
                           {cam.website && (
-                            <span className="inline-flex items-center gap-1 text-xs text-navy-deep/50">
-                              <Globe className="size-3" />
+                            <span className="inline-flex items-center gap-1 text-xs text-white/70">
+                              <Globe className="size-3 text-gold/60" />
                               Website
                             </span>
                           )}
