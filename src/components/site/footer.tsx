@@ -48,9 +48,8 @@ export function SiteFooter() {
               <div className="flex gap-2">
                 <dt className="font-semibold">Sediu:</dt>
                 <dd>
-                  Phoenicia Business Center, Corp A, interfon 14, Str.
-                  Turturelelor 11b, bl. A, sc. A, et. 1, ap. a14, Sector 3,
-                  București
+                  Strada Margeanului, Nr. 22, Sector 5,
+                  051047 București, România
                 </dd>
               </div>
             </dl>
@@ -83,8 +82,7 @@ export function SiteFooter() {
               <li className="flex gap-3 items-start">
                 <MapPin className="size-4 shrink-0 text-gold mt-0.5" />
                 <span>
-                  Phoenicia Business Center, Corp A, interfon 14, Str.
-                  Turturelelor 11b, Sector 3, București
+                  Strada Margeanului, Nr. 22, Sector 5, 051047 București
                 </span>
               </li>
             </ul>

@@ -4,6 +4,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { buildHomeMetadata, websiteJsonLd, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/json-ld";
+import { CookieBanner } from "@/components/site/cookie-banner";
 import "./globals.css";
 
 const inter = Inter({
@@ -65,6 +66,7 @@ export default function RootLayout({
           `}
         </Script>
         {children}
+        <CookieBanner />
         <Toaster position="top-right" richColors />
       </body>
     </html>
