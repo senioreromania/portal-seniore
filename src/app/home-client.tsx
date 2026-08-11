@@ -44,6 +44,7 @@ type Camin = {
   licenseNumber: string;
   localitate: string;
   serviceType: string;
+  images?: string[];
 };
 
 
@@ -366,6 +367,16 @@ export function HomeClient({
                         )}
                       </div>
 
+                      {/* Image */}
+                      {cam.images && cam.images.length > 0 && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={cam.images[0]}
+                          alt={cam.name}
+                          className="w-full h-44 object-cover"
+                        />
+                      )}
+
                       {/* Title band */}
                       <div className="px-5 pt-5 pb-4">
                         <h3 className="font-heading text-lg font-bold text-white leading-snug line-clamp-2 group-hover:text-gold transition-colors duration-300">
@@ -377,12 +388,14 @@ export function HomeClient({
                       </div>
 
                       <div className="px-5 pb-5">
-                        <div className="flex items-center gap-1.5 mb-3">
-                          <ShieldCheck className="size-4 text-gold" />
-                          <span className="text-xs font-semibold text-gold uppercase tracking-wide">
-                            Licențiat MMJS
-                          </span>
-                        </div>
+                        {cam.licensed && (
+                          <div className="flex items-center gap-1.5 mb-3">
+                            <ShieldCheck className="size-4 text-gold" />
+                            <span className="text-xs font-semibold text-gold uppercase tracking-wide">
+                              Licențiat MMJS
+                            </span>
+                          </div>
+                        )}
 
                         <p className="text-sm text-white/80 leading-relaxed mb-3 line-clamp-2">
                           {cam.description}

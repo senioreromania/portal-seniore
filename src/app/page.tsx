@@ -1,7 +1,6 @@
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbJsonLd, normalizeJudet, slugifyJudet } from "@/lib/seo";
 import camineData from "@/data/camine-director.json";
-import premiumSlugs from "@/data/camine-premium.json";
 import { HomeClient } from "./home-client";
 import { createClient } from "@/lib/supabase-server";
 
@@ -21,17 +20,10 @@ type Camin = {
   licenseNumber: string;
   localitate: string;
   serviceType: string;
-};
-
-type PremiumEntry = {
-  slug: string;
-  highlight: string;
-  description: string;
-  featured: boolean;
+  images?: string[];
 };
 
 const camine = camineData as Camin[];
-const premiumList = premiumSlugs as PremiumEntry[];
 
 async function getSupabasePremiumCamine(): Promise<
   (Camin & { highlight: string; description: string })[]
@@ -59,16 +51,21 @@ async function getSupabasePremiumCamine(): Promise<
         phone: (c.telefon as string) || "",
         website: (c.website as string) || "",
         address: (c.adresa as string) || "",
-        lat: 0,
-        lng: 0,
+        lat: (c.lat as number) || 0,
+        lng: (c.lng as number) || 0,
         judet: (c.judet as string) || "",
-        rating: "",
-        reviews: "",
-        licensed: false,
-        capacity: "",
-        licenseNumber: "",
+        rating: (c.rating as number) || "",
+        reviews: (c.reviews as number) || "",
+        licensed: (c.licensed as boolean) || false,
+        capacity: c.capacity ? String(c.capacity) : "",
+        licenseNumber: (c.license_number as string) || "",
         localitate: (c.oras as string) || "",
-        serviceType: "",
+        serviceType:
+          c.servicii && Array.isArray(c.servicii)
+            ? (c.servicii as string[]).join(", ")
+            : "",
+        images:
+          c.images && Array.isArray(c.images) ? (c.images as string[]) : [],
         highlight: "Cămin Partener Premium",
         description: (c.descriere as string) || "",
       }));
@@ -103,20 +100,8 @@ export default async function HomePage() {
     .sort(() => Math.random() - 0.5)
     .slice(0, 6);
 
-  const jsonPremiumCamine = premiumList
-    .map((p) => {
-      const camin = camine.find((c) => c.slug === p.slug);
-      if (!camin) return null;
-      return { ...camin, highlight: p.highlight, description: p.description };
-    })
-    .filter((c): c is Camin & { highlight: string; description: string } => c !== null);
-
   const supabasePremiumCamine = await getSupabasePremiumCamine();
-  const supabasePremiumSlugs = new Set(supabasePremiumCamine.map((c) => c.slug));
-  const jsonPremiumCamineDeduped = jsonPremiumCamine.filter(
-    (c) => !supabasePremiumSlugs.has(c.slug)
-  );
-  const premiumCamine = [...supabasePremiumCamine, ...jsonPremiumCamineDeduped];
+  const premiumCamine = supabasePremiumCamine;
 
   const faqJsonLd = {
     "@context": "https://schema.org",
