@@ -3,12 +3,15 @@
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase-browser";
-import { LogOut, Mail, Building2, Plus, MapPin, Phone, Globe } from "lucide-react";
+import { LogOut, Mail, Building2, Plus, MapPin, Phone, Globe, Crown, ChevronDown, ChevronUp, ImagePlus, Pencil } from "lucide-react";
 import { AddCaminForm } from "./add-camin-form";
+import { PremiumCheckout } from "./premium-checkout";
+import { CaminImageUploader } from "./camin-image-uploader";
 
 type Camin = {
   id: string;
   nume: string;
+  slug: string;
   judet: string;
   oras: string;
   adresa: string | null;
@@ -17,6 +20,7 @@ type Camin = {
   website: string | null;
   pret_pornire: number | null;
   status: string;
+  is_premium: boolean;
   created_at: string;
 };
 
@@ -26,6 +30,8 @@ export function AccountClient({ email }: { email: string }) {
   const [showForm, setShowForm] = useState(false);
   const [camine, setCamine] = useState<Camin[]>([]);
   const [loadingCamine, setLoadingCamine] = useState(true);
+  const [premiumCamin, setPremiumCamin] = useState<Camin | null>(null);
+  const [expandedCamin, setExpandedCamin] = useState<string | null>(null);
 
   const fetchCamine = useCallback(async () => {
     const supabase = createClient();
@@ -152,6 +158,12 @@ export function AccountClient({ email }: { email: string }) {
                           >
                             {st.label}
                           </span>
+                          {c.is_premium && (
+                            <span className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-gold/10 text-gold border border-gold/30 font-medium">
+                              <Crown className="size-3" />
+                              Premium
+                            </span>
+                          )}
                         </div>
                         <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-navy-deep/50">
                           <span className="inline-flex items-center gap-1">
@@ -177,12 +189,74 @@ export function AccountClient({ email }: { email: string }) {
                           )}
                         </div>
                       </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <button
+                          onClick={() => router.push(`/cont/edit-camin/${c.id}`)}
+                          className="inline-flex items-center gap-1.5 bg-navy-deep/5 text-navy-deep border border-navy-deep/10 px-3 py-1.5 rounded-sm text-xs font-semibold hover:bg-navy-deep/10 transition-all"
+                        >
+                          <Pencil className="size-3.5" />
+                          Editează
+                        </button>
+                        {c.is_premium && (
+                          <button
+                            onClick={() => setExpandedCamin(expandedCamin === c.id ? null : c.id)}
+                            className="inline-flex items-center gap-1.5 bg-navy-deep/5 text-navy-deep border border-navy-deep/10 px-3 py-1.5 rounded-sm text-xs font-semibold hover:bg-navy-deep/10 transition-all"
+                          >
+                            <ImagePlus className="size-3.5" />
+                            Imagini
+                            {expandedCamin === c.id ? <ChevronUp className="size-3" /> : <ChevronDown className="size-3" />}
+                          </button>
+                        )}
+                        {!c.is_premium && (
+                          <button
+                            onClick={() => setPremiumCamin(c)}
+                            className="inline-flex items-center gap-1.5 bg-gold/10 text-gold border border-gold/30 px-3 py-1.5 rounded-sm text-xs font-semibold hover:bg-gold hover:text-navy-deep transition-all"
+                          >
+                            <Crown className="size-3.5" />
+                            Premium
+                          </button>
+                        )}
+                      </div>
                     </div>
+
+                    {expandedCamin === c.id && c.is_premium && (
+                      <div className="mt-4 pt-4 border-t border-navy-deep/10">
+                        <CaminImageUploader
+                          caminId={c.id}
+                          caminName={c.nume}
+                          isPremium={c.is_premium}
+                        />
+                      </div>
+                    )}
                   </div>
                 );
               })}
             </div>
           )}
+        </div>
+      )}
+
+      {/* Premium checkout modal */}
+      {premiumCamin && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy-deep/60 backdrop-blur-sm"
+          onClick={() => setPremiumCamin(null)}
+        >
+          <div
+            className="bg-paper rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setPremiumCamin(null)}
+              className="float-right text-navy-deep/40 hover:text-navy-deep text-xl leading-none"
+            >
+              ×
+            </button>
+            <PremiumCheckout
+              caminId={premiumCamin.id}
+              caminName={premiumCamin.nume}
+            />
+          </div>
         </div>
       )}
     </div>

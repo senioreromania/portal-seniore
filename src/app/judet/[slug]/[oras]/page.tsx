@@ -216,7 +216,7 @@ export default async function OrasPage({
               {camineInOras.map((camin) => (
                 <Link
                   key={camin.slug}
-                  href={`/camine/${camin.slug}`}
+                  href={`/camine/${slug}/${camin.slug}`}
                   className="group block p-6 rounded-xl bg-white border border-navy-deep/10 hover:border-gold/30 hover:shadow-lg hover:shadow-navy-deep/5 transition-all"
                 >
                   <div className="flex items-start justify-between gap-4">

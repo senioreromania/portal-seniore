@@ -10,6 +10,7 @@ import {
   Navigation,
   ChevronRight,
   ArrowLeft,
+  Crown,
 } from "lucide-react";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
@@ -26,8 +27,57 @@ import {
 } from "@/lib/seo";
 import { FaqSection } from "@/components/faq-section";
 import camineData from "@/data/camine-director.json";
+import { createClient } from "@/lib/supabase-server";
 
 const allCamine = camineData as Camin[];
+const jsonSlugSet = new Set(allCamine.map((c) => c.slug));
+
+type CaminWithPremium = Camin & { isPremium?: boolean };
+
+async function getSupabaseCamineForJudet(judet: string): Promise<CaminWithPremium[]> {
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase
+      .from("camine")
+      .select("*")
+      .eq("status", "approved")
+      .eq("judet", judet);
+
+    if (!data) return [];
+
+    const now = new Date();
+
+    return data
+      .map((c: Record<string, unknown>) => {
+        const premiumUntil = c.premium_until as string | null;
+        const isActivePremium =
+          Boolean(c.is_premium) && (!premiumUntil || new Date(premiumUntil) > now);
+        return {
+          slug: (c.slug as string) || `sb-${c.id}`,
+          name: c.nume as string,
+          phone: (c.telefon as string) || "",
+          website: (c.website as string) || "",
+          address: (c.adresa as string) || "",
+          lat: 0,
+          lng: 0,
+          judet: (c.judet as string) || "",
+          rating: "",
+          reviews: "",
+          licensed: false,
+          capacity: "",
+          licenseNumber: "",
+          localitate: (c.oras as string) || "",
+          serviceType: "",
+          isPremium: isActivePremium,
+        };
+      })
+      .filter((c) => normalizeJudet(c.judet) === judet)
+      // Skip non-premium Supabase rows that duplicate an existing JSON entry
+      .filter((c) => c.isPremium || !jsonSlugSet.has(c.slug));
+  } catch {
+    return [];
+  }
+}
 
 // Build lookup: slug -> judet name
 const judetBySlug = new Map<string, string>();
@@ -89,9 +139,21 @@ export default async function JudetPage({
     );
   }
 
-  const camineInJudet = allCamine.filter(
+  const camineInJudetJsonRaw = allCamine.filter(
     (c) => normalizeJudet(c.judet) === judet
   );
+  const supabaseCamineJudet = await getSupabaseCamineForJudet(judet);
+  const supabasePremiumJudet = supabaseCamineJudet.filter((c) => c.isPremium);
+  const supabaseRegularJudet = supabaseCamineJudet.filter((c) => !c.isPremium);
+  const premiumSlugsJudet = new Set(supabasePremiumJudet.map((c) => c.slug));
+  const camineInJudetJson = camineInJudetJsonRaw.filter(
+    (c) => !premiumSlugsJudet.has(c.slug)
+  );
+  const camineInJudet: CaminWithPremium[] = [
+    ...supabasePremiumJudet,
+    ...camineInJudetJson,
+    ...supabaseRegularJudet,
+  ];
 
   const licensed = camineInJudet.filter((c) => c.licensed);
   const withPhone = camineInJudet.filter((c) => c.phone);
@@ -244,65 +306,85 @@ export default async function JudetPage({
                   {camineInJudet.map((cam) => (
                     <Link
                       key={cam.slug}
-                      href={`/camine/${cam.slug}`}
-                      className="group block h-full p-5 rounded-xl bg-white border border-navy-deep/8 hover:border-gold/30 transition-all duration-300 hover:shadow-lg hover:shadow-navy-deep/5"
+                      href={`/camine/${slug}/${cam.slug}`}
+                      className={`group block h-full rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-lg ${
+                        cam.isPremium
+                          ? "bg-white border-gold/40 hover:border-gold/70 hover:shadow-gold/20"
+                          : "bg-white border-navy-deep/8 hover:border-gold/30 hover:shadow-navy-deep/5 p-5"
+                      }`}
                     >
-                      <div className="flex items-start justify-between gap-3 mb-3">
-                        <h3 className="font-heading text-base font-semibold text-navy-deep leading-snug group-hover:text-gold transition-colors line-clamp-2">
-                          {titleCase(cam.name)}
-                        </h3>
-                        {cam.licensed && (
-                          <ShieldCheck className="size-5 text-gold shrink-0" />
-                        )}
-                      </div>
-
-                      {cam.address && (
-                        <div className="flex items-start gap-2 text-sm text-navy-deep/50 mb-2">
-                          <MapPin className="size-4 shrink-0 mt-0.5" />
-                          <span className="line-clamp-2">{cam.address}</span>
+                      {cam.isPremium && (
+                        <div className="flex items-center justify-between px-4 py-2.5 bg-navy-deep border-b border-gold/30">
+                          <div className="flex items-center gap-1.5">
+                            <Crown className="size-3.5 text-gold" />
+                            <span className="text-xs font-bold uppercase tracking-wide text-gold">Premium</span>
+                          </div>
+                          {cam.licensed && (
+                            <div className="flex items-center gap-1">
+                              <ShieldCheck className="size-3.5 text-gold" />
+                              <span className="text-xs font-semibold text-gold uppercase tracking-wide">Licențiat</span>
+                            </div>
+                          )}
                         </div>
                       )}
+                      <div className={cam.isPremium ? "p-5" : ""}>
+                        <div className="flex items-start justify-between gap-3 mb-3">
+                          <h3 className={`font-heading text-base font-semibold leading-snug group-hover:text-gold transition-colors line-clamp-2 text-navy-deep`}>
+                            {titleCase(cam.name)}
+                          </h3>
+                          {!cam.isPremium && cam.licensed && (
+                            <ShieldCheck className="size-5 text-gold shrink-0" />
+                          )}
+                        </div>
 
-                      <div className="flex items-center gap-3 text-xs text-navy-deep/40 mb-3">
-                        {cam.localitate && (
-                          <span className="inline-flex items-center gap-1">
-                            <MapPin className="size-3" />
-                            {cam.localitate}
-                          </span>
+                        {cam.address && (
+                          <div className="flex items-start gap-2 text-sm mb-2 text-navy-deep/50">
+                            <MapPin className="size-4 shrink-0 mt-0.5" />
+                            <span className="line-clamp-2">{cam.address}</span>
+                          </div>
                         )}
-                        {cam.capacity && (
-                          <span className="inline-flex items-center gap-1">
-                            <Users className="size-3" />
-                            {cam.capacity} locuri
-                          </span>
-                        )}
-                        {cam.rating && (
-                          <span className="inline-flex items-center gap-1">
-                            <Star className="size-3 text-gold fill-gold" />
-                            {cam.rating}
-                          </span>
-                        )}
-                      </div>
 
-                      <div className="flex items-center gap-2 pt-3 border-t border-navy-deep/5">
-                        {cam.phone && (
-                          <span className="inline-flex items-center gap-1 text-xs text-navy-deep/50">
-                            <Phone className="size-3" />
-                            Telefon
-                          </span>
-                        )}
-                        {cam.website && (
-                          <span className="inline-flex items-center gap-1 text-xs text-navy-deep/50">
-                            <Globe className="size-3" />
-                            Website
-                          </span>
-                        )}
-                        {cam.lat && cam.lng && (
-                          <span className="inline-flex items-center gap-1 text-xs text-navy-deep/50 ml-auto">
-                            <Navigation className="size-3" />
-                            Direcții
-                          </span>
-                        )}
+                        <div className="flex items-center gap-3 text-xs mb-3 text-navy-deep/40">
+                          {cam.localitate && (
+                            <span className="inline-flex items-center gap-1">
+                              <MapPin className="size-3" />
+                              {cam.localitate}
+                            </span>
+                          )}
+                          {cam.capacity && (
+                            <span className="inline-flex items-center gap-1">
+                              <Users className="size-3" />
+                              {cam.capacity} locuri
+                            </span>
+                          )}
+                          {cam.rating && (
+                            <span className="inline-flex items-center gap-1">
+                              <Star className="size-3 text-gold fill-gold" />
+                              {cam.rating}
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="flex items-center gap-2 pt-3 border-t border-navy-deep/5">
+                          {cam.phone && (
+                            <span className="inline-flex items-center gap-1 text-xs text-navy-deep/50">
+                              <Phone className="size-3" />
+                              Telefon
+                            </span>
+                          )}
+                          {cam.website && (
+                            <span className="inline-flex items-center gap-1 text-xs text-navy-deep/50">
+                              <Globe className="size-3" />
+                              Website
+                            </span>
+                          )}
+                          {cam.lat && cam.lng && (
+                            <span className="inline-flex items-center gap-1 text-xs text-navy-deep/50 ml-auto">
+                              <Navigation className="size-3" />
+                              Direcții
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </Link>
                   ))}

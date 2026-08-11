@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import camineData from "@/data/camine-director.json";
-import { SITE_URL, slugifyJudet, normalizeJudet } from "@/lib/seo";
+import { SITE_URL, slugifyJudet, normalizeJudet, caminPath } from "@/lib/seo";
 import { articleMetas } from "@/app/stiri/article-metas";
 import { createClient } from "@/lib/supabase-server";
 
@@ -9,6 +9,7 @@ type Camin = {
   judet: string;
   localitate: string;
   licensed: boolean;
+  oras?: string;
 };
 
 const camine = camineData as Camin[];
@@ -48,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // JSON care homes
   const jsonSlugs = new Set(camine.map((c) => c.slug));
   const caminEntries: MetadataRoute.Sitemap = camine.map((c) => ({
-    url: `${SITE_URL}/camine/${c.slug}`,
+    url: `${SITE_URL}${caminPath(c)}`,
     lastModified: now,
     changeFrequency: "weekly" as const,
     priority: 0.8,
@@ -82,7 +83,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       for (const c of sbCamine) {
         if (c.slug && !jsonSlugs.has(c.slug)) {
           supabaseEntries.push({
-            url: `${SITE_URL}/camine/${c.slug}`,
+            url: `${SITE_URL}${caminPath({ slug: c.slug, judet: c.judet || "" })}`,
             lastModified: now,
             changeFrequency: "weekly" as const,
             priority: 0.8,

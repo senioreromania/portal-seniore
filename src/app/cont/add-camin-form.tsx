@@ -3,13 +3,14 @@
 import { useState } from "react";
 import { createClient } from "@/lib/supabase-browser";
 import { JUDETE_ROMANIA, TIPURI_SERVICII } from "@/lib/camine-constants";
-import { X, Check, Lock, ImagePlus, Crown, Sparkles } from "lucide-react";
+import { X, Check, Lock, ImagePlus, Crown, CreditCard } from "lucide-react";
 
 export function AddCaminForm({ onClose, onSaved }: { onClose: () => void; onSaved: () => void }) {
   const supabase = createClient();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [premiumMonths, setPremiumMonths] = useState<0 | 6 | 12>(0);
 
   const [form, setForm] = useState({
     nume: "",
@@ -58,27 +59,57 @@ export function AddCaminForm({ onClose, onSaved }: { onClose: () => void; onSave
       .replace(/^-+|-+$/g, "")
       .substring(0, 80);
 
-    const { error } = await supabase.from("camine").insert({
-      user_id: user.id,
-      nume: form.nume,
-      slug: slugBase,
-      judet: form.judet,
-      oras: form.oras,
-      adresa: form.adresa || null,
-      telefon: form.telefon || null,
-      email: form.email || null,
-      website: form.website || null,
-      servicii: servicii.length > 0 ? servicii : null,
-      descriere: form.descriere || null,
-      pret_pornire: form.pret_pornire ? parseInt(form.pret_pornire) : null,
-      status: "pending",
-    });
+    const slugUnique = `${slugBase}-${Math.random().toString(36).slice(2, 8)}`;
+
+    const { data: inserted, error } = await supabase
+      .from("camine")
+      .insert({
+        user_id: user.id,
+        nume: form.nume,
+        slug: slugUnique,
+        judet: form.judet,
+        oras: form.oras,
+        adresa: form.adresa || null,
+        telefon: form.telefon || null,
+        email: form.email || null,
+        website: form.website || null,
+        servicii: servicii.length > 0 ? servicii : null,
+        descriere: form.descriere || null,
+        pret_pornire: form.pret_pornire ? parseInt(form.pret_pornire) : null,
+        status: "pending",
+        is_premium: false,
+      })
+      .select("id")
+      .single();
 
     setLoading(false);
 
     if (error) {
       setError(error.message);
       return;
+    }
+
+    if (premiumMonths > 0 && inserted) {
+      try {
+        const packageId = premiumMonths === 6 ? "6luni" : "12luni";
+        const checkoutRes = await fetch("/api/stripe/checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            packageId,
+            caminSlug: slugUnique,
+            caminId: inserted.id,
+            successPath: "/cont/premium/continua",
+          }),
+        });
+        const checkoutData = await checkoutRes.json();
+        if (checkoutRes.ok && checkoutData.url) {
+          window.location.href = checkoutData.url;
+          return;
+        }
+      } catch {
+        // If checkout fails, still show success — user can activate premium later
+      }
     }
 
     setSuccess(true);
@@ -275,7 +306,7 @@ export function AddCaminForm({ onClose, onSaved }: { onClose: () => void; onSave
         <div className="relative rounded-xl border-2 border-dashed border-navy-deep/15 overflow-hidden">
           {/* Lock overlay */}
           <div className="absolute inset-0 bg-navy-deep/5 backdrop-blur-[2px] z-10 flex items-center justify-center">
-            <div className="bg-white rounded-xl shadow-lg p-6 max-w-md text-center mx-4">
+            <div className="bg-white rounded-xl shadow-lg p-6 max-w-md text-center mx-4 w-full">
               <div className="size-14 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-4">
                 <Crown className="size-7 text-gold" />
               </div>
@@ -307,26 +338,88 @@ export function AddCaminForm({ onClose, onSaved }: { onClose: () => void; onSave
                   <span>Până la 12 imagini pentru căminul tău</span>
                 </div>
               </div>
-              <div className="bg-gold/5 rounded-lg p-4 mb-4">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-navy-deep/70">Preț</span>
-                  <span className="font-heading text-xl font-bold text-navy-deep">
-                    100 lei<span className="text-sm font-normal text-navy-deep/50">/lună</span>
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-navy-deep/70">Abonament minim</span>
-                  <span className="text-sm font-semibold text-navy-deep">6 luni (600 lei)</span>
+
+              {/* Pachete clickabile */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-navy-deep mb-3">
+                  Alege durata abonamentului
+                </label>
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setPremiumMonths(premiumMonths === 6 ? 0 : 6)}
+                    className={`relative p-4 rounded-xl border-2 text-center transition-all duration-300 ${
+                      premiumMonths === 6
+                        ? "border-gold bg-gold/5 shadow-lg shadow-gold/10 -translate-y-0.5"
+                        : "border-navy-deep/10 hover:border-gold/40 hover:bg-gold/5"
+                    }`}
+                  >
+                    <div className="text-xs font-semibold text-navy-deep/40 uppercase tracking-wide mb-1">
+                      Standard
+                    </div>
+                    <div className="font-heading text-xl font-bold text-navy-deep mb-1">
+                      6 luni
+                    </div>
+                    <div className="font-heading text-lg font-bold text-gold">
+                      600 lei
+                    </div>
+                    <div className="text-xs text-navy-deep/40 mt-1">
+                      100 lei/lună
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setPremiumMonths(premiumMonths === 12 ? 0 : 12)}
+                    className={`relative p-4 rounded-xl border-2 text-center transition-all duration-300 ${
+                      premiumMonths === 12
+                        ? "border-gold bg-gold/5 shadow-lg shadow-gold/10 -translate-y-0.5"
+                        : "border-navy-deep/10 hover:border-gold/40 hover:bg-gold/5"
+                    }`}
+                  >
+                    <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-gold text-navy-deep text-xs font-bold px-3 py-0.5 rounded-full whitespace-nowrap shadow-sm">
+                      Economisești 200 lei
+                    </span>
+                    <div className="text-xs font-semibold text-gold uppercase tracking-wide mb-1">
+                      Popular
+                    </div>
+                    <div className="font-heading text-xl font-bold text-navy-deep mb-1">
+                      12 luni
+                    </div>
+                    <div className="font-heading text-lg font-bold text-gold">
+                      1000 lei
+                    </div>
+                    <div className="text-xs text-navy-deep/40 mt-1">
+                      ~83 lei/lună
+                    </div>
+                  </button>
                 </div>
               </div>
-              <button
-                type="button"
-                onClick={() => window.open("/cum-functioneaza#premium", "_blank")}
-                className="inline-flex items-center gap-2 bg-gold text-navy-deep px-6 py-3 rounded-sm font-semibold text-sm hover:bg-gold-light transition-colors w-full justify-center"
-              >
-                <Sparkles className="size-4" />
-                Devino Cămin Partener
-              </button>
+
+              {premiumMonths > 0 && (
+                <div className="bg-gold/5 rounded-lg p-4 mb-4 text-left">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm text-navy-deep/60">Abonament selectat</span>
+                    <span className="font-semibold text-navy-deep">{premiumMonths} luni</span>
+                  </div>
+                  <div className="border-t border-gold/20 pt-2 flex items-center justify-between">
+                    <span className="text-sm font-semibold text-navy-deep">Total de plată</span>
+                    <span className="font-heading text-xl font-bold text-navy-deep">
+                      {premiumMonths === 6 ? "600" : "1000"} lei
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-navy-deep/40 mt-2">
+                    <Lock className="size-3.5" />
+                    Plata se procesează securizat prin Stripe după salvarea căminului.
+                  </div>
+                </div>
+              )}
+
+              {premiumMonths === 0 && (
+                <p className="text-xs text-navy-deep/50">
+                  Poți activa Premium și mai târziu din pagina &quot;Contul meu&quot;.
+                </p>
+              )}
             </div>
           </div>
 
@@ -358,9 +451,18 @@ export function AddCaminForm({ onClose, onSaved }: { onClose: () => void; onSave
           <button
             type="submit"
             disabled={loading}
-            className="bg-navy-deep text-paper px-6 py-3 rounded-sm font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-navy-deep/20 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-navy-deep text-paper px-6 py-3 rounded-sm font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-navy-deep/20 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center gap-2"
           >
-            {loading ? "Se salvează..." : "Salvează căminul"}
+            {loading
+              ? "Se salvează..."
+              : premiumMonths > 0
+                ? (
+                  <>
+                    <CreditCard className="size-4" />
+                    Salvează și plătește {premiumMonths === 6 ? "600" : "1000"} lei
+                  </>
+                )
+                : "Salvează căminul"}
           </button>
           <button
             type="button"

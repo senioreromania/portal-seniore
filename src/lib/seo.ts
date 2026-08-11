@@ -82,6 +82,11 @@ export function normalizeJudet(judet: string): string {
   return normalized ?? judet;
 }
 
+export function caminPath(camin: { judet: string; slug: string }): string {
+  const judetSlug = slugifyJudet(normalizeJudet(camin.judet) || camin.judet);
+  return `/camine/${judetSlug}/${camin.slug}`;
+}
+
 export function slugifyJudet(judet: string): string {
   return judet
     .toLowerCase()
@@ -195,12 +200,12 @@ export function buildCaminMetadata(camin: Camin): Metadata {
       `home pentru bătrâni ${judet}`,
     ],
     alternates: {
-      canonical: `${SITE_URL}/camine/${camin.slug}`,
+      canonical: `${SITE_URL}${caminPath(camin)}`,
     },
     openGraph: {
       title,
       description: descParts.join(""),
-      url: `${SITE_URL}/camine/${camin.slug}`,
+      url: `${SITE_URL}${caminPath(camin)}`,
       siteName: SITE_NAME,
       locale: "ro_RO",
       type: "website",
@@ -436,7 +441,7 @@ export function nursingHomeJsonLd(camin: Camin) {
     "@context": "https://schema.org",
     "@type": "NursingHome",
     name: camin.name,
-    url: `${SITE_URL}/camine/${camin.slug}`,
+    url: `${SITE_URL}${caminPath(camin)}`,
   };
 
   if (camin.phone) {
@@ -490,7 +495,7 @@ export function itemListJsonLd(camine: Camin[], baseUrl: string) {
       "@type": "ListItem",
       position: i + 1,
       name: c.name,
-      url: `${SITE_URL}/camine/${c.slug}`,
+      url: `${SITE_URL}${caminPath(c)}`,
     })),
     numberOfItems: camine.length,
     url: `${SITE_URL}${baseUrl}`,
@@ -512,7 +517,7 @@ export function collectionPageJsonLd(judet: string, count: number, camine: Camin
         "@type": "ListItem",
         position: i + 1,
         name: c.name,
-        url: `${SITE_URL}/camine/${c.slug}`,
+        url: `${SITE_URL}${caminPath(c)}`,
       })),
     },
   };

@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
-import { slugifyJudet, normalizeJudet, titleCase } from "@/lib/seo";
+import { slugifyJudet, normalizeJudet, titleCase, caminPath } from "@/lib/seo";
 
 type Camin = {
   slug: string;
@@ -346,7 +346,7 @@ export function HomeClient({
                     custom={i}
                   >
                     <Link
-                      href={`/camine/${cam.slug}`}
+                      href={caminPath(cam)}
                       className="group relative block h-full rounded-2xl overflow-hidden bg-[#111d2e] border border-gold/20 hover:border-gold/60 transition-all duration-500 hover:shadow-2xl hover:shadow-gold/25 hover:-translate-y-1"
                     >
                       {/* Glow effect on hover */}
@@ -520,7 +520,7 @@ export function HomeClient({
                     custom={i}
                   >
                     <Link
-                      href={`/camine/${cam.slug}`}
+                      href={caminPath(cam)}
                       className="group relative block h-full rounded-2xl overflow-hidden bg-paper border-2 border-gold/20 hover:border-gold/50 transition-all duration-300 hover:shadow-2xl hover:shadow-gold/10"
                     >
                       {/* Ranking badge */}

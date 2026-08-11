@@ -3,6 +3,7 @@ import { breadcrumbJsonLd, normalizeJudet, slugifyJudet } from "@/lib/seo";
 import camineData from "@/data/camine-director.json";
 import premiumSlugs from "@/data/camine-premium.json";
 import { HomeClient } from "./home-client";
+import { createClient } from "@/lib/supabase-server";
 
 type Camin = {
   slug: string;
@@ -32,7 +33,51 @@ type PremiumEntry = {
 const camine = camineData as Camin[];
 const premiumList = premiumSlugs as PremiumEntry[];
 
-export default function HomePage() {
+async function getSupabasePremiumCamine(): Promise<
+  (Camin & { highlight: string; description: string })[]
+> {
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase
+      .from("camine")
+      .select("*")
+      .eq("status", "approved")
+      .eq("is_premium", true);
+
+    if (!data) return [];
+
+    const now = new Date();
+
+    return data
+      .filter((c: Record<string, unknown>) => {
+        const premiumUntil = c.premium_until as string | null;
+        return !premiumUntil || new Date(premiumUntil) > now;
+      })
+      .map((c: Record<string, unknown>) => ({
+        slug: (c.slug as string) || `sb-${c.id}`,
+        name: c.nume as string,
+        phone: (c.telefon as string) || "",
+        website: (c.website as string) || "",
+        address: (c.adresa as string) || "",
+        lat: 0,
+        lng: 0,
+        judet: (c.judet as string) || "",
+        rating: "",
+        reviews: "",
+        licensed: false,
+        capacity: "",
+        licenseNumber: "",
+        localitate: (c.oras as string) || "",
+        serviceType: "",
+        highlight: "Cămin Partener Premium",
+        description: (c.descriere as string) || "",
+      }));
+  } catch {
+    return [];
+  }
+}
+
+export default async function HomePage() {
   const totalCamine = camine.length;
   const licensedCount = camine.filter((c) => c.licensed).length;
   const judeteSet = new Set<string>();
@@ -58,13 +103,20 @@ export default function HomePage() {
     .sort(() => Math.random() - 0.5)
     .slice(0, 6);
 
-  const premiumCamine = premiumList
+  const jsonPremiumCamine = premiumList
     .map((p) => {
       const camin = camine.find((c) => c.slug === p.slug);
       if (!camin) return null;
       return { ...camin, highlight: p.highlight, description: p.description };
     })
     .filter((c): c is Camin & { highlight: string; description: string } => c !== null);
+
+  const supabasePremiumCamine = await getSupabasePremiumCamine();
+  const supabasePremiumSlugs = new Set(supabasePremiumCamine.map((c) => c.slug));
+  const jsonPremiumCamineDeduped = jsonPremiumCamine.filter(
+    (c) => !supabasePremiumSlugs.has(c.slug)
+  );
+  const premiumCamine = [...supabasePremiumCamine, ...jsonPremiumCamineDeduped];
 
   const faqJsonLd = {
     "@context": "https://schema.org",

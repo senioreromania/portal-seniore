@@ -12,7 +12,6 @@ import {
   ChevronRight,
   ArrowLeft,
   Building2,
-  Calendar,
 } from "lucide-react";
 
 function WhatsAppIcon({ className }: { className?: string }) {
@@ -25,7 +24,7 @@ function WhatsAppIcon({ className }: { className?: string }) {
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
 import { JsonLd } from "@/components/json-ld";
-import { buildCaminMetadata, nursingHomeJsonLd, breadcrumbJsonLd, faqCaminJsonLd, normalizeJudet, SITE_NAME, SITE_URL, slugifyJudet, titleCase } from "@/lib/seo";
+import { buildCaminMetadata, nursingHomeJsonLd, breadcrumbJsonLd, faqCaminJsonLd, normalizeJudet, SITE_NAME, slugifyJudet, titleCase, caminPath } from "@/lib/seo";
 import { FaqSection } from "@/components/faq-section";
 import { PromoteCaminButton } from "./promote-button";
 import { ShareButton } from "./share-button";
@@ -33,6 +32,7 @@ import { createClient } from "@/lib/supabase-server";
 import camineData from "@/data/camine-director.json";
 
 type Camin = {
+  id?: string;
   slug: string;
   name: string;
   phone: string;
@@ -52,12 +52,16 @@ type Camin = {
   serviceType: string;
   localitate: string;
   description?: string;
+  images?: string[];
 };
 
 export const revalidate = 3600;
 
 export function generateStaticParams() {
-  return (camineData as Camin[]).map((c) => ({ slug: c.slug }));
+  return (camineData as Camin[]).map((c) => ({
+    judet: slugifyJudet(normalizeJudet(c.judet) || c.judet),
+    slug: c.slug,
+  }));
 }
 
 async function getCaminFromSupabase(slug: string): Promise<Camin | null> {
@@ -72,6 +76,7 @@ async function getCaminFromSupabase(slug: string): Promise<Camin | null> {
   if (!data) return null;
 
   return {
+    id: data.id,
     slug: data.slug || `sb-${data.id}`,
     name: data.nume,
     phone: data.telefon || "",
@@ -90,19 +95,21 @@ async function getCaminFromSupabase(slug: string): Promise<Camin | null> {
     cui: "",
     serviceType: (data.servicii && Array.isArray(data.servicii)) ? data.servicii.join(", ") : "",
     localitate: data.oras || "",
+    description: data.descriere || "",
+    images: (data.images && Array.isArray(data.images)) ? data.images : [],
   };
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ judet: string; slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  let camin: Camin | undefined = (camineData as Camin[]).find((c) => c.slug === slug);
+  let camin: Camin | undefined = await getCaminFromSupabase(slug) ?? undefined;
 
   if (!camin) {
-    camin = await getCaminFromSupabase(slug) ?? undefined;
+    camin = (camineData as Camin[]).find((c) => c.slug === slug);
   }
 
   if (!camin) {
@@ -117,13 +124,13 @@ export async function generateMetadata({
 export default async function CaminDetailPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ judet: string; slug: string }>;
 }) {
-  const { slug } = await params;
-  let camin: Camin | undefined = (camineData as Camin[]).find((c) => c.slug === slug);
+  const { judet: judetParam, slug } = await params;
+  let camin: Camin | undefined = await getCaminFromSupabase(slug) ?? undefined;
 
   if (!camin) {
-    camin = await getCaminFromSupabase(slug) ?? undefined;
+    camin = (camineData as Camin[]).find((c) => c.slug === slug);
   }
 
   if (!camin) {
@@ -172,6 +179,8 @@ export default async function CaminDetailPage({
     .filter((c) => normalizeJudet(c.judet) === caminJudet && c.slug !== camin.slug)
     .slice(0, 4);
 
+  const thisCaminPath = caminPath(camin);
+
   return (
     <>
       <JsonLd data={nursingHomeJsonLd(camin)} />
@@ -180,7 +189,8 @@ export default async function CaminDetailPage({
         data={breadcrumbJsonLd([
           { name: "Acasă", url: "/" },
           { name: "Portal cămine", url: "/camine" },
-          { name: camin.name, url: `/camine/${camin.slug}` },
+          { name: camin.judet, url: `/judet/${judetParam}` },
+          { name: camin.name, url: thisCaminPath },
         ])}
       />
       <SiteHeader />
@@ -198,6 +208,13 @@ export default async function CaminDetailPage({
                 className="hover:text-navy-deep transition-colors"
               >
                 Portal cămine
+              </Link>
+              <ChevronRight className="size-3.5" />
+              <Link
+                href={`/judet/${judetParam}`}
+                className="hover:text-navy-deep transition-colors"
+              >
+                {camin.judet}
               </Link>
               <ChevronRight className="size-3.5" />
               <span className="text-navy-deep/70 truncate">{camin.name}</span>
@@ -450,6 +467,26 @@ export default async function CaminDetailPage({
                   </div>
                 )}
 
+                {/* Gallery */}
+                {camin.images && camin.images.length > 0 && (
+                  <div className="p-6 rounded-xl bg-white border border-navy-deep/10">
+                    <h2 className="font-heading text-lg font-bold text-navy-deep mb-4">
+                      Galerie foto
+                    </h2>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                      {camin.images.map((url, i) => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          key={url}
+                          src={url}
+                          alt={`${camin.name} — imagine ${i + 1}`}
+                          className="w-full h-32 sm:h-40 object-cover rounded-lg border border-navy-deep/10"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* Description */}
                 <div className="p-6 rounded-xl bg-white border border-navy-deep/10">
                   <h2 className="font-heading text-lg font-bold text-navy-deep mb-4">
@@ -486,7 +523,7 @@ export default async function CaminDetailPage({
                     Alte detalii
                   </h2>
                   <p className="text-sm text-navy-deep/60 leading-relaxed">
-                    {camin.name} este un cămin de bătrâni din {camin.localitate || camin.judet}, indexat în portalul <Link href="/camine" className="text-gold hover:underline font-medium">Seniore.ro</Link>. Cauți și alte opțiuni? Vezi <Link href={`/judet/${slugifyJudet(camin.judet)}`} className="text-gold hover:underline font-medium">cămine de bătrâni în {camin.judet}</Link> sau <Link href="/camine-autorizate" className="text-gold hover:underline font-medium">cămine licențiate MMJS</Link> din întreaga țară.
+                    {camin.name} este un cămin de bătrâni din {camin.localitate || camin.judet}, indexat în portalul <Link href="/camine" className="text-gold hover:underline font-medium">Seniore.ro</Link>. Cauți și alte opțiuni? Vezi <Link href={`/judet/${judetParam}`} className="text-gold hover:underline font-medium">cămine de bătrâni în {camin.judet}</Link> sau <Link href="/camine-autorizate" className="text-gold hover:underline font-medium">cămine licențiate MMJS</Link> din întreaga țară.
                   </p>
                   <p className="text-sm text-navy-deep/60 leading-relaxed mt-3">
                     Conform <a href="https://www.cdep.ro/ords/pls/legis/legis_pck.htp_act?ida=113748" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Legii nr. 197/2012 privind asigurarea calității serviciilor sociale</a>, centrele rezidențiale pentru vârstnici trebuie să dețină licență de funcționare emisă de <a href="https://mmuncii.gov.ro/acreditare-furnizori-si-servicii-sociale/" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">Ministerul Muncii, Familiei, Tineretului și Solidarității Sociale</a>. {camin.licensed ? `${camin.name} figurează în lista oficială a căminelor licențiate.` : `Recomandăm să verifici direct la centru statusul de licențiere.`} Lista completă a căminelor licențiate este publicată de <a href="https://mmuncii.gov.ro/wp-content/uploads/2026/03/10032026_Camine_PV.pdf" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">MMPS (PDF)</a>.
@@ -561,7 +598,7 @@ export default async function CaminDetailPage({
                 </div>
 
                 {/* Promote CTA */}
-                <PromoteCaminButton caminSlug={camin.slug} />
+                <PromoteCaminButton caminSlug={camin.slug} caminPath={thisCaminPath} caminId={camin.id} />
 
                 {/* Related */}
                 {related.length > 0 && (
@@ -573,7 +610,7 @@ export default async function CaminDetailPage({
                       {related.map((r) => (
                         <Link
                           key={r.slug}
-                          href={`/camine/${r.slug}`}
+                          href={`/camine/${judetParam}/${r.slug}`}
                           className="group flex items-center justify-between gap-2 text-sm text-navy-deep/70 hover:text-gold transition-colors"
                         >
                           <span className="line-clamp-1">{r.name}</span>
@@ -582,7 +619,7 @@ export default async function CaminDetailPage({
                       ))}
                     </div>
                     <Link
-                      href={`/camine?judet=${camin.judet}`}
+                      href={`/judet/${judetParam}`}
                       className="block mt-4 pt-4 border-t border-navy-deep/5 text-sm font-semibold text-gold hover:underline"
                     >
                       Vezi toate din {camin.judet}

@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
-import { normalizeJudet, titleCase } from "@/lib/seo";
+import { normalizeJudet, titleCase, caminPath } from "@/lib/seo";
 import { createClient } from "@/lib/supabase-browser";
 import camineRaw from "@/data/camine-director.json";
 
@@ -76,7 +76,7 @@ export function CamineDirectorClient() {
 
         if (data) {
           const mapped: Camin[] = data.map((c: Record<string, unknown>) => ({
-            slug: `sb-${c.id}`,
+            slug: (c.slug as string) || `sb-${c.id}`,
             name: c.nume as string,
             phone: (c.telefon as string) || "",
             website: (c.website as string) || "",
@@ -380,73 +380,85 @@ export function CamineDirectorClient() {
                       custom={i % PER_PAGE}
                     >
                       <Link
-                        href={`/camine/${cam.slug}`}
-                        className="group block h-full p-5 rounded-xl bg-white border border-navy-deep/8 hover:border-gold/30 transition-all duration-300 hover:shadow-lg hover:shadow-navy-deep/5"
+                        href={caminPath(cam)}
+                        className={`group block h-full rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-lg ${
+                          cam.isPremium
+                            ? "bg-white border-gold/40 hover:border-gold/70 hover:shadow-gold/20"
+                            : "bg-white border-navy-deep/8 hover:border-gold/30 hover:shadow-navy-deep/5 p-5"
+                        }`}
                       >
-                        <div className="flex items-start justify-between gap-3 mb-3">
-                          <h3 className="font-heading text-base font-semibold text-navy-deep leading-snug group-hover:text-gold transition-colors line-clamp-2">
-                            {titleCase(cam.name)}
-                          </h3>
-                          <div className="flex items-center gap-1.5 shrink-0">
-                            {cam.isPremium && (
-                              <span className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-gold/15 text-gold font-semibold border border-gold/20">
-                                <Crown className="size-3" />
-                                Premium
-                              </span>
-                            )}
+                        {cam.isPremium && (
+                          <div className="flex items-center justify-between px-4 py-2.5 bg-navy-deep border-b border-gold/30">
+                            <div className="flex items-center gap-1.5">
+                              <Crown className="size-3.5 text-gold" />
+                              <span className="text-xs font-bold uppercase tracking-wide text-gold">Premium</span>
+                            </div>
                             {cam.licensed && (
+                              <div className="flex items-center gap-1">
+                                <ShieldCheck className="size-3.5 text-gold" />
+                                <span className="text-xs font-semibold text-gold uppercase tracking-wide">Licențiat</span>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                        <div className={cam.isPremium ? "p-5" : ""}>
+                          <div className="flex items-start justify-between gap-3 mb-3">
+                            <h3 className={`font-heading text-base font-semibold leading-snug group-hover:text-gold transition-colors line-clamp-2 text-navy-deep`}>
+                              {titleCase(cam.name)}
+                            </h3>
+                            {!cam.isPremium && cam.licensed && (
                               <ShieldCheck className="size-5 text-gold shrink-0" />
                             )}
                           </div>
-                        </div>
 
-                        {cam.address && (
-                          <div className="flex items-start gap-2 text-sm text-navy-deep/50 mb-2">
-                            <MapPin className="size-4 shrink-0 mt-0.5" />
-                            <span className="line-clamp-2">{cam.address}</span>
+                          {cam.address && (
+                            <div className={`flex items-start gap-2 text-sm mb-2 text-navy-deep/50`}>
+                              <MapPin className="size-4 shrink-0 mt-0.5" />
+                              <span className="line-clamp-2">{cam.address}</span>
+                            </div>
+                          )}
+
+                          <div className={`flex items-center gap-3 text-xs mb-3 text-navy-deep/40`}>
+                            {cam.judet && (
+                              <span className="inline-flex items-center gap-1">
+                                <MapPin className="size-3" />
+                                {normalizeJudet(cam.judet)}
+                              </span>
+                            )}
+                            {cam.capacity && (
+                              <span className="inline-flex items-center gap-1">
+                                <Users className="size-3" />
+                                {cam.capacity} locuri
+                              </span>
+                            )}
+                            {cam.rating && (
+                              <span className="inline-flex items-center gap-1">
+                                <Star className="size-3 text-gold fill-gold" />
+                                {cam.rating}
+                              </span>
+                            )}
                           </div>
-                        )}
 
-                        <div className="flex items-center gap-3 text-xs text-navy-deep/40 mb-3">
-                          {cam.judet && (
-                            <span className="inline-flex items-center gap-1">
-                              <MapPin className="size-3" />
-                              {normalizeJudet(cam.judet)}
-                            </span>
-                          )}
-                          {cam.capacity && (
-                            <span className="inline-flex items-center gap-1">
-                              <Users className="size-3" />
-                              {cam.capacity} locuri
-                            </span>
-                          )}
-                          {cam.rating && (
-                            <span className="inline-flex items-center gap-1">
-                              <Star className="size-3 text-gold fill-gold" />
-                              {cam.rating}
-                            </span>
-                          )}
-                        </div>
-
-                        <div className="flex items-center gap-2 pt-3 border-t border-navy-deep/5">
-                          {cam.phone && (
-                            <span className="inline-flex items-center gap-1 text-xs text-navy-deep/50">
-                              <Phone className="size-3" />
-                              Telefon
-                            </span>
-                          )}
-                          {cam.website && (
-                            <span className="inline-flex items-center gap-1 text-xs text-navy-deep/50">
-                              <Globe className="size-3" />
-                              Website
-                            </span>
-                          )}
-                          {cam.lat && cam.lng && (
-                            <span className="inline-flex items-center gap-1 text-xs text-navy-deep/50 ml-auto">
-                              <Navigation className="size-3" />
-                              Directions
-                            </span>
-                          )}
+                          <div className={`flex items-center gap-2 pt-3 border-t border-navy-deep/5`}>
+                            {cam.phone && (
+                              <span className={`inline-flex items-center gap-1 text-xs text-navy-deep/50`}>
+                                <Phone className="size-3" />
+                                Telefon
+                              </span>
+                            )}
+                            {cam.website && (
+                              <span className={`inline-flex items-center gap-1 text-xs text-navy-deep/50`}>
+                                <Globe className="size-3" />
+                                Website
+                              </span>
+                            )}
+                            {cam.lat && cam.lng && (
+                              <span className={`inline-flex items-center gap-1 text-xs text-navy-deep/50 ml-auto`}>
+                                <Navigation className="size-3" />
+                                Directions
+                              </span>
+                            )}
+                          </div>
                         </div>
                       </Link>
                     </motion.div>

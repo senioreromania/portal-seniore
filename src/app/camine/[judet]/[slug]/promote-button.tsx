@@ -2,14 +2,23 @@
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase-browser";
-import { Crown, Sparkles, Check, X, CreditCard, Lock } from "lucide-react";
+import { Crown, Sparkles, Check, X, CreditCard, Lock, AlertCircle } from "lucide-react";
 
-export function PromoteCaminButton({ caminSlug }: { caminSlug: string }) {
+export function PromoteCaminButton({
+  caminSlug,
+  caminPath,
+  caminId,
+}: {
+  caminSlug: string;
+  caminPath: string;
+  caminId?: string;
+}) {
   const supabase = createClient();
   const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState<{ id: string; email: string } | null>(null);
   const [loading, setLoading] = useState(false);
-  const [step, setStep] = useState<"plans" | "auth" | "payment" | "success">("plans");
+  const [step, setStep] = useState<"plans" | "auth" | "payment" | "success" | "error">("plans");
+  const [errorMessage, setErrorMessage] = useState("");
   const [months, setMonths] = useState(6);
 
   function handleClick() {
@@ -34,38 +43,36 @@ export function PromoteCaminButton({ caminSlug }: { caminSlug: string }) {
   async function handlePay() {
     setLoading(true);
 
-    // TODO: Connect to payment processor
-    // For now, simulate payment confirmation
-    // In production: redirect to Stripe/Netopia, on success webhook sets is_premium
+    try {
+      const packageId = months === 6 ? "6luni" : "12luni";
+      const res = await fetch("/api/stripe/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          packageId,
+          caminSlug,
+          caminId,
+          successPath: "/cont/premium/continua",
+        }),
+      });
 
-    // Find camin by slug in Supabase
-    const { data: camin } = await supabase
-      .from("camine")
-      .select("id")
-      .eq("slug", caminSlug)
-      .single();
+      const data = await res.json();
 
-    if (!camin) {
+      if (!res.ok) {
+        setErrorMessage(data.error || "Eroare la procesarea plății");
+        setStep("error");
+        setLoading(false);
+        return;
+      }
+
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch {
+      setErrorMessage("Eroare de conexiune");
+      setStep("error");
       setLoading(false);
-      alert("Căminul nu a fost găsit în baza de date.");
-      return;
     }
-
-    // Simulate payment success
-    const premiumUntil = new Date();
-    premiumUntil.setMonth(premiumUntil.getMonth() + months);
-
-    await supabase
-      .from("camine")
-      .update({
-        is_premium: true,
-        premium_until: premiumUntil.toISOString(),
-        claimed_by: user?.id,
-      })
-      .eq("id", camin.id);
-
-    setLoading(false);
-    setStep("success");
   }
 
   if (!showModal) {
@@ -219,13 +226,13 @@ export function PromoteCaminButton({ caminSlug }: { caminSlug: string }) {
 
                   <div className="space-y-3">
                     <a
-                      href={`/login?redirect=${encodeURIComponent(`/camine/${caminSlug}`)}`}
+                      href={`/login?redirect=${encodeURIComponent(caminPath)}`}
                       className="block w-full text-center bg-navy-deep text-paper px-6 py-3.5 rounded-lg font-semibold text-sm transition-all hover:shadow-lg hover:shadow-navy-deep/20"
                     >
                       Conectează-te
                     </a>
                     <a
-                      href={`/inregistrare?redirect=${encodeURIComponent(`/camine/${caminSlug}`)}`}
+                      href={`/inregistrare?redirect=${encodeURIComponent(caminPath)}`}
                       className="block w-full text-center px-6 py-3.5 rounded-lg font-semibold text-sm text-navy-deep ring-1 ring-navy-deep/15 hover:bg-navy-deep/5 transition-colors"
                     >
                       Creează cont nou
@@ -263,54 +270,9 @@ export function PromoteCaminButton({ caminSlug }: { caminSlug: string }) {
                     </div>
                   </div>
 
-                  <div className="space-y-3 mb-5">
-                    <div>
-                      <label className="block text-xs font-medium text-navy-deep/60 mb-1.5">
-                        Nume pe card
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Ion Popescu"
-                        className="w-full px-4 py-2.5 text-sm border border-navy-deep/15 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-gold/30"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-medium text-navy-deep/60 mb-1.5">
-                        Număr card
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="1234 5678 9012 3456"
-                        className="w-full px-4 py-2.5 text-sm border border-navy-deep/15 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-gold/30"
-                      />
-                    </div>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <label className="block text-xs font-medium text-navy-deep/60 mb-1.5">
-                          Expiră
-                        </label>
-                        <input
-                          type="text"
-                          placeholder="MM/YY"
-                          className="w-full px-4 py-2.5 text-sm border border-navy-deep/15 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-gold/30"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-medium text-navy-deep/60 mb-1.5">
-                          CVV
-                        </label>
-                        <input
-                          type="text"
-                          placeholder="123"
-                          className="w-full px-4 py-2.5 text-sm border border-navy-deep/15 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-gold/30"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
                   <div className="flex items-center gap-2 text-xs text-navy-deep/40 mb-4">
                     <Lock className="size-3.5" />
-                    Plata este securizată. Datele cardului nu sunt stocate.
+                    Plata este securizată prin Stripe. Datele cardului nu sunt stocate.
                   </div>
 
                   <div className="flex gap-2">
@@ -336,6 +298,37 @@ export function PromoteCaminButton({ caminSlug }: { caminSlug: string }) {
                     </button>
                   </div>
                 </>
+              )}
+
+              {step === "error" && (
+                <div className="text-center py-8">
+                  <div className="size-16 rounded-full bg-amber-50 flex items-center justify-center mx-auto mb-4">
+                    <AlertCircle className="size-8 text-amber-600" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold text-navy-deep mb-2">
+                    {errorMessage}
+                  </h3>
+                  <p className="text-sm text-navy-deep/60 mb-6 leading-relaxed">
+                    Pentru detalii, contactează echipa Seniore.ro.
+                  </p>
+                  <div className="space-y-3">
+                    <a
+                      href="/contact"
+                      className="block w-full text-center bg-navy-deep text-paper px-6 py-3 rounded-lg font-semibold text-sm transition-all hover:opacity-90"
+                    >
+                      Contact Seniore
+                    </a>
+                    <button
+                      onClick={() => {
+                        setStep("plans");
+                        setErrorMessage("");
+                      }}
+                      className="block w-full text-center text-sm text-navy-deep/50 hover:text-navy-deep transition-colors"
+                    >
+                      Înapoi
+                    </button>
+                  </div>
+                </div>
               )}
 
               {step === "success" && (
