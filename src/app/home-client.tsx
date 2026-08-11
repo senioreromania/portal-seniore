@@ -399,7 +399,7 @@ export function HomeClient({
                             </div>
                             {cam.tip === "Public" && (
                               <span className="inline-flex items-center rounded-full bg-blue-500/20 px-2 py-0.5 text-xs font-semibold text-blue-300 ring-1 ring-blue-400/30">
-                                Cămin de stat
+                                Instituție publică
                               </span>
                             )}
                             {cam.tip !== "Public" && (
@@ -580,7 +580,7 @@ export function HomeClient({
                           </div>
                           {cam.tip === "Public" && (
                             <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700 ring-1 ring-blue-200">
-                              Cămin de stat
+                              Instituție publică
                             </span>
                           )}
                           {cam.tip !== "Public" && (

@@ -259,7 +259,7 @@ export default async function CaminDetailPage({
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-200 shrink-0 self-start">
                   <Building2 className="size-4 text-blue-700" />
                   <span className="text-xs font-semibold text-blue-700 uppercase tracking-wide">
-                    Cămin de stat
+                    Instituție publică
                   </span>
                 </div>
               )}

@@ -40,6 +40,7 @@ type Camin = {
   localitate: string;
   serviceType: string;
   isPremium?: boolean;
+  tip?: string;
 };
 
 const jsonCamine = camineRaw as Camin[];
@@ -393,12 +394,24 @@ export function CamineDirectorClient() {
                               <Crown className="size-3.5 text-gold" />
                               <span className="text-xs font-bold uppercase tracking-wide text-gold">Premium</span>
                             </div>
-                            {cam.licensed && (
-                              <div className="flex items-center gap-1">
-                                <ShieldCheck className="size-3.5 text-gold" />
-                                <span className="text-xs font-semibold text-gold uppercase tracking-wide">Licențiat</span>
-                              </div>
-                            )}
+                            <div className="flex items-center gap-2">
+                              {cam.licensed && (
+                                <div className="flex items-center gap-1">
+                                  <ShieldCheck className="size-3.5 text-gold" />
+                                  <span className="text-xs font-semibold text-gold uppercase tracking-wide">Licențiat</span>
+                                </div>
+                              )}
+                              {cam.tip === "Public" && (
+                                <span className="inline-flex items-center rounded-full bg-blue-500/20 px-2 py-0.5 text-xs font-semibold text-blue-300 ring-1 ring-blue-400/30">
+                                  Instituție publică
+                                </span>
+                              )}
+                              {cam.tip !== "Public" && (
+                                <span className="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-300 ring-1 ring-emerald-400/30">
+                                  Privat
+                                </span>
+                              )}
+                            </div>
                           </div>
                         )}
                         <div className={cam.isPremium ? "p-5" : ""}>
@@ -410,6 +423,21 @@ export function CamineDirectorClient() {
                               <ShieldCheck className="size-5 text-gold shrink-0" />
                             )}
                           </div>
+
+                          {!cam.isPremium && (
+                            <div className="flex items-center gap-2 mb-3 flex-wrap">
+                              {cam.tip === "Public" && (
+                                <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700 ring-1 ring-blue-200">
+                                  Instituție publică
+                                </span>
+                              )}
+                              {cam.tip !== "Public" && (
+                                <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200">
+                                  Privat
+                                </span>
+                              )}
+                            </div>
+                          )}
 
                           {cam.address && (
                             <div className={`flex items-start gap-2 text-sm mb-2 text-navy-deep/50`}>

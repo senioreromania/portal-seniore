@@ -327,7 +327,7 @@ export default async function JudetPage({
                           )}
                           {cam.tip === "Public" && (
                             <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700 ring-1 ring-blue-200">
-                              Cămin de stat
+                              Instituție publică
                             </span>
                           )}
                           {cam.tip !== "Public" && (
@@ -351,7 +351,7 @@ export default async function JudetPage({
                           <div className="flex items-center gap-2 mb-3 flex-wrap">
                             {cam.tip === "Public" && (
                               <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700 ring-1 ring-blue-200">
-                                Cămin de stat
+                                Instituție publică
                               </span>
                             )}
                             {cam.tip !== "Public" && (
