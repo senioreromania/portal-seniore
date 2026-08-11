@@ -21768,30 +21768,6 @@
     "tip": "Privat"
   },
   {
-    "slug": "complexul-de-servicii-comunitare-pt-copilul-prescolar",
-    "name": "COMPLEXUL DE SERVICII COMUNITARE PT. COPILUL PREŞCOLAR",
-    "source": "google",
-    "phone": "0252 321 710",
-    "internationalPhone": "+40 252 321 710",
-    "website": "",
-    "address": "Spl. Mihai Viteazu, 4, Drobeta Turnu Severin, Mehedinti, 220056, Drobeta-Turnu Severin",
-    "lat": 44.6438186,
-    "lng": 22.6537199,
-    "judet": "Mehedinți",
-    "rating": 3.5,
-    "reviews": 2,
-    "placeId": "ChIJC9_Dgs4xUkcRPzFKrDys6tY",
-    "googleUrl": "https://maps.google.com/?cid=15486379645255430463",
-    "licensed": false,
-    "capacity": "",
-    "licenseNumber": "",
-    "licenseDate": "",
-    "cui": "",
-    "serviceType": "",
-    "localitate": "",
-    "tip": "Privat"
-  },
-  {
     "slug": "complexul-de-servicii-sociale-bunavestire",
     "name": "Complexul de Servicii Sociale Bunavestire",
     "source": "google",
@@ -21837,30 +21813,6 @@
     "cui": "",
     "serviceType": "",
     "localitate": "",
-    "tip": "Privat"
-  },
-  {
-    "slug": "complexul-de-terapie-naturala-breaza-alexandra-s-r-l",
-    "name": "Complexul de Terapie\nNaturală Breaza\nAlexandra S.R.L.",
-    "source": "pdf",
-    "phone": "",
-    "internationalPhone": "",
-    "website": "",
-    "address": "sat Breaza de Jos, str.\nLibertății, nr. 82",
-    "lat": "",
-    "lng": "",
-    "judet": "Prahova",
-    "rating": "",
-    "reviews": "",
-    "placeId": "",
-    "googleUrl": "",
-    "licensed": true,
-    "capacity": "34",
-    "licenseNumber": "LF/0013468",
-    "licenseDate": "10.04.2025",
-    "cui": "13435120",
-    "serviceType": "Centrul rezidențial pentru seniori\nAlexandra",
-    "localitate": "Breaza",
     "tip": "Privat"
   },
   {
@@ -37941,7 +37893,7 @@
     "cui": "",
     "serviceType": "",
     "localitate": "",
-    "tip": "Privat"
+    "tip": "Public"
   },
   {
     "slug": "serviciul-privat-de-ambulanta-sf-mina-s-r-l",
@@ -37965,7 +37917,7 @@
     "cui": "33641184",
     "serviceType": "Căminul pentru bătrâni Sf. Mina -\nLido",
     "localitate": "Craiova",
-    "tip": "Privat"
+    "tip": "Public"
   },
   {
     "slug": "seven-house",
