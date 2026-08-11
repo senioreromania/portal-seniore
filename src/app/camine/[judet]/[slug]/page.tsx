@@ -53,6 +53,7 @@ type Camin = {
   localitate: string;
   description?: string;
   images?: string[];
+  tip?: string;
 };
 
 export const revalidate = 3600;
@@ -251,6 +252,22 @@ export default async function CaminDetailPage({
                   <ShieldCheck className="size-4 text-gold" />
                   <span className="text-xs font-semibold text-navy-deep uppercase tracking-wide">
                     Licențiat
+                  </span>
+                </div>
+              )}
+              {camin.tip === "Public" && (
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-200 shrink-0 self-start">
+                  <Building2 className="size-4 text-blue-700" />
+                  <span className="text-xs font-semibold text-blue-700 uppercase tracking-wide">
+                    Cămin de stat
+                  </span>
+                </div>
+              )}
+              {camin.tip !== "Public" && (
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 shrink-0 self-start">
+                  <Building2 className="size-4 text-emerald-700" />
+                  <span className="text-xs font-semibold text-emerald-700 uppercase tracking-wide">
+                    Privat
                   </span>
                 </div>
               )}

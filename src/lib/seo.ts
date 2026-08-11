@@ -66,6 +66,7 @@ export type Camin = {
   internationalPhone?: string;
   cui?: string;
   licenseDate?: string;
+  tip?: string;
 };
 
 const JUDET_NORMALIZE: Record<string, string> = {

@@ -325,6 +325,16 @@ export default async function JudetPage({
                               <span className="text-xs font-semibold text-gold uppercase tracking-wide">Licențiat</span>
                             </div>
                           )}
+                          {cam.tip === "Public" && (
+                            <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700 ring-1 ring-blue-200">
+                              Cămin de stat
+                            </span>
+                          )}
+                          {cam.tip !== "Public" && (
+                            <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200">
+                              Privat
+                            </span>
+                          )}
                         </div>
                       )}
                       <div className={cam.isPremium ? "p-5" : ""}>
@@ -336,6 +346,21 @@ export default async function JudetPage({
                             <ShieldCheck className="size-5 text-gold shrink-0" />
                           )}
                         </div>
+
+                        {!cam.isPremium && (
+                          <div className="flex items-center gap-2 mb-3 flex-wrap">
+                            {cam.tip === "Public" && (
+                              <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700 ring-1 ring-blue-200">
+                                Cămin de stat
+                              </span>
+                            )}
+                            {cam.tip !== "Public" && (
+                              <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200">
+                                Privat
+                              </span>
+                            )}
+                          </div>
+                        )}
 
                         {cam.address && (
                           <div className="flex items-start gap-2 text-sm mb-2 text-navy-deep/50">
@@ -357,7 +382,7 @@ export default async function JudetPage({
                               {cam.capacity} locuri
                             </span>
                           )}
-                          {cam.rating && (
+                          {cam.rating && Number(cam.rating) > 0 && (
                             <span className="inline-flex items-center gap-1">
                               <Star className="size-3 text-gold fill-gold" />
                               {cam.rating}
@@ -378,7 +403,7 @@ export default async function JudetPage({
                               Website
                             </span>
                           )}
-                          {cam.lat && cam.lng && (
+                          {Number(cam.lat) !== 0 && Number(cam.lng) !== 0 && (
                             <span className="inline-flex items-center gap-1 text-xs text-navy-deep/50 ml-auto">
                               <Navigation className="size-3" />
                               Direcții

@@ -21,6 +21,7 @@ type Camin = {
   localitate: string;
   serviceType: string;
   images?: string[];
+  tip?: string;
 };
 
 const camine = camineData as Camin[];

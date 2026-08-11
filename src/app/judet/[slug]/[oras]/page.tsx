@@ -243,7 +243,7 @@ export default async function OrasPage({
                             {camin.capacity} locuri
                           </span>
                         )}
-                        {camin.rating && (
+                        {camin.rating && Number(camin.rating) > 0 && (
                           <span className="flex items-center gap-1">
                             <Star className="size-3.5 text-gold fill-gold" />
                             {camin.rating}
@@ -256,6 +256,16 @@ export default async function OrasPage({
                         <ShieldCheck className="size-3.5 text-gold" />
                         <span className="text-xs font-semibold text-navy-deep">Licențiat</span>
                       </div>
+                    )}
+                    {camin.tip === "Public" && (
+                      <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-700 ring-1 ring-blue-200 shrink-0">
+                        Cămin de stat
+                      </span>
+                    )}
+                    {camin.tip !== "Public" && (
+                      <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200 shrink-0">
+                        Privat
+                      </span>
                     )}
                   </div>
                 </Link>

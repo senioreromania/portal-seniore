@@ -45,6 +45,7 @@ type Camin = {
   localitate: string;
   serviceType: string;
   images?: string[];
+  tip?: string;
 };
 
 
@@ -389,11 +390,23 @@ export function HomeClient({
 
                       <div className="px-5 pb-5">
                         {cam.licensed && (
-                          <div className="flex items-center gap-1.5 mb-3">
-                            <ShieldCheck className="size-4 text-gold" />
-                            <span className="text-xs font-semibold text-gold uppercase tracking-wide">
-                              Licențiat MMJS
-                            </span>
+                          <div className="flex items-center gap-2 mb-3 flex-wrap">
+                            <div className="flex items-center gap-1.5">
+                              <ShieldCheck className="size-4 text-gold" />
+                              <span className="text-xs font-semibold text-gold uppercase tracking-wide">
+                                Licențiat MMJS
+                              </span>
+                            </div>
+                            {cam.tip === "Public" && (
+                              <span className="inline-flex items-center rounded-full bg-blue-500/20 px-2 py-0.5 text-xs font-semibold text-blue-300 ring-1 ring-blue-400/30">
+                                Cămin de stat
+                              </span>
+                            )}
+                            {cam.tip !== "Public" && (
+                              <span className="inline-flex items-center rounded-full bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-300 ring-1 ring-emerald-400/30">
+                                Privat
+                              </span>
+                            )}
                           </div>
                         )}
 
@@ -557,12 +570,24 @@ export function HomeClient({
                       <div className="h-2 bg-gradient-to-r from-gold via-gold to-[#b8964f]" />
 
                       <div className="p-5">
-                        {/* License badge */}
-                        <div className="flex items-center gap-1.5 mb-3">
-                          <ShieldCheck className="size-4 text-gold" />
-                          <span className="text-xs font-semibold text-gold uppercase tracking-wide">
-                            Licențiat MMJS
-                          </span>
+                        {/* License + Public badges */}
+                        <div className="flex items-center gap-2 mb-3 flex-wrap">
+                          <div className="flex items-center gap-1.5">
+                            <ShieldCheck className="size-4 text-gold" />
+                            <span className="text-xs font-semibold text-gold uppercase tracking-wide">
+                              Licențiat MMJS
+                            </span>
+                          </div>
+                          {cam.tip === "Public" && (
+                            <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700 ring-1 ring-blue-200">
+                              Cămin de stat
+                            </span>
+                          )}
+                          {cam.tip !== "Public" && (
+                            <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200">
+                              Privat
+                            </span>
+                          )}
                         </div>
 
                         <h3 className="font-heading text-base font-semibold text-navy-deep leading-snug group-hover:text-gold transition-colors line-clamp-2 mb-3 pr-10">
