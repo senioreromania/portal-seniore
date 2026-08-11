@@ -1,4 +1,5 @@
 import { permanentRedirect, notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase-server";
 import { normalizeJudet, slugifyJudet } from "@/lib/seo";
 import camineData from "@/data/camine-director.json";
@@ -9,6 +10,10 @@ type Camin = {
 };
 
 export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default async function OldCaminRedirect({
   params,

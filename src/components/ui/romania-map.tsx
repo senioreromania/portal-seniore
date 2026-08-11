@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 type County = {
@@ -96,9 +97,10 @@ export function RomaniaMap({ className = "" }: { className?: string }) {
   return (
     <div className={`relative w-full h-full ${className}`}>
       {/* Background SVG map */}
-      <img
+      <Image
         src="/romania.svg"
         alt="Harta României"
+        fill
         className="absolute inset-0 w-full h-full object-contain"
         style={{ filter: "grayscale(0.3) opacity(0.7)", transform: "rotate(-2deg)" }}
       />

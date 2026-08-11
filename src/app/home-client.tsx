@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
@@ -370,11 +371,13 @@ export function HomeClient({
 
                       {/* Image */}
                       {cam.images && cam.images.length > 0 && (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
+                        <Image
                           src={cam.images[0]}
                           alt={cam.name}
+                          width={400}
+                          height={176}
                           className="w-full h-44 object-cover"
+                          unoptimized
                         />
                       )}
 

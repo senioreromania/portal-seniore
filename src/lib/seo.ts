@@ -127,13 +127,13 @@ export function buildHomeMetadata(): Metadata {
       siteName: SITE_NAME,
       locale: "ro_RO",
       type: "website",
-      images: [{ url: `${SITE_URL}/og-image.jpg`, width: 1200, height: 630 }],
+      images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title: "Căminele de Bătrâni din toată România — Caută cămin de bătrâni autorizat în apropierea ta | Seniore.ro",
       description: SITE_DESCRIPTION,
-      images: [`${SITE_URL}/og-image.jpg`],
+      images: [`${SITE_URL}/og-image.png`],
     },
   };
 }
@@ -161,24 +161,36 @@ export function buildCamineListMetadata(): Metadata {
       siteName: SITE_NAME,
       locale: "ro_RO",
       type: "website",
-      images: [{ url: `${SITE_URL}/og-image.jpg`, width: 1200, height: 630 }],
+      images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title: "Toate Căminele de Bătrâni din România — Listă Completă",
       description: "Portal cu toate căminele de bătrâni din România. Filtrează după județ, licență, capacitate.",
-      images: [`${SITE_URL}/og-image.jpg`],
+      images: [`${SITE_URL}/og-image.png`],
     },
   };
 }
 
+const GENERIC_NAMES = new Set([
+  "camin", "cămin", "azil",
+  "camin de batrani", "cămin de bătrâni", "camin de bătrâni",
+  "azil de batrani", "azil de bătrâni",
+  "casa de batrani", "casă de bătrâni",
+  "centru",
+]);
+
 export function buildCaminMetadata(camin: Camin): Metadata {
   const localitate = camin.localitate || "";
   const judet = normalizeJudet(camin.judet) || "";
-  const locPart = localitate ? ` ${localitate},` : judet ? ` ${judet}` : "";
-  const title = `${camin.name} — Cămin de bătrâni${locPart} | Seniore.ro`;
+  const locPart = localitate ? ` ${localitate}` : judet ? ` ${judet}` : "";
+  const cleanName = camin.name.replace(/[\r\n]+/g, " ").trim();
+  const isGeneric = GENERIC_NAMES.has(cleanName.toLowerCase());
+  const title = isGeneric
+    ? `Cămin de bătrâni${locPart}`
+    : `${cleanName} — Cămin de bătrâni${locPart}`;
   const descParts = [
-    `${camin.name}`,
+    `${cleanName}`,
     localitate ? ` din ${localitate}, ${judet}` : judet ? ` din județul ${judet}` : "",
     camin.capacity ? `, ${camin.capacity} locuri` : "",
     camin.licensed ? ", licențiat MMJS" : "",
@@ -210,13 +222,13 @@ export function buildCaminMetadata(camin: Camin): Metadata {
       siteName: SITE_NAME,
       locale: "ro_RO",
       type: "website",
-      images: [{ url: `${SITE_URL}/og-image.jpg`, width: 1200, height: 630 }],
+      images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description: descParts.join(""),
-      images: [`${SITE_URL}/og-image.jpg`],
+      images: [`${SITE_URL}/og-image.png`],
     },
   };
 }
@@ -248,13 +260,13 @@ export function buildJudetMetadata(judet: string, count: number): Metadata {
       siteName: SITE_NAME,
       locale: "ro_RO",
       type: "website",
-      images: [{ url: `${SITE_URL}/og-image.jpg`, width: 1200, height: 630 }],
+      images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [`${SITE_URL}/og-image.jpg`],
+      images: [`${SITE_URL}/og-image.png`],
     },
   };
 }
@@ -284,13 +296,13 @@ export function buildOrasMetadata(oras: string, judet: string, count: number): M
       siteName: SITE_NAME,
       locale: "ro_RO",
       type: "website",
-      images: [{ url: `${SITE_URL}/og-image.jpg`, width: 1200, height: 630 }],
+      images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [`${SITE_URL}/og-image.jpg`],
+      images: [`${SITE_URL}/og-image.png`],
     },
   };
 }
@@ -315,20 +327,20 @@ export function buildStaticPageMetadata(opts: {
       siteName: SITE_NAME,
       locale: "ro_RO",
       type: "website",
-      images: [{ url: `${SITE_URL}/og-image.jpg`, width: 1200, height: 630 }],
+      images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title: opts.title,
       description: opts.description,
-      images: [`${SITE_URL}/og-image.jpg`],
+      images: [`${SITE_URL}/og-image.png`],
     },
   };
 }
 
 export function buildStiriListMetadata(): Metadata {
   return buildStaticPageMetadata({
-    title: "Știri din domeniul îngrijirii vârstnicilor — Seniore.ro",
+    title: "Știri din domeniul îngrijirii vârstnicilor",
     description:
       "Știri, comunicate și analize despre căminele de bătrâni din România. Legislație, licențiere, reforme și evenimente din sectorul asistenței sociale.",
     path: "/stiri",
@@ -361,14 +373,14 @@ export function buildArticleMetadata(opts: {
       siteName: SITE_NAME,
       locale: "ro_RO",
       type: "article",
-      images: opts.image ? [{ url: `${SITE_URL}${opts.image}` }] : [{ url: `${SITE_URL}/og-image.jpg`, width: 1200, height: 630 }],
+      images: opts.image ? [{ url: `${SITE_URL}${opts.image}` }] : [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630 }],
       publishedTime: opts.date,
     },
     twitter: {
       card: "summary_large_image",
       title: opts.title,
       description: opts.description,
-      images: opts.image ? [`${SITE_URL}${opts.image}`] : [`${SITE_URL}/og-image.jpg`],
+      images: opts.image ? [`${SITE_URL}${opts.image}`] : [`${SITE_URL}/og-image.png`],
     },
   };
 }
@@ -420,6 +432,32 @@ export function websiteJsonLd() {
         urlTemplate: `${SITE_URL}/camine?q={search_term_string}`,
       },
       "query-input": "required name=search_term_string",
+    },
+  };
+}
+
+export function organizationJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Seniore.ro",
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo-seniore.png`,
+    description: SITE_DESCRIPTION,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Strada Margeanului, Nr. 22",
+      addressLocality: "București",
+      addressRegion: "Sector 5",
+      postalCode: "051047",
+      addressCountry: "RO",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+40785598779",
+      email: "office@seniore.ro",
+      contactType: "customer support",
+      availableLanguage: "Romanian",
     },
   };
 }

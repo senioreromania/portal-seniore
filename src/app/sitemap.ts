@@ -75,7 +75,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const supabase = await createClient();
     const { data: sbCamine } = await supabase
       .from("camine")
-      .select("slug, judet, oras")
+      .select("slug, judet, oras, updated_at")
       .eq("status", "approved")
       .not("slug", "is", null);
 
@@ -84,7 +84,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         if (c.slug && !jsonSlugs.has(c.slug)) {
           supabaseEntries.push({
             url: `${SITE_URL}${caminPath({ slug: c.slug, judet: c.judet || "" })}`,
-            lastModified: now,
+            lastModified: c.updated_at ? new Date(c.updated_at) : now,
             changeFrequency: "weekly" as const,
             priority: 0.8,
           });
@@ -112,12 +112,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const stiriEntries: MetadataRoute.Sitemap = articleMetas.map((a) => ({
-    url: `${SITE_URL}/stiri/${a.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.5,
-  }));
+  const stiriEntries: MetadataRoute.Sitemap = articleMetas.map((a) => {
+    const parsed = new Date(a.date);
+    const valid = !isNaN(parsed.getTime()) && parsed.getFullYear() >= 2026;
+    return {
+      url: `${SITE_URL}/stiri/${a.slug}`,
+      lastModified: valid ? parsed : new Date("2026-01-01"),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    };
+  });
 
   const oraseEntries: MetadataRoute.Sitemap = [];
   oraseMap.forEach((orase, judet) => {

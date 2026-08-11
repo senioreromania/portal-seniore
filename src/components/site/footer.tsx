@@ -127,6 +127,49 @@ export function SiteFooter() {
           </div>
         </div>
 
+        {/* Judete links */}
+        <div className="border-t border-navy-deep/10 pt-6 mb-6">
+          <h4 className="text-xs font-bold uppercase tracking-widest mb-4 text-navy-deep/70">
+            Cămine de bătrâni pe județe
+          </h4>
+          <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+            {[
+              { label: "Ilfov", slug: "ilfov" },
+              { label: "București", slug: "bucuresti" },
+              { label: "Cluj", slug: "cluj" },
+              { label: "Timiș", slug: "timis" },
+              { label: "Bacău", slug: "bacau" },
+              { label: "Bihor", slug: "bihor" },
+              { label: "Constanța", slug: "constanta" },
+              { label: "Argeș", slug: "arges" },
+              { label: "Mureș", slug: "mures" },
+              { label: "Dolj", slug: "dolj" },
+              { label: "Prahova", slug: "prahova" },
+              { label: "Neamț", slug: "neamt" },
+              { label: "Arad", slug: "arad" },
+              { label: "Brașov", slug: "brasov" },
+              { label: "Sibiu", slug: "sibiu" },
+              { label: "Dâmbovița", slug: "dambovita" },
+              { label: "Iași", slug: "iasi" },
+              { label: "Suceava", slug: "suceava" },
+              { label: "Covasna", slug: "covasna" },
+              { label: "Călărași", slug: "calarasi" },
+              { label: "Galați", slug: "galati" },
+              { label: "Alba", slug: "alba" },
+              { label: "Hunedoara", slug: "hunedoara" },
+              { label: "Satu Mare", slug: "satu-mare" },
+            ].map((j) => (
+              <Link
+                key={j.slug}
+                href={`/judet/${j.slug}`}
+                className="text-navy-deep/60 hover:text-gold transition-colors"
+              >
+                {j.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+
         {/* ANPC + bottom bar */}
         <div className="border-t border-navy-deep/10 pt-6 mb-6 flex flex-wrap items-center gap-x-6 gap-y-4">
           <span className="text-xs font-semibold uppercase tracking-widest text-navy-deep/70">

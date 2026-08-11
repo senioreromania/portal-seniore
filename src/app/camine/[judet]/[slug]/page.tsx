@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Phone,
   Globe,
@@ -492,12 +493,14 @@ export default async function CaminDetailPage({
                     </h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                       {camin.images.map((url, i) => (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
+                        <Image
                           key={url}
                           src={url}
                           alt={`${camin.name} — imagine ${i + 1}`}
+                          width={200}
+                          height={160}
                           className="w-full h-32 sm:h-40 object-cover rounded-lg border border-navy-deep/10"
+                          unoptimized
                         />
                       ))}
                     </div>

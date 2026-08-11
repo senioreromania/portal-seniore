@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Inter, Playfair_Display } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
-import { buildHomeMetadata, websiteJsonLd, SITE_URL } from "@/lib/seo";
+import { buildHomeMetadata, websiteJsonLd, organizationJsonLd, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/json-ld";
 import { CookieBanner } from "@/components/site/cookie-banner";
+import { GoogleAnalytics } from "@/components/site/google-analytics";
 import "./globals.css";
 
 const inter = Inter({
@@ -51,20 +51,10 @@ export default function RootLayout({
     >
       <head>
         <JsonLd data={websiteJsonLd()} />
+        <JsonLd data={organizationJsonLd()} />
       </head>
       <body className="min-h-full flex flex-col bg-paper w-full">
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-6LQ7HMECW2"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-6LQ7HMECW2');
-          `}
-        </Script>
+        <GoogleAnalytics />
         {children}
         <CookieBanner />
         <Toaster position="top-right" richColors />
