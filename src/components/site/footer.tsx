@@ -64,10 +64,10 @@ export function SiteFooter() {
               <li className="flex gap-3 items-start">
                 <Phone className="size-4 shrink-0 text-gold mt-0.5" />
                 <a
-                  href="tel:+40785598779"
+                  href="tel:+40743259123"
                   className="hover:text-gold transition-colors"
                 >
-                  0785 598 779
+                  0743 259 123
                 </a>
               </li>
               <li className="flex gap-3 items-start">

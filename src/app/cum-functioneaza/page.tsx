@@ -94,7 +94,7 @@ export default function AdaugaCentruPage() {
               <div className="flex flex-wrap items-center justify-center gap-6 mb-8 text-paper/80">
                 <div className="flex items-center gap-2">
                   <Phone className="size-5 text-gold" />
-                  <span>0785 598 779</span>
+                  <span>0743 259 123</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="size-5 text-gold" />
