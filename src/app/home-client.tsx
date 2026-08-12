@@ -128,13 +128,13 @@ export function HomeClient({
       <main className="flex-1">
         {/* ===== HERO with Search ===== */}
         <section className="relative overflow-hidden bg-navy-deep pt-20 pb-20 md:pt-28 md:pb-28">
-          {/* Video background — desktop only */}
+          {/* Video background */}
           <video
             autoPlay
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover hidden md:block"
+            className="absolute inset-0 w-full h-full object-cover"
           >
             <source src="/hero-seniore.mp4" type="video/mp4" />
           </video>
