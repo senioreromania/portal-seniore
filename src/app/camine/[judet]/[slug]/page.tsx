@@ -558,7 +558,7 @@ export default async function CaminDetailPage({
               </div>
 
               {/* Right: Sidebar */}
-              <div className="space-y-6">
+              <div className="space-y-6 lg:sticky lg:top-24 lg:self-start">
                 {/* Contact CTA */}
                 <div className="p-6 rounded-xl bg-navy-deep">
                   <h3 className="font-heading text-base font-bold text-paper mb-2">
