@@ -38,6 +38,8 @@ type Camin = {
   pret_pornire: number | null;
   status: string;
   is_premium: boolean;
+  show_in_slider: boolean;
+  highlight: string | null;
   slug: string | null;
   created_at: string;
   images: string[] | null;
@@ -120,7 +122,9 @@ export function AdminClient({
   }
 
   const filtered = camine.filter((c) => {
-    if (statusFilter !== "all" && c.status !== statusFilter) return false;
+    if (statusFilter === "premium" && !c.is_premium) return false;
+    if (statusFilter === "slider" && !c.show_in_slider) return false;
+    if (!["all", "premium", "slider"].includes(statusFilter) && c.status !== statusFilter) return false;
     if (search) {
       const q = search.toLowerCase();
       return (
@@ -160,6 +164,18 @@ export function AdminClient({
     });
   }
 
+  async function toggleSlider(id: string, current: boolean) {
+    startTransition(async () => {
+      await supabase
+        .from("camine")
+        .update({ show_in_slider: !current })
+        .eq("id", id);
+      setCamine((prev) =>
+        prev.map((c) => (c.id === id ? { ...c, show_in_slider: !current } : c))
+      );
+    });
+  }
+
   async function deleteCamin(id: string) {
     if (!confirm("Sigur vrei să ștergi acest cămin?")) return;
     startTransition(async () => {
@@ -180,6 +196,7 @@ export function AdminClient({
       website: c.website,
       descriere: c.descriere,
       pret_pornire: c.pret_pornire,
+      highlight: c.highlight,
     });
   }
 
@@ -294,6 +311,8 @@ export function AdminClient({
             <option value="pending">În așteptare</option>
             <option value="approved">Aprobate</option>
             <option value="rejected">Respise</option>
+            <option value="premium">Premium</option>
+            <option value="slider">În slider</option>
           </select>
         </div>
 
@@ -343,6 +362,12 @@ export function AdminClient({
                           <span className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-gold/15 text-gold font-semibold border border-gold/20">
                             <Crown className="size-3" />
                             Premium
+                          </span>
+                        )}
+                        {c.show_in_slider && (
+                          <span className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 font-semibold border border-blue-200">
+                            <ImagePlus className="size-3" />
+                            Slider
                           </span>
                         )}
                       </div>
@@ -403,6 +428,18 @@ export function AdminClient({
                         }`}
                       >
                         <Crown className="size-4" />
+                      </button>
+                      <button
+                        onClick={() => toggleSlider(c.id, c.show_in_slider)}
+                        disabled={pending}
+                        title={c.show_in_slider ? "Ascunde din slider" : "Afișează în slider"}
+                        className={`size-8 rounded-lg flex items-center justify-center transition-colors ${
+                          c.show_in_slider
+                            ? "bg-blue-50 text-blue-600 hover:bg-blue-100"
+                            : "bg-navy-deep/5 text-navy-deep/30 hover:bg-navy-deep/10"
+                        }`}
+                      >
+                        <ImagePlus className="size-4" />
                       </button>
                       <button
                         onClick={() => (isEditing ? saveEdit(c.id) : startEdit(c))}
@@ -573,6 +610,20 @@ export function AdminClient({
                             setEditForm({ ...editForm, descriere: e.target.value })
                           }
                           className="w-full px-3 py-2 text-sm border border-navy-deep/15 rounded-sm bg-white focus:outline-none focus:ring-2 focus:ring-gold/30 resize-none"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-medium text-navy-deep/60 mb-1">
+                          Highlight (text scurt pentru cardul premium)
+                        </label>
+                        <input
+                          value={editForm.highlight ?? ""}
+                          onChange={(e) =>
+                            setEditForm({ ...editForm, highlight: e.target.value })
+                          }
+                          placeholder="ex: Centru modern cu piscină și grădină"
+                          className="w-full px-3 py-2 text-sm border border-navy-deep/15 rounded-sm bg-white focus:outline-none focus:ring-2 focus:ring-gold/30"
                         />
                       </div>
 

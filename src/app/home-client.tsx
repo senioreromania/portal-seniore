@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -19,6 +19,7 @@ import {
   Navigation,
   ChevronRight,
   ChevronDown,
+  ChevronLeft,
   Scale,
   FileText,
   Newspaper,
@@ -849,6 +850,11 @@ export function HomeClient({
           </section>
         )}
 
+        {/* ===== Premium Slider ===== */}
+        {premiumCamine.length > 2 && (
+          <PremiumSlider camine={premiumCamine} />
+        )}
+
         {/* ===== Știri ===== */}
         <section className="py-16 md:py-20 bg-paper">
           <div className="max-w-7xl mx-auto px-6">
@@ -1085,5 +1091,146 @@ export function HomeClient({
       </main>
       <SiteFooter />
     </>
+  );
+}
+
+function PremiumSlider({
+  camine,
+}: {
+  camine: (Camin & { highlight: string; description: string })[];
+}) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [shuffled, setShuffled] = useState<typeof camine>([]);
+
+  useEffect(() => {
+    const arr = [...camine];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    setShuffled(arr.slice(0, Math.min(8, arr.length)));
+  }, [camine]);
+
+  function scrollBy(dir: number) {
+    if (!scrollRef.current) return;
+    const cardWidth = scrollRef.current.querySelector("[data-card]")?.clientWidth ?? 320;
+    scrollRef.current.scrollBy({ left: dir * (cardWidth + 24), behavior: "smooth" });
+  }
+
+  return (
+    <section className="py-16 md:py-24 bg-navy-deep relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-deep via-[#0d1520] to-navy-deep" />
+      <div className="absolute top-1/3 left-1/3 w-[500px] h-[400px] bg-gold/8 rounded-full blur-[140px]" />
+
+      <div className="max-w-7xl mx-auto px-6 relative">
+        <div className="flex items-end justify-between mb-10">
+          <div>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/30 mb-4">
+              <Crown className="size-4 text-gold" />
+              <span className="text-xs font-semibold text-gold uppercase tracking-widest">
+                Premium
+              </span>
+            </div>
+            <h2 className="font-heading text-2xl md:text-4xl font-bold text-paper mb-2">
+              Cămine premium recomandate
+            </h2>
+            <p className="text-paper/50 max-w-2xl">
+              Partenere Seniore.ro cu servicii de excepție pentru vârstnici
+            </p>
+          </div>
+          <div className="hidden md:flex items-center gap-2">
+            <button
+              onClick={() => scrollBy(-1)}
+              className="size-10 rounded-full border border-gold/20 text-gold flex items-center justify-center hover:bg-gold/10 transition-colors"
+              aria-label="Anterior"
+            >
+              <ChevronLeft className="size-5" />
+            </button>
+            <button
+              onClick={() => scrollBy(1)}
+              className="size-10 rounded-full border border-gold/20 text-gold flex items-center justify-center hover:bg-gold/10 transition-colors"
+              aria-label="Următor"
+            >
+              <ChevronRight className="size-5" />
+            </button>
+          </div>
+        </div>
+
+        <div
+          ref={scrollRef}
+          className="flex gap-6 overflow-x-auto scroll-smooth pb-4 -mx-6 px-6"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {shuffled.map((cam) => (
+            <Link
+              key={cam.slug}
+              href={caminPath(cam)}
+              data-card
+              className="group relative block shrink-0 w-[300px] rounded-2xl overflow-hidden bg-[#111d2e] border border-gold/20 hover:border-gold/60 transition-all duration-500 hover:shadow-2xl hover:shadow-gold/25 hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between px-4 py-2.5 bg-gradient-to-r from-gold/15 to-gold/5 border-b border-gold/20">
+                <div className="flex items-center gap-1.5">
+                  <Crown className="size-3.5 text-gold" />
+                  <span className="text-xs font-bold uppercase tracking-wide text-gold">Premium</span>
+                </div>
+                {cam.rating && (
+                  <div className="flex items-center gap-1.5">
+                    <Star className="size-3.5 text-gold fill-gold" />
+                    <span className="text-xs font-bold text-gold">{cam.rating}</span>
+                  </div>
+                )}
+              </div>
+
+              {cam.images && cam.images.length > 0 ? (
+                <Image
+                  src={cam.images[0]}
+                  alt={cam.name}
+                  width={300}
+                  height={160}
+                  className="w-full h-40 object-cover"
+                  unoptimized
+                />
+              ) : (
+                <div className="w-full h-40 bg-navy-deep/50 flex items-center justify-center">
+                  <Building2 className="size-10 text-gold/20" />
+                </div>
+              )}
+
+              <div className="p-4">
+                <h3 className="font-heading text-base font-bold text-white leading-snug line-clamp-2 group-hover:text-gold transition-colors duration-300 mb-1">
+                  {titleCase(cam.name)}
+                </h3>
+                <p className="text-sm text-gold/70 line-clamp-1 mb-2">
+                  {cam.highlight}
+                </p>
+                <p className="text-xs text-white/60 leading-relaxed line-clamp-2 mb-3">
+                  {cam.description}
+                </p>
+                <div className="flex items-center gap-3 text-xs text-white/50 mb-3">
+                  {cam.judet && (
+                    <span className="inline-flex items-center gap-1">
+                      <MapPin className="size-3 text-gold/60" />
+                      {cam.judet}
+                    </span>
+                  )}
+                  {cam.capacity && (
+                    <span className="inline-flex items-center gap-1">
+                      <Users className="size-3 text-gold/60" />
+                      {cam.capacity} locuri
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-center justify-end pt-3 border-t border-gold/10">
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-gold group-hover:translate-x-0.5 transition-transform">
+                    Vezi detalii
+                    <ArrowRight className="size-3" />
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

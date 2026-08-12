@@ -35,7 +35,8 @@ async function getSupabasePremiumCamine(): Promise<
       .from("camine")
       .select("*")
       .eq("status", "approved")
-      .eq("is_premium", true);
+      .eq("is_premium", true)
+      .eq("show_in_slider", true);
 
     if (!data) return [];
 
@@ -67,7 +68,7 @@ async function getSupabasePremiumCamine(): Promise<
             : "",
         images:
           c.images && Array.isArray(c.images) ? (c.images as string[]) : [],
-        highlight: "Cămin Partener Premium",
+        highlight: (c.highlight as string) || "Cămin Partener Premium",
         description: (c.descriere as string) || "",
       }));
   } catch {
