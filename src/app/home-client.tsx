@@ -101,6 +101,7 @@ export function HomeClient({
   judete,
   featured,
   premiumCamine,
+  sliderCamine,
 }: {
   totalCamine: number;
   licensedCount: number;
@@ -109,6 +110,7 @@ export function HomeClient({
   judete: string[];
   featured: Camin[];
   premiumCamine: (Camin & { highlight: string; description: string })[];
+  sliderCamine: (Camin & { highlight: string; description: string })[];
 }) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
@@ -319,10 +321,10 @@ export function HomeClient({
 
         {/* ===== Cămine Premium ===== */}
         {premiumCamine.length > 0 && (
-          <section className="relative py-16 md:py-24 overflow-hidden bg-navy-deep">
-            <div className="absolute inset-0 bg-gradient-to-b from-navy-deep via-[#0d1520] to-navy-deep" />
-            <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-gold/10 rounded-full blur-[120px]" />
-            <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-gold/8 rounded-full blur-[100px]" />
+          <section className="relative py-16 md:py-24 overflow-hidden bg-gold/20">
+            <div className="absolute inset-0 bg-gradient-to-br from-gold/20 via-gold/10 to-[#b8964f]/10" />
+            <div className="absolute top-1/4 left-1/4 w-[600px] h-[400px] bg-navy-deep/5 rounded-full blur-[150px]" />
+            <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] bg-navy-deep/3 rounded-full blur-[120px]" />
 
             <div className="max-w-7xl mx-auto px-6 relative">
               <motion.div
@@ -339,10 +341,10 @@ export function HomeClient({
                     Premium
                   </span>
                 </div>
-                <h2 className="font-heading text-2xl md:text-4xl font-bold text-paper mb-3">
+                <h2 className="font-heading text-2xl md:text-4xl font-bold text-navy-deep mb-3">
                   Cămine de bătrâni PREMIUM
                 </h2>
-                <p className="text-paper/50 max-w-2xl mx-auto">
+                <p className="text-navy-deep/60 max-w-2xl mx-auto">
                   Partenere Seniore.ro
                 </p>
               </motion.div>
@@ -666,6 +668,11 @@ export function HomeClient({
           </div>
         </section>
 
+        {/* ===== Premium Slider ===== */}
+        {sliderCamine.length > 2 && (
+          <PremiumSlider camine={sliderCamine} />
+        )}
+
         {/* ===== Featured Cămine ===== */}
         {featured.length > 0 && (
           <section className="relative py-16 md:py-24 overflow-hidden bg-gold/20">
@@ -848,11 +855,6 @@ export function HomeClient({
               </div>
             </div>
           </section>
-        )}
-
-        {/* ===== Premium Slider ===== */}
-        {premiumCamine.length > 2 && (
-          <PremiumSlider camine={premiumCamine} />
         )}
 
         {/* ===== Știri ===== */}
@@ -1101,6 +1103,7 @@ function PremiumSlider({
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [shuffled, setShuffled] = useState<typeof camine>([]);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const arr = [...camine];
@@ -1110,6 +1113,24 @@ function PremiumSlider({
     }
     setShuffled(arr.slice(0, Math.min(8, arr.length)));
   }, [camine]);
+
+  useEffect(() => {
+    if (paused || shuffled.length === 0) return;
+    const interval = setInterval(() => {
+      if (!scrollRef.current) return;
+      const container = scrollRef.current;
+      const cardWidth = container.querySelector("[data-card]")?.clientWidth ?? 320;
+      const scrollAmount = cardWidth + 24;
+      const maxScroll = container.scrollWidth - container.clientWidth;
+
+      if (container.scrollLeft >= maxScroll - 4) {
+        container.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      }
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [paused, shuffled]);
 
   function scrollBy(dir: number) {
     if (!scrollRef.current) return;
@@ -1158,6 +1179,8 @@ function PremiumSlider({
 
         <div
           ref={scrollRef}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
           className="flex gap-6 overflow-x-auto scroll-smooth pb-4 -mx-6 px-6"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >

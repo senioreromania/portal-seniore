@@ -35,6 +35,55 @@ async function getSupabasePremiumCamine(): Promise<
       .from("camine")
       .select("*")
       .eq("status", "approved")
+      .eq("is_premium", true);
+
+    if (!data) return [];
+
+    const now = new Date();
+
+    return data
+      .filter((c: Record<string, unknown>) => {
+        const premiumUntil = c.premium_until as string | null;
+        return !premiumUntil || new Date(premiumUntil) > now;
+      })
+      .map((c: Record<string, unknown>) => ({
+        slug: (c.slug as string) || `sb-${c.id}`,
+        name: c.nume as string,
+        phone: (c.telefon as string) || "",
+        website: (c.website as string) || "",
+        address: (c.adresa as string) || "",
+        lat: (c.lat as number) || 0,
+        lng: (c.lng as number) || 0,
+        judet: (c.judet as string) || "",
+        rating: (c.rating as number) || "",
+        reviews: (c.reviews as number) || "",
+        licensed: (c.licensed as boolean) || false,
+        capacity: c.capacity ? String(c.capacity) : "",
+        licenseNumber: (c.license_number as string) || "",
+        localitate: (c.oras as string) || "",
+        serviceType:
+          c.servicii && Array.isArray(c.servicii)
+            ? (c.servicii as string[]).join(", ")
+            : "",
+        images:
+          c.images && Array.isArray(c.images) ? (c.images as string[]) : [],
+        highlight: (c.highlight as string) || "Cămin Partener Premium",
+        description: (c.descriere as string) || "",
+      }));
+  } catch {
+    return [];
+  }
+}
+
+async function getSupabaseSliderCamine(): Promise<
+  (Camin & { highlight: string; description: string })[]
+> {
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase
+      .from("camine")
+      .select("*")
+      .eq("status", "approved")
       .eq("is_premium", true)
       .eq("show_in_slider", true);
 
@@ -104,6 +153,7 @@ export default async function HomePage() {
 
   const supabasePremiumCamine = await getSupabasePremiumCamine();
   const premiumCamine = supabasePremiumCamine;
+  const sliderCamine = await getSupabaseSliderCamine();
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -188,6 +238,7 @@ export default async function HomePage() {
         judete={judete}
         featured={featured}
         premiumCamine={premiumCamine}
+        sliderCamine={sliderCamine}
       />
     </>
   );
