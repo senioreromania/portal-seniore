@@ -44,7 +44,7 @@ export function RegisterForm({ redirectTo }: { redirectTo?: string }) {
       return;
     }
 
-    setMessage("Verifică-ți emailul pentru a confirma contul.");
+    setMessage("Contul tău a fost creat cu succes.");
   }
 
   return (

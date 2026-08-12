@@ -474,44 +474,194 @@ export function HomeClient({
           </section>
         )}
 
-        {/* ===== CTA: Adaugă centrul ===== */}
-        <section className="py-16 md:py-20 bg-paper">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={0}
-            >
-              <div className="inline-flex items-center justify-center size-16 rounded-2xl bg-gold/10 border border-gold/20 mb-6">
-                <PlusCircle className="size-8 text-gold" />
-              </div>
-              <h2 className="font-heading text-2xl md:text-4xl font-bold text-navy-deep mb-4">
-                Ești furnizor de servicii sociale?
-              </h2>
-              <p className="text-lg text-navy-deep/60 leading-relaxed max-w-2xl mx-auto mb-8">
-                Adaugă gratuit centrul tău în portalul național. Fiecare
-                vizitator care caută „cămin de bătrâni" în județul tău te va
-                găsi.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Link
-                  href="/inregistrare"
-                  className="inline-flex items-center justify-center gap-2 bg-gold text-navy-deep px-6 py-3.5 rounded-lg font-semibold text-sm transition-all hover:bg-gold-light hover:shadow-lg hover:shadow-gold/20"
+        {/* ===== CTA: Adaugă centrul + Premium showcase ===== */}
+        <section className="py-16 md:py-24 bg-paper">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 items-center">
+              {/* Premium card left */}
+              {premiumCamine[0] && (
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-30px" }}
+                  variants={fadeUp}
+                  custom={0}
+                  className="order-2 lg:order-1"
                 >
-                  <PlusCircle className="size-4" />
-                  Adaugă centrul tău gratuit
-                </Link>
-                <Link
-                  href="/camine-autorizate"
-                  className="inline-flex items-center justify-center gap-2 bg-transparent text-navy-deep border border-navy-deep/20 px-6 py-3.5 rounded-lg font-semibold text-sm transition-all hover:bg-navy-deep/5"
+                  <Link
+                    href={caminPath(premiumCamine[0])}
+                    className="group relative block h-full rounded-2xl overflow-hidden bg-white border border-navy-deep/10 hover:border-gold/40 transition-all duration-500 hover:shadow-2xl hover:shadow-gold/15 hover:-translate-y-1"
+                  >
+                    <div className="flex items-center justify-between px-4 py-2.5 bg-gradient-to-r from-gold/10 to-gold/5 border-b border-gold/15">
+                      <div className="flex items-center gap-1.5">
+                        <Crown className="size-3.5 text-gold" />
+                        <span className="text-xs font-bold uppercase tracking-wide text-gold">Premium</span>
+                      </div>
+                      {premiumCamine[0].rating && (
+                        <div className="flex items-center gap-1.5">
+                          <Star className="size-3.5 text-gold fill-gold" />
+                          <span className="text-xs font-bold text-gold">{premiumCamine[0].rating}</span>
+                        </div>
+                      )}
+                    </div>
+                    {premiumCamine[0].images && premiumCamine[0].images.length > 0 && (
+                      <Image
+                        src={premiumCamine[0].images[0]}
+                        alt={premiumCamine[0].name}
+                        width={400}
+                        height={176}
+                        className="w-full h-44 object-cover"
+                        unoptimized
+                      />
+                    )}
+                    <div className="px-5 pt-5 pb-4">
+                      <h3 className="font-heading text-lg font-bold text-navy-deep leading-snug line-clamp-2 group-hover:text-gold transition-colors duration-300">
+                        {titleCase(premiumCamine[0].name)}
+                      </h3>
+                      <p className="text-sm text-gold mt-1 line-clamp-1">
+                        {premiumCamine[0].highlight}
+                      </p>
+                    </div>
+                    <div className="px-5 pb-5">
+                      <p className="text-sm text-navy-deep/60 leading-relaxed mb-3 line-clamp-2">
+                        {premiumCamine[0].description}
+                      </p>
+                      <div className="flex items-center gap-3 text-xs text-navy-deep/50 mb-4">
+                        {premiumCamine[0].judet && (
+                          <span className="inline-flex items-center gap-1">
+                            <MapPin className="size-3 text-gold/60" />
+                            {premiumCamine[0].judet}
+                          </span>
+                        )}
+                        {premiumCamine[0].capacity && (
+                          <span className="inline-flex items-center gap-1">
+                            <Users className="size-3 text-gold/60" />
+                            {premiumCamine[0].capacity} locuri
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center justify-end pt-3 border-t border-navy-deep/10">
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-gold group-hover:translate-x-0.5 transition-transform">
+                          Vezi detalii
+                          <ArrowRight className="size-3" />
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              )}
+
+              {/* CTA center */}
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                custom={1}
+                className="order-1 lg:order-2 text-center"
+              >
+                <div className="inline-flex items-center justify-center size-16 rounded-2xl bg-gold/10 border border-gold/20 mb-6">
+                  <PlusCircle className="size-8 text-gold" />
+                </div>
+                <h2 className="font-heading text-2xl md:text-4xl font-bold text-navy-deep mb-4">
+                  Ești furnizor de servicii sociale?
+                </h2>
+                <p className="text-lg text-navy-deep/60 leading-relaxed max-w-2xl mx-auto mb-8">
+                  Adaugă gratuit centrul tău în portalul național. Fiecare
+                  vizitator care caută „cămin de bătrâni" în județul tău te va
+                  găsi.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Link
+                    href="/inregistrare"
+                    className="inline-flex items-center justify-center gap-2 bg-gold text-navy-deep px-6 py-3.5 rounded-lg font-semibold text-sm transition-all hover:bg-gold-light hover:shadow-lg hover:shadow-gold/20"
+                  >
+                    <PlusCircle className="size-4" />
+                    Adaugă centrul tău gratuit
+                  </Link>
+                  <Link
+                    href="/camine-autorizate"
+                    className="inline-flex items-center justify-center gap-2 bg-transparent text-navy-deep border border-navy-deep/20 px-6 py-3.5 rounded-lg font-semibold text-sm transition-all hover:bg-navy-deep/5"
+                  >
+                    <ShieldCheck className="size-4" />
+                    Cămine licențiate MMJS
+                  </Link>
+                </div>
+              </motion.div>
+
+              {/* Premium card right */}
+              {premiumCamine[1] && (
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-30px" }}
+                  variants={fadeUp}
+                  custom={2}
+                  className="order-3"
                 >
-                  <ShieldCheck className="size-4" />
-                  Cămine licențiate MMJS
-                </Link>
-              </div>
-            </motion.div>
+                  <Link
+                    href={caminPath(premiumCamine[1])}
+                    className="group relative block h-full rounded-2xl overflow-hidden bg-white border border-navy-deep/10 hover:border-gold/40 transition-all duration-500 hover:shadow-2xl hover:shadow-gold/15 hover:-translate-y-1"
+                  >
+                    <div className="flex items-center justify-between px-4 py-2.5 bg-gradient-to-r from-gold/10 to-gold/5 border-b border-gold/15">
+                      <div className="flex items-center gap-1.5">
+                        <Crown className="size-3.5 text-gold" />
+                        <span className="text-xs font-bold uppercase tracking-wide text-gold">Premium</span>
+                      </div>
+                      {premiumCamine[1].rating && (
+                        <div className="flex items-center gap-1.5">
+                          <Star className="size-3.5 text-gold fill-gold" />
+                          <span className="text-xs font-bold text-gold">{premiumCamine[1].rating}</span>
+                        </div>
+                      )}
+                    </div>
+                    {premiumCamine[1].images && premiumCamine[1].images.length > 0 && (
+                      <Image
+                        src={premiumCamine[1].images[0]}
+                        alt={premiumCamine[1].name}
+                        width={400}
+                        height={176}
+                        className="w-full h-44 object-cover"
+                        unoptimized
+                      />
+                    )}
+                    <div className="px-5 pt-5 pb-4">
+                      <h3 className="font-heading text-lg font-bold text-navy-deep leading-snug line-clamp-2 group-hover:text-gold transition-colors duration-300">
+                        {titleCase(premiumCamine[1].name)}
+                      </h3>
+                      <p className="text-sm text-gold mt-1 line-clamp-1">
+                        {premiumCamine[1].highlight}
+                      </p>
+                    </div>
+                    <div className="px-5 pb-5">
+                      <p className="text-sm text-navy-deep/60 leading-relaxed mb-3 line-clamp-2">
+                        {premiumCamine[1].description}
+                      </p>
+                      <div className="flex items-center gap-3 text-xs text-navy-deep/50 mb-4">
+                        {premiumCamine[1].judet && (
+                          <span className="inline-flex items-center gap-1">
+                            <MapPin className="size-3 text-gold/60" />
+                            {premiumCamine[1].judet}
+                          </span>
+                        )}
+                        {premiumCamine[1].capacity && (
+                          <span className="inline-flex items-center gap-1">
+                            <Users className="size-3 text-gold/60" />
+                            {premiumCamine[1].capacity} locuri
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center justify-end pt-3 border-t border-navy-deep/10">
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-gold group-hover:translate-x-0.5 transition-transform">
+                          Vezi detalii
+                          <ArrowRight className="size-3" />
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              )}
+            </div>
           </div>
         </section>
 
