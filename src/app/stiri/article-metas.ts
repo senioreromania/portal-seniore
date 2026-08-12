@@ -2,6 +2,16 @@ export type ArticleMeta = { slug: string; title: string; excerpt: string; date: 
 
 export const articleMetas: ArticleMeta[] = [
   {
+    slug: "noul-nomenclator-servicii-sociale-2026",
+    title:
+      "Noul Nomenclator al serviciilor sociale 2026 — ce se schimbă pentru căminele de bătrâni",
+    excerpt:
+      "HG 268/2026 simplifică codurile serviciilor sociale de la 76 la 31 și introduce o nouă clasificare bazată pe CAEN Rev. 3. Ce înseamnă asta pentru căminele de bătrâni licențiate din România.",
+    date: "12 August 2026",
+    category: "Legislație",
+    image: "/stiri/noul-nomenclator-servicii-sociale-2026.jpg",
+  },
+  {
     slug: "casa-alegria-centru-rezidential-pentru-varstnici-in-ploiesti",
     title: "Casa Alegria — Centru rezidențial pentru vârstnici în Ploiești",
     excerpt:

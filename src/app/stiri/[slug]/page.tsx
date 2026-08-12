@@ -39,6 +39,26 @@ type Article = {
 };
 
 const articles: Record<string, Article> = {
+  "noul-nomenclator-servicii-sociale-2026": {
+    slug: "noul-nomenclator-servicii-sociale-2026",
+    title:
+      "Noul Nomenclator al serviciilor sociale 2026 — ce se schimbă pentru căminele de bătrâni",
+    excerpt:
+      "HG 268/2026 simplifică codurile serviciilor sociale de la 76 la 31 și introduce o nouă clasificare bazată pe CAEN Rev. 3. Ce înseamnă asta pentru căminele de bătrâni licențiate din România.",
+    date: "12 August 2026",
+    category: "Legislație",
+    image: "/stiri/noul-nomenclator-servicii-sociale-2026.jpg",
+    paragraphs: [
+      "Guvernul României a adoptat la 23 aprilie 2026 Hotărârea nr. 268/2026 pentru aprobarea noului Nomenclator al serviciilor sociale, publicat în Monitorul Oficial nr. 342 din 28 aprilie 2026. Actul normativ a intrat în vigoare la 1 iulie 2026 și abrogă HG 867/2015, care reglementa vechiul nomenclator.",
+      "Principala schimbare este simplificarea drastică a codurilor de servicii sociale: de la 76 de coduri, cât prevedea vechiul nomenclator, la doar 31. Noua codificare este bazată pe clasificarea CAEN Rev. 3 și folosește un format structurat: cod CAEN, tip major și acronim pentru categoria de beneficiari.",
+      "Pentru căminele de bătrâni, codul relevant este 873.1.1.CR.PV — Centru Rezidențial pentru Persoane Vârstnice. Definiția din nomenclator descrie aceste centre ca servicii sociale care asigură condițiile necesare pentru o viață asistată, destinate persoanelor cu nevoi majore de îngrijire, respectiv persoanelor vârstnice dependente care nu mai pot fi îngrijite la domiciliul propriu sau în familie și aleg să trăiască într-un mediu asistat sau instituționalizat.",
+      "Activitățile prevăzute pentru centrele rezidențiale includ: cazare pe perioadă nedeterminată sau determinată, alimentație — hrană zilnică, îngrijiri personale — ajutor pentru activitățile de bază ale vieții zilnice, asistență medicală curentă asigurată de asistenți medicali generaliști, inserție și reinserție socială, terapie ocupațională, consiliere și informare, orientare vocațională, consiliere juridică, pază și menaj.",
+      "Nomenclatorul introduce acronime clare pentru categoriile de beneficiari: C pentru copii, D pentru persoane adulte cu dizabilități, PV pentru persoane vârstnice, VD pentru victime ale violenței domestice, PFA pentru persoane fără adăpost și AGV pentru alte grupuri vulnerabile. Pentru centrele multifuncționale care deservesc mai multe categorii, se folosește acronimul MF.",
+      "O prevedere importantă pentru furnizorii existenți: licențele de funcționare eliberate cu vechile coduri din HG 867/2015 rămân valabile până la expirarea perioadei de valabilitate. La relicențiere, se vor emite licențe cu noile coduri, fără a fi necesară eliberarea unei noi licențe înainte de expirarea celei actuale.",
+      "Ministerul Muncii are obligația de a actualiza, în termen de 60 de zile de la intrarea în vigoare, standardele minime de calitate pentru a fi aliniate cu noul nomenclator. Această actualizare a fost deja parțial realizată prin Ordinul nr. 507/2026, care aprobă standardele specifice minime de calitate pentru serviciile sociale cu cazare, și prin Ordinul nr. 834/2026, care aduce modificări suplimentare începând cu 30 iunie 2026.",
+      "Pentru căminele de bătrâni membre Seniore.ro, schimbarea nu aduce modificări imediate în funcționare, dar necesită actualizarea documentelor la momentul relicențierii. Seniore.ro va oferi suport membrilor săi pentru adaptarea la noile cerințe de codificare și va continua advocacy-ul pentru simplificarea procedurilor de licențiere.",
+    ],
+  },
   "scrisoare-deschisa-ministerul-muncii-iulie-2026": {
     slug: "scrisoare-deschisa-ministerul-muncii-iulie-2026",
     title:

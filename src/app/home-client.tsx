@@ -61,6 +61,14 @@ const fadeUp = {
 
 const news = [
   {
+    date: "12 august 2026",
+    title:
+      "Noul Nomenclator al serviciilor sociale 2026 — ce se schimbă pentru căminele de bătrâni",
+    description:
+      "HG 268/2026 simplifică codurile serviciilor sociale de la 76 la 31 și introduce o nouă clasificare bazată pe CAEN Rev. 3.",
+    href: "/stiri/noul-nomenclator-servicii-sociale-2026",
+  },
+  {
     date: "23 iulie 2026",
     title:
       "Scrisoare deschisă către Ministerul Muncii: controale orientate către om, nu către hârtii",
