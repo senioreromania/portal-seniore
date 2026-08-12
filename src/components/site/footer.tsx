@@ -199,6 +199,20 @@ export function SiteFooter() {
           >
             ANPC
           </a>
+          <a
+            href="https://anpc.ro/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
+          >
+            <Image
+              src="/anpc.png"
+              alt="ANPC — Autoritatea Națională pentru Protecția Consumatorilor"
+              width={400}
+              height={150}
+              className="opacity-70 hover:opacity-100 transition-opacity"
+            />
+          </a>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-navy-deep/60 sm:ml-auto">
             {footerLinks.Legal.map((link) => (
               <Link
