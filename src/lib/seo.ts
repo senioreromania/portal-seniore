@@ -5,6 +5,21 @@ export const SITE_NAME = "Seniore.ro — Portal cu toate Căminele de Bătrâni 
 export const SITE_DESCRIPTION =
   "Portal cu toate căminele de bătrâni din România. Găsește cămin licențiat în județul tău — prețuri, contact, hartă, capacitate. Listă completă.";
 
+export function cleanCaminName(name: string): string {
+  return titleCase(
+    name
+      .replace(/[\u201e\u201d\u201c\u2018\u2019\u201f"]/g, "")
+      .replace(/,,/g, "")
+      .replace(/^S\.C\.\s+/i, "")
+      .replace(/^SC\s+/i, "")
+      .replace(/\s*S\.?R\.?L\.?-?D?\s*$/i, "")
+      .replace(/[\r\n]+/g, " ")
+      .replace(/\s+/g, " ")
+      .replace(/[,\.]\s*$/g, "")
+      .trim()
+  );
+}
+
 export function titleCase(str: string): string {
   const smallWords = new Set(["srl", "srld", "de", "la", "și", "din", "în", "cu", "pentru", "pe", "la", "al", "ai", "ale", "lei"]);
   return str
@@ -184,7 +199,7 @@ export function buildCaminMetadata(camin: Camin): Metadata {
   const localitate = camin.localitate || "";
   const judet = normalizeJudet(camin.judet) || "";
   const locPart = localitate ? ` ${localitate}` : judet ? ` ${judet}` : "";
-  const cleanName = camin.name.replace(/[\r\n]+/g, " ").trim();
+  const cleanName = cleanCaminName(camin.name);
   const isGeneric = GENERIC_NAMES.has(cleanName.toLowerCase());
   const title = isGeneric
     ? `Cămin de bătrâni${locPart}`
