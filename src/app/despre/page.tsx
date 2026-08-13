@@ -138,7 +138,7 @@ export default function DesprePage() {
                 className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-xl shadow-navy-deep/10"
               >
                 <Image
-                  src="/despre.png"
+                  src="/despre.webp"
                   alt="Servicii de îngrijire a vârstnicilor"
                   fill
                   className="object-cover"
