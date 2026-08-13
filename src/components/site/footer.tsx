@@ -40,9 +40,7 @@ export function SiteFooter() {
               />
             </div>
             <p className="text-sm text-navy-deep/70 leading-relaxed max-w-md">
-              Seniore.ro — Azile și cămine de bătrâni în România. Găsește
-              azil licențiat în județul tău — prețuri, contact, hartă și
-              direcții. Platformă dezvoltată de Seniore.ro.
+              Seniore.ro — Toate Căminele de Bătrâni în România. Găsește camin de batrani licențiat în județul tău — prețuri, contact, hartă și direcții. Platformă dezvoltată de Seniore.ro.
             </p>
             <dl className="mt-6 text-xs text-navy-deep/60 space-y-1">
               <div className="flex gap-2">
