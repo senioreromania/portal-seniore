@@ -40,7 +40,7 @@ const faqs = [
   {
     question: "Cui mă adresez pentru presă?",
     answer:
-      "Pentru solicitări din partea presei și a jurnaliștilor, vă rugăm să scrieți la office@seniore.ro sau să sunați la 0743 259 123, menționând clar 'Pentru presă' în subiectul mesajului.",
+      "Pentru solicitări din partea presei și a jurnaliștilor, vă rugăm să scrieți la office@seniore.ro sau să sunați la 0785 598 779, menționând clar 'Pentru presă' în subiectul mesajului.",
   },
 ];
 
@@ -162,7 +162,7 @@ export default function ContactPage() {
 
                 <div className="space-y-4">
                   <a
-                    href="tel:+40743259123"
+                    href="tel:+40785598779"
                     className="group flex items-center gap-4 p-6 rounded-xl bg-white border border-navy-deep/10 hover:border-gold/30 transition-all duration-300 hover:shadow-lg hover:shadow-navy-deep/5"
                   >
                     <div className="flex items-center justify-center size-12 rounded-lg bg-gold/10 group-hover:bg-gold transition-colors duration-300">
@@ -173,7 +173,7 @@ export default function ContactPage() {
                         Telefon
                       </div>
                       <div className="font-heading text-lg font-semibold text-navy-deep">
-                        0743 259 123
+                        0785 598 779
                       </div>
                     </div>
                   </a>
