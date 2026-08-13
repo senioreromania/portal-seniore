@@ -107,7 +107,7 @@ export function slugifyJudet(judet: string): string {
 export function buildHomeMetadata(): Metadata {
   return {
     title: {
-      default: "Căminele de Bătrâni din toată România — Caută cămin de bătrâni autorizat în apropierea ta | Seniore.ro",
+      default: "Cămine de Bătrâni din România — Portal Complet",
       template: "%s | Seniore.ro",
     },
     description: SITE_DESCRIPTION,
@@ -121,7 +121,7 @@ export function buildHomeMetadata(): Metadata {
       },
     },
     openGraph: {
-      title: "Căminele de Bătrâni din toată România — Caută cămin de bătrâni autorizat în apropierea ta | Seniore.ro",
+      title: "Cămine de Bătrâni din România — Portal Complet",
       description: SITE_DESCRIPTION,
       url: SITE_URL,
       siteName: SITE_NAME,
@@ -131,7 +131,7 @@ export function buildHomeMetadata(): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Căminele de Bătrâni din toată România — Caută cămin de bătrâni autorizat în apropierea ta | Seniore.ro",
+      title: "Cămine de Bătrâni din România — Portal Complet",
       description: SITE_DESCRIPTION,
       images: [`${SITE_URL}/og-image.png`],
     },
