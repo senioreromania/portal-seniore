@@ -23,10 +23,7 @@ export const metadata: Metadata = {
   ...buildHomeMetadata(),
   metadataBase: new URL(SITE_URL),
   icons: {
-    icon: [
-      { url: "/favicon.png", type: "image/png" },
-      { url: "/favicon.ico", sizes: "any" },
-    ],
+    icon: "/favicon.png",
     apple: "/favicon.png",
   },
   robots: {
