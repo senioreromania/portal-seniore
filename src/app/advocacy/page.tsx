@@ -150,7 +150,7 @@ export default function AdvocacyPage() {
                 className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-xl shadow-navy-deep/10"
               >
                 <Image
-                  src="/advocacy.png"
+                  src="/advocacy.webp"
                   alt="Advocacy Seniore.ro"
                   fill
                   className="object-cover"
