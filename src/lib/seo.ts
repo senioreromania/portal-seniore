@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const SITE_URL = "https://www.seniore.ro";
 export const SITE_NAME = "Seniore.ro — Portal cu toate Căminele de Bătrâni din România";
 export const SITE_DESCRIPTION =
-  "Portal cu toate căminele de bătrâni din România. Găsește cămin licențiat în județul tău — prețuri, contact, hartă, capacitate. Listă completă de cămine de bătrâni, case de bătrâni și centre de îngrijire pentru vârstnici.";
+  "Portal cu toate căminele de bătrâni din România. Găsește cămin licențiat în județul tău — prețuri, contact, hartă, capacitate. Listă completă.";
 
 export function titleCase(str: string): string {
   const smallWords = new Set(["srl", "srld", "de", "la", "și", "din", "în", "cu", "pentru", "pe", "la", "al", "ai", "ale", "lei"]);
