@@ -1,0 +1,54 @@
+# Seniore.ro
+
+> Portal național cu toate căminele de bătrâni din România. Găsește cămin licențiat în județul tău — prețuri, contact, hartă, capacitate.
+
+Seniore.ro indexează cămine de bătrâni, case de bătrâni și centre de îngrijire pentru vârstnici din toate județele României. Fiecare cămin are pagină proprie cu informații verificate: adresă, telefon, capacitate, licență, servicii oferite, hartă și direcții.
+
+## Pagini principale
+
+- [Homepage](https://www.seniore.ro/): Portal cămine de bătrâni — căutare după județ, cămine premium, cămine licențiate
+- [Toate căminele](https://www.seniore.ro/camine): Listă completă de cămine de bătrâni din România cu filtre după județ, licență, servicii
+- [Cămine licențiate](https://www.seniore.ro/camine-autorizate): Lista oficială a căminelor cu licență MMJS — Ministerul Muncii
+- [Cum funcționează](https://www.seniore.ro/cum-functioneaza): Ghid pentru familii — cum alegi cămin, ce să întrebi, ce documente îți trebuie
+- [Despre noi](https://www.seniore.ro/despre): Misiunea și viziunea Seniore.ro — portal național pentru îngrijirea vârstnicilor
+- [Contact](https://www.seniore.ro/contact): Contactează echipa Seniore.ro — telefon, email, sediu
+
+## Cămine după județ
+
+- [Cămine de bătrâni București](https://www.seniore.ro/judet/bucuresti): Cămine și case de bătrâni în București, toate sectoarele
+- [Cămine de bătrâni Ilfov](https://www.seniore.ro/judet/ilfov): Cămine de bătrâni în județul Ilfov
+- [Cămine de bătrâni Cluj](https://www.seniore.ro/judet/cluj): Cămine de bătrâni în județul Cluj
+- [Cămine de bătrâni Timiș](https://www.seniore.ro/judet/timis): Cămine de bătrâni în județul Timiș
+- [Cămine de bătrâni Brașov](https://www.seniore.ro/judet/brasov): Cămine de bătrâni în județul Brașov
+- [Cămine de bătrâni Constanța](https://www.seniore.ro/judet/constanta): Cămine de bătrâni în județul Constanța
+- [Cămine de bătrâni Iași](https://www.seniore.ro/judet/iasi): Cămine de bătrâni în județul Iași
+- [Cămine de bătrâni Bacău](https://www.seniore.ro/judet/bacau): Cămine de bătrâni în județul Bacău
+- [Cămine de bătrâni Bihor](https://www.seniore.ro/judet/bihor): Cămine de bătrâni în județul Bihor
+- [Cămine de bătrâni Argeș](https://www.seniore.ro/judet/arges): Cămine de bătrâni în județul Argeș
+- [Cămine de bătrâni Mureș](https://www.seniore.ro/judet/mures): Cămine de bătrâni în județul Mureș
+- [Cămine de bătrâni Dolj](https://www.seniore.ro/judet/dolj): Cămine de bătrâni în județul Dolj
+- [Cămine de bătrâni Prahova](https://www.seniore.ro/judet/prahova): Cămine de bătrâni în județul Prahova
+- [Cămine de bătrâni Sibiu](https://www.seniore.ro/judet/sibiu): Cămine de bătrâni în județul Sibiu
+- [Cămine de bătrâni Arad](https://www.seniore.ro/judet/arad): Cămine de bătrâni în județul Arad
+- [Cămine de bătrâni Suceava](https://www.seniore.ro/judet/suceava): Cămine de bătrâni în județul Suceava
+- [Cămine de bătrâni Neamț](https://www.seniore.ro/judet/neamt): Cămine de bătrâni în județul Neamț
+- [Cămine de bătrâni Dâmbovița](https://www.seniore.ro/judet/dambovita): Cămine de bătrâni în județul Dâmbovița
+- [Cămine de bătrâni Galați](https://www.seniore.ro/judet/galati): Cămine de bătrâni în județul Galați
+
+## Știri și legislație
+
+- [Știri](https://www.seniore.ro/stiri): Știri din sectorul îngrijirii vârstnicilor — legislație, evenimente, comunicate
+- [Noul Nomenclator 2026](https://www.seniore.ro/stiri/noul-nomenclator-servicii-sociale-2026): HG 268/2026 — schimbări clasificare servicii sociale
+- [Advocacy](https://www.seniore.ro/advocacy): Acțiuni publice pentru reformă legislativă în îngrijirea vârstnicilor
+- [Petiții](https://www.seniore.ro/petitii): Petitii și scrisori deschise către autorități
+- [Resurse și legislație](https://www.seniore.ro/resurse): Legislație relevantă — Legea 197/2012, Legea 17/2000, norme metodologice
+
+## Pentru furnizori
+
+- [Înregistrare cămin](https://www.seniore.ro/inregistrare): Adaugă căminul tău în portalul Seniore.ro — gratuit
+
+## Optional
+
+- [Confidențialitate](https://www.seniore.ro/confidentialitate): Politica de confidențialitate
+- [Termeni](https://www.seniore.ro/termeni): Termeni și condiții de utilizare
+- [Cookies](https://www.seniore.ro/cookies): Politica de cookies
