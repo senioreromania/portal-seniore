@@ -31,6 +31,8 @@ import { PromoteCaminButton } from "./promote-button";
 import { ShareButton } from "./share-button";
 import { createClient } from "@/lib/supabase-server";
 import camineData from "@/data/camine-director.json";
+import camineDescrieriRaw from "@/data/camine-descrieri.json";
+const camineDescrieri = camineDescrieriRaw as Record<string, string>;
 
 type Camin = {
   id?: string;
@@ -137,6 +139,9 @@ export default async function CaminDetailPage({
 
   if (camin) {
     camin = { ...camin, name: cleanCaminName(camin.name) };
+    if (!camin.description && camineDescrieri[camin.slug]) {
+      camin = { ...camin, description: camineDescrieri[camin.slug] };
+    }
   }
 
   if (!camin) {

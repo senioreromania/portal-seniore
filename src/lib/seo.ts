@@ -86,6 +86,7 @@ export type Camin = {
 
 const JUDET_NORMALIZE: Record<string, string> = {
   "Bistrița Năsăud": "Bistrița-Năsăud",
+  "Bistrița\nNăsăud": "Bistrița-Năsăud",
   "Caraș Severin": "Caraș-Severin",
   "Districtul Bor": "",
   "Regiunea Silistra": "",

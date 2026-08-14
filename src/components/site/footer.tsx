@@ -226,7 +226,16 @@ export function SiteFooter() {
 
         <div className="pt-6 border-t border-navy-deep/10 text-center">
           <span className="text-xs text-navy-deep/50">
-            © {new Date().getFullYear()} Portal Cămine de Bătrâni Seniore.ro. Toate drepturile rezervate.
+            © {new Date().getFullYear()} Portal Cămine de Bătrâni Seniore.ro. Realizat de{" "}
+            <a
+              href="https://forsite.ro"
+              target="_blank"
+              rel="noopener"
+              className="hover:text-gold transition-colors"
+            >
+              FORSITE.RO
+            </a>
+            . Toate drepturile rezervate.
           </span>
         </div>
       </div>

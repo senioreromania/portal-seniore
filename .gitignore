@@ -40,3 +40,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 credentials.md
+scripts/generate_descriptions.py
+scripts/generate_descriptions.log
+scripts/generate_descriptions_stdout.log
+src/data/camine-descrieri-state.json
+src/data/camine-descrieri.log

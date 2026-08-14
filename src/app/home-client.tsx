@@ -28,7 +28,9 @@ import {
 } from "lucide-react";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
+import { HartaCamine } from "@/components/harta-camine-client";
 import { slugifyJudet, normalizeJudet, titleCase, caminPath } from "@/lib/seo";
+import camineRawForMap from "@/data/camine-director.json";
 
 type Camin = {
   slug: string;
@@ -115,6 +117,16 @@ export function HomeClient({
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchJudet, setSearchJudet] = useState("");
+
+  const judetCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const c of camineRawForMap as { judet?: string }[]) {
+      const j = normalizeJudet(c.judet || "");
+      if (!j) continue;
+      counts[j] = (counts[j] || 0) + 1;
+    }
+    return counts;
+  }, []);
 
   const searchSuggestions = useMemo(() => {
     if (!searchQuery || searchQuery.length < 2) return [];
@@ -1087,6 +1099,38 @@ export function HomeClient({
                   ))}
                 </div>
               </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Harta Camine */}
+        <section className="py-16 px-4 bg-cream-soft border-t border-navy-deep/5">
+          <div className="max-w-5xl mx-auto text-center mb-8">
+            <h2 className="font-heading text-2xl md:text-3xl font-bold text-navy-deep mb-3">
+              Harta Căminelor de Bătrâni din România
+            </h2>
+            <p className="text-navy-deep/60 max-w-2xl mx-auto text-sm">
+              {totalCamine.toLocaleString("ro-RO")} cămine de bătrâni indexate în {totalJudete} județe.
+              Apasă pe un județ pentru lista completă.
+            </p>
+          </div>
+          <HartaCamine counts={judetCounts} />
+          <div className="max-w-3xl mx-auto mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-navy-deep/60">
+            <div className="flex items-center gap-2">
+              <span className="size-3 rounded-full" style={{ background: "#7cb96f" }} />
+              1-19 cămine
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="size-3 rounded-full" style={{ background: "#f0c94a" }} />
+              20-49 cămine
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="size-3 rounded-full" style={{ background: "#f2a93b" }} />
+              50-99 cămine
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="size-3 rounded-full" style={{ background: "#e8543e" }} />
+              100+ cămine
             </div>
           </div>
         </section>
