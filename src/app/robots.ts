@@ -1,6 +1,11 @@
 import type { MetadataRoute } from "next";
 
-const privatePaths = ["/cont", "/admin", "/login", "/inregistrare", "/api"];
+// Only block non-HTML paths (API routes) from crawling.
+// Auth/account pages (/cont, /admin, /login, /inregistrare) use
+// `robots: { index: false }` metadata instead — blocking them in
+// robots.txt prevents Google from reading the noindex directive,
+// causing "Indexed, though blocked by robots.txt" warnings.
+const privatePaths = ["/api"];
 
 const aiCrawlers = [
   "OAI-SearchBot",
