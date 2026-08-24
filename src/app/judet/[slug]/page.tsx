@@ -103,7 +103,10 @@ export async function generateMetadata({
   const { slug } = await params;
   const judet = judetBySlug.get(slug);
   if (!judet) {
-    return { title: "Județ negăsit — Cămin de Bătrâni România" };
+    return {
+      title: "Județ negăsit — Cămin de Bătrâni România",
+      robots: { index: false, follow: false },
+    };
   }
   return buildJudetMetadata(judet, judetCounts.get(slug) || 0);
 }

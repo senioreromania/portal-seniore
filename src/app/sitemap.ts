@@ -14,6 +14,12 @@ type Camin = {
 
 const camine = camineData as Camin[];
 
+// Fixed date representing when the JSON data files were last updated.
+// Using a constant instead of new Date() prevents Google from seeing
+// all URLs as "modified just now" on every sitemap regeneration.
+// Update this when the JSON data files change.
+const DATA_LAST_UPDATED = new Date("2026-08-14");
+
 const staticPages: {
   url: string;
   priority: number;
@@ -37,11 +43,9 @@ const staticPages: {
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date();
-
   const staticEntries: MetadataRoute.Sitemap = staticPages.map((p) => ({
     url: `${SITE_URL}${p.url}`,
-    lastModified: now,
+    lastModified: DATA_LAST_UPDATED,
     changeFrequency: p.changeFrequency,
     priority: p.priority,
   }));
@@ -50,7 +54,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const jsonSlugs = new Set(camine.map((c) => c.slug));
   const caminEntries: MetadataRoute.Sitemap = camine.map((c) => ({
     url: `${SITE_URL}${caminPath(c)}`,
-    lastModified: now,
+    lastModified: DATA_LAST_UPDATED,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
@@ -84,7 +88,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         if (c.slug && !jsonSlugs.has(c.slug)) {
           supabaseEntries.push({
             url: `${SITE_URL}${caminPath({ slug: c.slug, judet: c.judet || "" })}`,
-            lastModified: c.updated_at ? new Date(c.updated_at) : now,
+            lastModified: c.updated_at ? new Date(c.updated_at) : DATA_LAST_UPDATED,
             changeFrequency: "weekly" as const,
             priority: 0.8,
           });
@@ -107,7 +111,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const judetEntries: MetadataRoute.Sitemap = Array.from(judeteSet).map((j) => ({
     url: `${SITE_URL}/judet/${slugifyJudet(j)}`,
-    lastModified: now,
+    lastModified: DATA_LAST_UPDATED,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
@@ -128,7 +132,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     orase.forEach((oras) => {
       oraseEntries.push({
         url: `${SITE_URL}/judet/${slugifyJudet(judet)}/${slugifyJudet(oras)}`,
-        lastModified: now,
+        lastModified: DATA_LAST_UPDATED,
         changeFrequency: "weekly" as const,
         priority: 0.6,
       });

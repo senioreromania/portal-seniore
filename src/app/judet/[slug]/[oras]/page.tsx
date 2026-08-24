@@ -64,9 +64,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug, oras } = await params;
   const entry = oraseByJudetSlug.get(slug);
-  if (!entry) return { title: "Oraș negăsit — Cămin de Bătrâni România" };
+  if (!entry) return {
+    title: "Oraș negăsit — Cămin de Bătrâni România",
+    robots: { index: false, follow: false },
+  };
   const orasName = entry.orase.get(oras);
-  if (!orasName) return { title: "Oraș negăsit — Cămin de Bătrâni România" };
+  if (!orasName) return {
+    title: "Oraș negăsit — Cămin de Bătrâni România",
+    robots: { index: false, follow: false },
+  };
 
   const camineInOras = allCamine.filter(
     (c) =>
