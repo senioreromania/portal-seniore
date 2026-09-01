@@ -39,6 +39,83 @@ type Article = {
 };
 
 const articles: Record<string, Article> = {
+  "camin-ilegal-neamt-bistrita-7-varstnici-relocati-urgenta-august-2026": {
+    slug: "camin-ilegal-neamt-bistrita-7-varstnici-relocati-urgenta-august-2026",
+    title:
+      "Cămin ilegal în Neamț: 7 vârstnici relocați de urgență după controlul autorităților",
+    excerpt:
+      "Un centru de îngrijire fără licență, cu hrană preparată în bucătărie neautorizată și personal muncind la negru, a fost închis în Bistrița, Neamț. Ce au descoperit inspectorii și cum alegi un cămin legal.",
+    date: "7 August 2026",
+    category: "Media",
+    image: "/stiri/camin-ilegal-neamt-bistrita.jpg",
+    paragraphs: [
+      "Într-o clădire din localitatea Bistrița, comuna Alexandru cel Bun, județul Neamț, funcționa de luni de zile un centru de îngrijire pentru persoane vârstnice fără nicio autorizație de funcționare. Nicio licență de la Ministerul Muncii, nicio autorizație sanitară, nicio aprobare ISU. Cazul a ieșit la iveală abia în data de 6 august 2026, când o echipă mixtă de control formată din Prefectură, DSVSA, ITM, DSP, ISU, Poliție și Protecția Consumatorilor a intrat în locație.",
+      "Rezultatul verificărilor a șocat chiar și pe inspectorii cu experiență. Hrana pentru vârstnici se prepara într-o bucătărie fără înregistrare sanitar-veterinară. În aceeași bucătărie au fost găsite insecte, vase de plastic și unelte cu nituri — materiale interzise în spațiile de preparare a alimentelor. Produsele alimentare depistate erau neetichetate, iar unele prezentau risc pentru sănătatea consumatorilor.",
+      "Direcția de Sănătate Publică a aplicat o amendă de 40.000 de lei pentru lipsa autorizației sanitare de funcționare. ISU a sancționat administratorul cu încă 25.000 de lei, pentru că spațiul era pus în funcțiune fără autorizație de securitate la incendiu și fără instalații de apărare împotriva incendiilor. Inspectoratul de Muncă a depistat două persoane care lucrau la negru — fără forme legale de angajare.",
+      "Poliția a constatat că centrul nu avea sistem de supraveghere, alarmă, acces electronic sau buton de panică. Nu exista analiză de risc la securitate fizică, nu exista pază, nu existau proceduri pentru situații de urgență. Cu alte cuvinte, cei 13 vârstnici cazați acolo trăiau într-un spațiu fără nicio protecție — nici sanitară, nici de incendiu, nici de securitate.",
+      "Prefectul Maria Apostol a dispus relocarea de urgență a șapte vârstnici la Centrul DGASPC Păstrăveni, o unitate publică cu personal calificat și condiții corespunzătoare. Pentru alte șase persoane găsite în locație nu s-a putut lua nicio măsură, deoarece proprietarul a declarat că sunt rude de-ale sale. Administratorul a fost convocat la AJPIS Neamț cu acte doveditoare.",
+      "Cazul de la Bistrița nu este izolat. În ultimii doi ani, controalele efectuate în județul Neamț, dar și în Olt, Argeș sau Bihor, au scos la iveală zeci de centre care funcționează fără licență, cu personal necalificat și în condiții care pun în pericol viața vârstnicilor. Fenomenul s-a extins după modificările legislative din 2024, când cerințele de licențiere au devenit mai stricte — iar unii operatori au ales calea ilegalității în locul conformării.",
+      "Pentru familiile care caută un cămin de bătrâni, verificarea licenței este primul și cel mai important pas. O licență MMJS înseamnă că centrul a trecut prin inspecții privind calitatea serviciilor, siguranța clădirii, calificarea personalului și condițiile de cazare. Pe Seniore.ro, fiecare cămin are trecut statusul licenței, numărul acesteia și data emiterii — informații pe care le poți verifica și în Registrul Electronic al Serviciilor Sociale (RESS), administrat de Ministerul Muncii.",
+      "Dacă un cămin nu apare în RESS și nu are licență MMJS, riscurile sunt clare: hrană preparată în condiții insalubre, personal fără pregătire, clădire fără protecție la incendiu, absența asistenței medicale. Exact ce s-a întâmplat la Bistrița. Seniore.ro recomandă familiilor să viziteze centrul înainte de a lua o decizie, să verifice actele și să întrebe despre calificarea personalului — pentru că diferența dintre un cămin licențiat și unul ilegal poate însemna viața unui om.",
+    ],
+  },
+  "azil-ilegal-olt-27-persoane-evacuate-mihaesti-august-2026": {
+    slug: "azil-ilegal-olt-27-persoane-evacuate-mihaesti-august-2026",
+    title:
+      "27 de persoane evacuate dintr-un azil improvizat în Olt — dosar penal",
+    excerpt:
+      "Vârstnici și persoane cu dizabilități ținuți într-o magazie în comuna Mihăești, Olt. Intervenție masivă a autorităților, relocare în 7 județe. De ce contează licența căminului de bătrâni.",
+    date: "14 August 2026",
+    category: "Media",
+    image: "/stiri/azil-ilegal-olt-mihaesti.jpg",
+    paragraphs: [
+      "Douăzeci și șapte de persoane — vârstnici și adulți cu dizabilități — au fost scoase joi, 13 august 2026, dintr-o magazie transformată în azil improvizat în comuna Mihăești, județul Olt. Bărbatul care îi găzduia nu avea nicio acreditare ca serviciu social, nicio licență de la Ministerul Muncii, nicio autorizație sanitară. Persoanele erau cazăte în spații improprii, fără asistență medicală, fără igienă corespunzătoare și cu instalații electrice care prezentau risc de incendiu.",
+      "Intervenția a fost pregătită timp de o săptămână, tocmai pentru a nu traumatiza persoanele vulnerabile dinăuntru. La acțiune au participat reprezentanți ai Autorității Naționale pentru Protecția Drepturilor Persoanelor cu Dizabilități (ANPDPD), Prefectura Olt, DGASPC, Poliția, ISU, SMURD și Jandarmeria. Echipele medicale au evaluat fiecare persoară la fața locului, iar două dintre ele au fost transportate la spital.",
+      "Relocarea a fost cea mai complexă operațiune de acest gen din 2026. Persoanele evacuate au fost distribuite în centre autorizate din șapte județe — Dâmbovița, Prahova, Giurgiu, Teleorman, Ilfov, Constanța și Olt. Ministerul Muncii a precizat că decizia s-a luat ținând cont de situația individuală a fiecăruia, de domiciliu și de capacitatea centrelor de a oferi sprijinul necesar. Pentru o parte dintre persoane a existat posibilitatea revenirii în familie, iar pentru altele urmează să fie dezvoltate soluții în comunitate.",
+      "Bărbatul care administra azilul din Mihăești a fost declarat inculpat. Potrivit autorităților, îngrijea persoane vulnerabile de ani de zile, în condiții improprii, fără ca activitatea să fie acreditată sau licențiată ca serviciu social. Poliția a deschis dosar penal. Cazul a ajuns în atenția opiniei publice la doar o săptămână după descoperirea căminului ilegal din Neamț — și la o lună după scandalul azilelor de la Dumbrava, Bihor.",
+      "Ceea ce s-a întâmplat în Olt nu este o simplă neregulă administrativă. Este exploatarea unor persoane care nu se pot apăra singure. Vârstnicii și persoanele cu dizabilități cazați în aziluri ilegale nu au acces la îngrijire medicală calificată, la medicamente administrate corect, la hrană preparată în condiții igienice sau la un spațiu sigur în caz de incendiu. Plătesc pentru servicii care, în realitate, nu există — iar banii ajung în buzunarul unor persoane fără pregătire și fără răspundere.",
+      "Fenomenul azilelor ilegale a luat amploare în România după 2024, când noile cerințe de licențiere au împins o parte din operatori spre zona gri a legii. Unii au ales să își schimbe codul CAEN, transformând căminul pe hârtie în pensiune sau imobil de închiriat. Alții, ca în cazul de la Mihăești, au continuat să funcționeze complet în afara oricărui cadru legal. În ambele situații, cine suferă este vârstnicul — cel care plătește pentru îngrijire și primește, în schimb, o magazie.",
+      "Seniore.ro indexează exclusiv cămine care figurează în bazele de date oficiale, iar pentru fiecare centru este afișat statusul licenței. Când cauți un cămin de bătrâni pentru un părinte, verifică trei lucruri esențiale: licența MMJS (se poate confirma în RESS), autorizația sanitară de funcționare și autorizația ISU. Dacă centrul nu le are pe toate trei, nu este un cămin — este un risc. Iar riscul, așa cum s-a văzut la Mihăești, poate însemna viața unui om.",
+    ],
+  },
+  "incendiu-centru-ingrijire-varstnici-arad-august-2026": {
+    slug: "incendiu-centru-ingrijire-varstnici-arad-august-2026",
+    title:
+      "Incendiu la centru de îngrijire pentru vârstnici în Arad — trei pacienți internați",
+    excerpt:
+      "Un pacient a dat foc unor ziare într-un salon al centrului Arbema Tertianum din Arad. Planul Roșu activat, trei vârstnici tratați pentru intoxicație cu fum. Cum verifici siguranța unui cămin.",
+    date: "23 August 2026",
+    category: "Media",
+    image: "/stiri/incendiu-centru-arad.jpg",
+    paragraphs: [
+      "În noaptea de sâmbătă spre duminică, 22-23 august 2026, un incendiu a izbucnit într-un salon al Centrului Medical Arbema Tertianum de pe Calea Aurel Vlaicu din Arad. Conform reprezentanților centrului, focul a pornit după ce un pacient a aprins cu o brichetă câteva ziare aflate în salon. Flăcările s-au extins rapid la o saltea, iar fumul s-a răspândit în secțiune.",
+      "ISU Arad a activat Planul Roșu de Intervenție la ora 01:36. La fața locului au fost trimise două autospeciale de stingere, o autospecială de intervenție și salvare de la înălțime, unsprezece ambulanțe SMURD — dintre care una de Terapie Intensivă Mobilă — și o autospecială de transport personal și victime multiple. Incendiul a fost lichidat în scurt timp, iar Planul Roșu a fost dezactivat la ora 01:54.",
+      "Trei pacienți au fost evacuați de pompierii militari din zona afectată. Toți erau conștienți și cooperanți, dar prezentau intoxicații ușoare cu fum și atac de panică. Au fost transportați la UPU Arad pentru investigații suplimentare, evaluați, tratați și returnați la centrul medical. Ceilalți pacienți nu au suferit vătămări și nu a fost necesară evacuarea lor.",
+      "Deși incidentul a fost de mici proporții și a fost gestionat rapid, cazul ridică o întrebare esențială pentru oricine are un părinte într-un centru de îngrijire: ce se întâmplă când izbucnește un incendiu noaptea, într-un salon cu persoane care nu se pot deplasa singure? Vârstnicii cu mobilitate redusă, cu demență sau care necesită asistență permanentă nu pot reacționa ca un adult sănătos. Depind entirely de personalul de gardă și de sistemul de alarmă al clădirii.",
+      "În România, centrele rezidențiale pentru persoane vârstnice trebuie să dețină autorizație de securitate la incendiu, emisă de ISU după o verificare amănunțită a clădirii: instalații de detecție a fumului, stingătoare, hidranți, căi de evacuare semnalizate, uși rezistente la foc. Personalul trebuie instruit periodic pentru situații de urgență. Fără aceste elemente, un incendiu pornit de la o țigară sau de la un aparat electric poate deveni o tragedie în câteva minute.",
+      "Centrul Arbema Tertianum din Arad este o unitate medicală cu personal calificat, care a reacționat corect în noaptea incidentului. Dar cazul subliniază cât de important este ca familiile să verifice nu doar licența de servicii sociale, ci și autorizația ISU a clădirii în care urmează să fie cazat părintele lor. O clădire fără instalații de detecție a fumului, fără stingătoare verificate și fără personal instruit este un risc care nu merită asumat.",
+      "Pe Seniore.ro, fiecare cămin are trecut statusul licenței MMJS, iar pentru centrele care dețin autorizații suplimentare, informațiile sunt disponibile în pagina dedicată. Recomandăm familiilor să întrebe direct administratorul despre: data ultimului control ISU, existența detectoarelor de fum în saloane, procedura de evacuare în caz de incendiu și numărul de membri ai personalului prezenti în tura de noapte. Aceste detalii fac diferența dintre un incident minor și o catastrofă.",
+    ],
+  },
+  "46-centre-fara-licenta-arges-mascate-imobile-inchiriat-2026": {
+    slug: "46-centre-fara-licenta-arges-mascate-imobile-inchiriat-2026",
+    title:
+      "46 de centre fără licență în Argeș, mascate drept imobile de închiriat",
+    excerpt:
+      "Aproape jumătate din căminele de bătrâni din Argeș funcționează fără licență MMJS, transformate pe hârtie în pensiuni sau spații Airbnb. Raportul Avocatul Poporului dezvăluie schema de evaziune.",
+    date: "August 2026",
+    category: "Analiză",
+    image: "/stiri/centre-fara-licenta-arges.jpg",
+    paragraphs: [
+      "Din cele 56 de centre pentru persoane vârstnice identificate în județul Argeș, doar 10 funcționează legal — cu licență MMJS, autorizație sanitară și personal calificat. Restul de 46 operează fără nicio licență de servicii sociale, ascunse în spatele unor coduri CAEN care nu au nicio legătură cu asistența socială. Este concluzia unui raport al Avocatul Poporului — Biroul Teritorial Argeș, făcut public în august 2026.",
+      "Schema este simplă în aparență, dar eficientă în a eluda legea. Administratorul centrului elimină din documentele oficiale activitatea de asistență socială și schimbă codul CAEN al firmei. Căminul devine, pe hârtie, un imobil de închiriat sau o pensiune. Vârstnicul nu semnează un contract de furnizare a serviciilor sociale, ci un contract de închiriere pentru o cameră. Separat, o altă societate comercială figurează ca furnizor de servicii de îngrijire la domiciliu. În realitate, persoana locuiește permanent în acel spațiu, primește hrană, supraveghere și asistență — exact ca într-un cămin de bătrâni, dar fără nicio reglementare.",
+      "Avocatul Poporului a constatat că această practică s-a extins masiv după controalele declanșate în urma scandalului „azilelor groazei” din 2024. În loc să se conformeze noilor cerințe de licențiere, zeci de operatori au ales să iasă din sistemul controlat de Ministerul Muncii. Efectul este exact opusul celui urmărit de legislator: în loc de mai mult control, statul vede mai puțin. Inspectorii sociali nu mai pot intra în control, pentru că firmele respective nu figurează ca furnizori de servicii sociale.",
+      "Concluziile raportului coincid cu avertismentele lansate la București de comisarul pentru drepturile omului al Consiliului Europei, Michael O'Flaherty. În urma vizitei efectuate în România la sfârșitul lunii mai 2026, comisarul a cerut reforme urgente pentru protejarea persoanelor vulnerabile, întărirea mecanismelor de control și modificări legislative — inclusiv în dreptul penal — pentru combaterea funcționării căminelor ilegale.",
+      "Pentru o familie care plătește 3.500–6.000 de lei pe lună pentru îngrijirea unui părinte, diferența dintre un cămin licențiat și unul mascat drept imobil de închiriat este uriașă. Într-un cămin licențiat, există standarde minime de calitate verificate de inspectorii MMJS: raport personal-rezident, calificarea angajaților, plan de îngrijire individualizat, condiții de cazare, proceduri pentru administrarea medicației, mecanisme de raportare a incidentelor. Într-un centru fără licență, niciuna dintre aceste garanții nu există.",
+      "Agenția Județeană de Plăți și Inspecție Socială Argeș a aplicat amenzi contravenționale pentru funcționare fără licență și a stabilit termene pentru licențiere. Pentru operatorii care nu se conformează, următorul pas este sesizarea penală — pentru exercitarea fără drept a unor activități reglementate. Dar până la acel moment, vârstnicii cazați în aceste locații rămân fără protecție.",
+      "Seniore.ro indexează căminele de bătrâni care figurează în bazele de date oficiale și afișează pentru fiecare centrul statusul licenței. Când cauți un cămin în Argeș sau în orice alt județ, verifică dacă centrul are licență MMJS activă — se confirmă în Registrul Electronic al Serviciilor Sociale (RESS), pe site-ul Ministerului Muncii. Dacă centrul nu apare în RESS, funcționează ilegal, indiferent cum se numește pe hârtie. Iar un cămin ilegal nu este o alegere — este o loterie în care miza este siguranța și demnitatea unui om.",
+    ],
+  },
   "noul-nomenclator-servicii-sociale-2026": {
     slug: "noul-nomenclator-servicii-sociale-2026",
     title:
