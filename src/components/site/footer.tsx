@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
   "Cămine de bătrâni": [
@@ -59,15 +59,6 @@ export function SiteFooter() {
               Contact
             </h4>
             <ul className="space-y-4 text-sm">
-              <li className="flex gap-3 items-start">
-                <Phone className="size-4 shrink-0 text-gold mt-0.5" />
-                <a
-                  href="tel:+40785598779"
-                  className="hover:text-gold transition-colors"
-                >
-                  0785 598 779
-                </a>
-              </li>
               <li className="flex gap-3 items-start">
                 <Mail className="size-4 shrink-0 text-gold mt-0.5" />
                 <a
