@@ -49,6 +49,46 @@ const featuredArticle: Article = {
 
 const articles: Article[] = [
   {
+    slug: "camin-ilegal-neamt-bistrita-7-varstnici-relocati-urgenta-august-2026",
+    title:
+      "Cămin ilegal în Neamț: 7 vârstnici relocați de urgență după controlul autorităților",
+    excerpt:
+      "Un centru de îngrijire fără licență, cu hrană preparată în bucătărie neautorizată și personal muncind la negru, a fost închis în Bistrița, Neamț. Ce au descoperit inspectorii și cum alegi un cămin legal.",
+    date: "7 August 2026",
+    category: "Media",
+    image: "/stiri/camin-ilegal-neamt-bistrita.jpg",
+  },
+  {
+    slug: "azil-ilegal-olt-27-persoane-evacuate-mihaesti-august-2026",
+    title:
+      "27 de persoane evacuate dintr-un azil improvizat în Olt — dosar penal",
+    excerpt:
+      "Vârstnici și persoane cu dizabilități ținuți într-o magazie în comuna Mihăești, Olt. Intervenție masivă a autorităților, relocare în 7 județe. De ce contează licența căminului de bătrâni.",
+    date: "14 August 2026",
+    category: "Media",
+    image: "/stiri/azil-ilegal-olt-mihaesti.jpg",
+  },
+  {
+    slug: "incendiu-centru-ingrijire-varstnici-arad-august-2026",
+    title:
+      "Incendiu la centru de îngrijire pentru vârstnici în Arad — trei pacienți internați",
+    excerpt:
+      "Un pacient a dat foc unor ziare într-un salon al centrului Arbema Tertianum din Arad. Planul Roșu activat, trei vârstnici tratați pentru intoxicație cu fum. Cum verifici siguranța unui cămin.",
+    date: "23 August 2026",
+    category: "Media",
+    image: "/stiri/incendiu-centru-arad.jpg",
+  },
+  {
+    slug: "46-centre-fara-licenta-arges-mascate-imobile-inchiriat-2026",
+    title:
+      "46 de centre fără licență în Argeș, mascate drept imobile de închiriat",
+    excerpt:
+      "Aproape jumătate din căminele de bătrâni din Argeș funcționează fără licență MMJS, transformate pe hârtie în pensiuni sau spații Airbnb. Raportul Avocatul Poporului dezvăluie schema de evaziune.",
+    date: "August 2026",
+    category: "Analiză",
+    image: "/stiri/centre-fara-licenta-arges.jpg",
+  },
+  {
     slug: "noul-nomenclator-servicii-sociale-2026",
     title:
       "Noul Nomenclator al serviciilor sociale 2026 — ce se schimbă pentru căminele de bătrâni",
