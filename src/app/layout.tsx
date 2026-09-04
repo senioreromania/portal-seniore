@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Inter, Playfair_Display } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { buildHomeMetadata, websiteJsonLd, organizationJsonLd, SITE_URL } from "@/lib/seo";
@@ -53,9 +52,7 @@ export default function RootLayout({
       <head>
         <JsonLd data={websiteJsonLd()} />
         <JsonLd data={organizationJsonLd()} />
-        <Script
-          id="adsense"
-          strategy="afterInteractive"
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5360360429135111"
           crossOrigin="anonymous"
