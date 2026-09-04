@@ -3,6 +3,7 @@ import { breadcrumbJsonLd, normalizeJudet, slugifyJudet } from "@/lib/seo";
 import camineData from "@/data/camine-director.json";
 import { HomeClient } from "./home-client";
 import { createClient } from "@/lib/supabase-server";
+import { createAdminClient } from "@/lib/supabase-admin";
 
 type Camin = {
   slug: string;
@@ -155,6 +156,45 @@ export default async function HomePage() {
   const premiumCamine = supabasePremiumCamine;
   const sliderCamine = await getSupabaseSliderCamine();
 
+  // Funerare stats
+  let funerareJudete: { judet: string; count: number }[] = [];
+  let totalFunerare = 0;
+  try {
+    const admin = createAdminClient();
+    // Fetch all judete in batches (Supabase default limit is 1000)
+    const allJudetesFromDb: string[] = [];
+    let offset = 0;
+    const batchSize = 1000;
+    while (true) {
+      const { data: batch, error } = await admin
+        .from("funerare")
+        .select("judet")
+        .eq("status", "approved")
+        .range(offset, offset + batchSize - 1);
+      if (error) {
+        console.error("Funerare query error:", error.message);
+        break;
+      }
+      if (!batch || batch.length === 0) break;
+      allJudetesFromDb.push(...batch.map((f: { judet: string }) => f.judet));
+      if (batch.length < batchSize) break;
+      offset += batchSize;
+    }
+    totalFunerare = allJudetesFromDb.length;
+    const counts: Record<string, number> = {};
+    for (const judet of allJudetesFromDb) {
+      const j = normalizeJudet(judet);
+      if (j) counts[j] = (counts[j] || 0) + 1;
+    }
+    // Include ALL judete from camine list, with 0 for those without funerare data
+    const allJudetes = new Set([...judete, ...Object.keys(counts)]);
+    funerareJudete = Array.from(allJudetes)
+      .sort((a, b) => a.localeCompare(b))
+      .map((judet) => ({ judet, count: counts[judet] || 0 }));
+  } catch (e) {
+    console.error("Funerare stats error:", e);
+  }
+
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -239,6 +279,8 @@ export default async function HomePage() {
         featured={featured}
         premiumCamine={premiumCamine}
         sliderCamine={sliderCamine}
+        funerareJudete={funerareJudete}
+        totalFunerare={totalFunerare}
       />
     </>
   );

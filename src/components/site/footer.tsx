@@ -8,6 +8,9 @@ const footerLinks = {
     { href: "/camine-autorizate", label: "Cămine licențiate" },
     { href: "/cum-functioneaza", label: "Cum funcționează" },
   ],
+  "Servicii funerare": [
+    { href: "/servicii-funerare", label: "Director național" },
+  ],
   Organizație: [
     { href: "/despre", label: "Despre noi" },
     { href: "/advocacy", label: "Advocacy" },

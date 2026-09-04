@@ -104,6 +104,8 @@ export function HomeClient({
   featured,
   premiumCamine,
   sliderCamine,
+  funerareJudete,
+  totalFunerare,
 }: {
   totalCamine: number;
   licensedCount: number;
@@ -113,6 +115,8 @@ export function HomeClient({
   featured: Camin[];
   premiumCamine: (Camin & { highlight: string; description: string })[];
   sliderCamine: (Camin & { highlight: string; description: string })[];
+  funerareJudete: { judet: string; count: number }[];
+  totalFunerare: number;
 }) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
@@ -485,6 +489,130 @@ export function HomeClient({
                   </motion.div>
                 ))}
               </div>
+            </div>
+          </section>
+        )}
+
+        {/* ===== Servicii Funerare — Browse by Județe ===== */}
+        {funerareJudete.length > 0 && (
+          <section className="py-16 md:py-20 bg-navy-deep/3">
+            <div className="max-w-7xl mx-auto px-6">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                custom={0}
+                className="text-center mb-10"
+              >
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 mb-5">
+                  <span className="text-xs font-medium text-gold uppercase tracking-widest">
+                    {totalFunerare} servicii funerare indexate
+                  </span>
+                </div>
+                <h2 className="font-heading text-2xl md:text-4xl font-bold text-navy-deep mb-3">
+                  Caută servicii funerare după județ
+                </h2>
+                <p className="text-navy-deep/50 max-w-2xl mx-auto">
+                  Pompe funebre, cimitire și crematorii în România
+                </p>
+              </motion.div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                {funerareJudete.map((j, i) => (
+                  <motion.div
+                    key={j.judet}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-20px" }}
+                    variants={fadeUp}
+                    custom={i % 6}
+                  >
+                    <Link
+                      href={`/servicii-funerare/${slugifyJudet(j.judet)}`}
+                      className="group flex items-center justify-between gap-2 px-4 py-3 rounded-lg bg-white border border-navy-deep/8 hover:border-gold/30 transition-all duration-300 hover:shadow-sm"
+                    >
+                      <div className="flex flex-col">
+                        <span className="text-sm font-medium text-navy-deep group-hover:text-gold transition-colors">
+                          {j.judet}
+                        </span>
+                        <span className="text-xs text-navy-deep/40">
+                          {j.count} firme
+                        </span>
+                      </div>
+                      <ChevronRight className="size-4 text-navy-deep/20 group-hover:text-gold group-hover:translate-x-0.5 transition-all" />
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="text-center mt-10">
+                <Link
+                  href="/servicii-funerare"
+                  className="inline-flex items-center gap-2 bg-navy-deep text-paper px-6 py-3 rounded-lg font-semibold text-sm transition-all hover:bg-navy-deep/90 hover:shadow-lg"
+                >
+                  Vezi toate cele {totalFunerare} servicii funerare
+                  <ArrowRight className="size-4" />
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ===== Servicii Funerare PREMIUM ===== */}
+        {funerareJudete.length > 0 && (
+          <section className="py-16 md:py-24 bg-paper">
+            <div className="max-w-7xl mx-auto px-6">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                custom={0}
+                className="text-center mb-12"
+              >
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/40 mb-5">
+                  <Crown className="size-4 text-gold" />
+                  <span className="text-xs font-semibold text-gold uppercase tracking-widest">
+                    Premium
+                  </span>
+                </div>
+                <h2 className="font-heading text-2xl md:text-4xl font-bold text-navy-deep mb-3">
+                  Servicii funerare PREMIUM
+                </h2>
+                <p className="text-navy-deep/60 max-w-2xl mx-auto">
+                  Partenere Seniore.ro
+                </p>
+              </motion.div>
+
+              {/* CTA for funeral homes to become premium */}
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                custom={1}
+                className="max-w-2xl mx-auto text-center p-8 rounded-2xl bg-white border border-gold/20 hover:border-gold/40 transition-all"
+              >
+                <div className="inline-flex items-center justify-center size-14 rounded-2xl bg-gold/10 border border-gold/20 mb-5">
+                  <PlusCircle className="size-7 text-gold" />
+                </div>
+                <h3 className="font-heading text-xl font-bold text-navy-deep mb-3">
+                  Ești firmă de pompe funebre?
+                </h3>
+                <p className="text-navy-deep/60 leading-relaxed mb-6">
+                  Adaugă gratuit firma ta în portalul național. Fiecare
+                  vizitator care caută „servicii funerare" în județul tău te va
+                  găsi.
+                </p>
+                <Link
+                  href="/inregistrare"
+                  className="inline-flex items-center justify-center gap-2 bg-gold text-navy-deep px-6 py-3.5 rounded-lg font-semibold text-sm transition-all hover:bg-gold-light hover:shadow-lg hover:shadow-gold/20"
+                >
+                  <PlusCircle className="size-4" />
+                  Adaugă firma ta gratuit
+                </Link>
+              </motion.div>
             </div>
           </section>
         )}

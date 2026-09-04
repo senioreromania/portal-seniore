@@ -11,6 +11,7 @@ const navLinks = [
   { href: "/", label: "Acasă" },
   { href: "/camine", label: "Lista Cămine" },
   { href: "/camine-autorizate", label: "Licențiate" },
+  { href: "/servicii-funerare", label: "Servicii Funerare" },
   { href: "/cum-functioneaza", label: "Cum funcționează" },
   { href: "/stiri", label: "Știri" },
   { href: "/resurse", label: "Legislație" },

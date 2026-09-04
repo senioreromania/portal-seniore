@@ -3,6 +3,7 @@ import camineData from "@/data/camine-director.json";
 import { SITE_URL, slugifyJudet, normalizeJudet, caminPath } from "@/lib/seo";
 import { articleMetas } from "@/app/stiri/article-metas";
 import { createClient } from "@/lib/supabase-server";
+import { createAdminClient } from "@/lib/supabase-admin";
 
 type Camin = {
   slug: string;
@@ -27,6 +28,7 @@ const staticPages: {
 }[] = [
   { url: "", priority: 1.0, changeFrequency: "daily" },
   { url: "/camine", priority: 0.9, changeFrequency: "daily" },
+  { url: "/servicii-funerare", priority: 0.8, changeFrequency: "weekly" },
   { url: "/camine-autorizate", priority: 0.8, changeFrequency: "weekly" },
   { url: "/cum-functioneaza", priority: 0.7, changeFrequency: "monthly" },
   { url: "/despre", priority: 0.5, changeFrequency: "monthly" },
@@ -139,5 +141,73 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   });
 
-  return [...staticEntries, ...stiriEntries, ...judetEntries, ...oraseEntries, ...caminEntries, ...supabaseEntries];
+  // Funerare entries — judete, orase, and individual firms
+  const funerareEntries: MetadataRoute.Sitemap = [];
+  const funerareJudeteSet = new Set<string>();
+  const funerareOraseMap = new Map<string, Set<string>>();
+  try {
+    const admin = createAdminClient();
+    let offset = 0;
+    const batchSize = 1000;
+    while (true) {
+      const { data: batch } = await admin
+        .from("funerare")
+        .select("slug, judet, oras, updated_at")
+        .eq("status", "approved")
+        .not("slug", "is", null)
+        .range(offset, offset + batchSize - 1);
+      if (!batch || batch.length === 0) break;
+      for (const f of batch) {
+        if (f.slug && f.judet) {
+          const judetSlug = slugifyJudet(f.judet);
+          funerareEntries.push({
+            url: `${SITE_URL}/servicii-funerare/${judetSlug}/firma/${f.slug}`,
+            lastModified: f.updated_at ? new Date(f.updated_at) : DATA_LAST_UPDATED,
+            changeFrequency: "weekly" as const,
+            priority: 0.6,
+          });
+          funerareJudeteSet.add(f.judet);
+          if (f.oras) {
+            if (!funerareOraseMap.has(f.judet)) funerareOraseMap.set(f.judet, new Set());
+            funerareOraseMap.get(f.judet)!.add(f.oras);
+          }
+        }
+      }
+      if (batch.length < batchSize) break;
+      offset += batchSize;
+    }
+  } catch {
+    // Funerare table not available
+  }
+
+  const funerareJudetEntries: MetadataRoute.Sitemap = Array.from(funerareJudeteSet).map((j) => ({
+    url: `${SITE_URL}/servicii-funerare/${slugifyJudet(j)}`,
+    lastModified: DATA_LAST_UPDATED,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  const funerareOraseEntries: MetadataRoute.Sitemap = [];
+  funerareOraseMap.forEach((orase, judet) => {
+    orase.forEach((oras) => {
+      funerareOraseEntries.push({
+        url: `${SITE_URL}/servicii-funerare/${slugifyJudet(judet)}/${slugifyJudet(oras)}`,
+        lastModified: DATA_LAST_UPDATED,
+        changeFrequency: "weekly" as const,
+        priority: 0.5,
+      });
+    });
+  });
+
+  return [
+    ...staticEntries,
+    ...stiriEntries,
+    ...judetEntries,
+    ...oraseEntries,
+    ...caminEntries,
+    ...supabaseEntries,
+    ...funerareJudetEntries,
+    ...funerareOraseEntries,
+    ...funerareEntries,
+  ];
 }
