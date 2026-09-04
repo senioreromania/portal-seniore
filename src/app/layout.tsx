@@ -5,6 +5,7 @@ import { buildHomeMetadata, websiteJsonLd, organizationJsonLd, SITE_URL } from "
 import { JsonLd } from "@/components/json-ld";
 import { CookieBanner } from "@/components/site/cookie-banner";
 import { GoogleAnalytics } from "@/components/site/google-analytics";
+import { GoogleAdSense } from "@/components/site/google-adsense";
 import "./globals.css";
 
 const inter = Inter({
@@ -55,6 +56,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-paper w-full">
         <GoogleAnalytics />
+        <GoogleAdSense />
         {children}
         <CookieBanner />
         <Toaster position="top-right" richColors />
