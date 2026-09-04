@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Acasă" },
-  { href: "/camine", label: "Cămine" },
+  { href: "/camine", label: "Cămine de Bătrâni" },
   { href: "/servicii-funerare", label: "Servicii Funerare" },
   { href: "/cum-functioneaza", label: "Cum funcționează" },
   { href: "/stiri", label: "Știri" },
