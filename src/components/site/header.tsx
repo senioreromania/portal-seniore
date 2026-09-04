@@ -9,13 +9,10 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Acasă" },
-  { href: "/camine", label: "Lista Cămine" },
-  { href: "/camine-autorizate", label: "Licențiate" },
+  { href: "/camine", label: "Cămine" },
   { href: "/servicii-funerare", label: "Servicii Funerare" },
   { href: "/cum-functioneaza", label: "Cum funcționează" },
   { href: "/stiri", label: "Știri" },
-  { href: "/resurse", label: "Legislație" },
-  { href: "/despre", label: "Despre" },
   { href: "/contact", label: "Contact" },
 ];
 
