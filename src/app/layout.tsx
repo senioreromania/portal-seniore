@@ -54,6 +54,10 @@ export default function RootLayout({
         <JsonLd data={organizationJsonLd()} />
         <script
           async
+          src="https://fundingchoicesmessages.google.com/i/pub-5360360429135111?ers=1"
+        />
+        <script
+          async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5360360429135111"
           crossOrigin="anonymous"
         />
