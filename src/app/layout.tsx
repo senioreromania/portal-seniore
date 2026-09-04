@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Playfair_Display } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { buildHomeMetadata, websiteJsonLd, organizationJsonLd, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/json-ld";
 import { CookieBanner } from "@/components/site/cookie-banner";
 import { GoogleAnalytics } from "@/components/site/google-analytics";
-import { GoogleAdSense } from "@/components/site/google-adsense";
 import "./globals.css";
 
 const inter = Inter({
@@ -53,10 +53,16 @@ export default function RootLayout({
       <head>
         <JsonLd data={websiteJsonLd()} />
         <JsonLd data={organizationJsonLd()} />
+        <Script
+          id="adsense"
+          strategy="afterInteractive"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5360360429135111"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="min-h-full flex flex-col bg-paper w-full">
         <GoogleAnalytics />
-        <GoogleAdSense />
         {children}
         <CookieBanner />
         <Toaster position="top-right" richColors />
