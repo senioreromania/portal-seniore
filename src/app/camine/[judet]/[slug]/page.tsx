@@ -532,20 +532,6 @@ export default async function CaminDetailPage({
                   )}
                 </div>
 
-                {/* Owner CTA */}
-                <div className="p-6 rounded-xl bg-gold/5 border border-gold/20">
-                  <p className="text-sm text-navy-deep/70 mb-3">
-                    Ești proprietarul acestui cămin de bătrâni și dorești modificări / actualizări? Contactează echipa Seniore.ro.
-                  </p>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 bg-gold text-navy-deep px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-gold/20"
-                  >
-                    <Phone className="size-4" />
-                    Contact
-                  </Link>
-                </div>
-
                 {/* SEO contextual links */}
                 <div className="p-6 rounded-xl bg-white border border-navy-deep/10">
                   <h2 className="font-heading text-lg font-bold text-navy-deep mb-4">
