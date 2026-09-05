@@ -1,0 +1,296 @@
+{
+  "Alba": {
+    "queries": 24,
+    "kept": 2,
+    "review": 3,
+    "rejected": 10,
+    "skipped_dup": 79
+  },
+  "Arad": {
+    "queries": 24,
+    "kept": 2,
+    "review": 3,
+    "rejected": 9,
+    "skipped_dup": 104
+  },
+  "Argeș": {
+    "queries": 24,
+    "kept": 8,
+    "review": 2,
+    "rejected": 17,
+    "skipped_dup": 332
+  },
+  "Bacău": {
+    "queries": 24,
+    "kept": 1,
+    "review": 2,
+    "rejected": 12,
+    "skipped_dup": 173
+  },
+  "Bihor": {
+    "queries": 24,
+    "kept": 1,
+    "review": 0,
+    "rejected": 7,
+    "skipped_dup": 154
+  },
+  "Bistrița-Năsăud": {
+    "queries": 16,
+    "kept": 0,
+    "review": 0,
+    "rejected": 12,
+    "skipped_dup": 81
+  },
+  "Botoșani": {
+    "queries": 20,
+    "kept": 0,
+    "review": 0,
+    "rejected": 3,
+    "skipped_dup": 90
+  },
+  "Brașov": {
+    "queries": 24,
+    "kept": 1,
+    "review": 1,
+    "rejected": 24,
+    "skipped_dup": 257
+  },
+  "Brăila": {
+    "queries": 16,
+    "kept": 2,
+    "review": 5,
+    "rejected": 6,
+    "skipped_dup": 348
+  },
+  "București": {
+    "queries": 24,
+    "kept": 3,
+    "review": 2,
+    "rejected": 31,
+    "skipped_dup": 428
+  },
+  "Buzău": {
+    "queries": 16,
+    "kept": 0,
+    "review": 0,
+    "rejected": 14,
+    "skipped_dup": 225
+  },
+  "Caraș-Severin": {
+    "queries": 20,
+    "kept": 0,
+    "review": 0,
+    "rejected": 4,
+    "skipped_dup": 33
+  },
+  "Cluj": {
+    "queries": 28,
+    "kept": 3,
+    "review": 0,
+    "rejected": 38,
+    "skipped_dup": 122
+  },
+  "Constanța": {
+    "queries": 24,
+    "kept": 8,
+    "review": 1,
+    "rejected": 24,
+    "skipped_dup": 278
+  },
+  "Covasna": {
+    "queries": 16,
+    "kept": 1,
+    "review": 0,
+    "rejected": 8,
+    "skipped_dup": 114
+  },
+  "Călărași": {
+    "queries": 16,
+    "kept": 1,
+    "review": 0,
+    "rejected": 12,
+    "skipped_dup": 336
+  },
+  "Dolj": {
+    "queries": 20,
+    "kept": 3,
+    "review": 0,
+    "rejected": 15,
+    "skipped_dup": 190
+  },
+  "Dâmbovița": {
+    "queries": 24,
+    "kept": 0,
+    "review": 2,
+    "rejected": 3,
+    "skipped_dup": 255
+  },
+  "Galați": {
+    "queries": 16,
+    "kept": 1,
+    "review": 1,
+    "rejected": 16,
+    "skipped_dup": 184
+  },
+  "Giurgiu": {
+    "queries": 12,
+    "kept": 1,
+    "review": 0,
+    "rejected": 4,
+    "skipped_dup": 219
+  },
+  "Gorj": {
+    "queries": 20,
+    "kept": 1,
+    "review": 1,
+    "rejected": 9,
+    "skipped_dup": 203
+  },
+  "Harghita": {
+    "queries": 20,
+    "kept": 0,
+    "review": 0,
+    "rejected": 7,
+    "skipped_dup": 45
+  },
+  "Hunedoara": {
+    "queries": 28,
+    "kept": 2,
+    "review": 0,
+    "rejected": 12,
+    "skipped_dup": 94
+  },
+  "Ialomița": {
+    "queries": 20,
+    "kept": 1,
+    "review": 0,
+    "rejected": 37,
+    "skipped_dup": 306
+  },
+  "Iași": {
+    "queries": 20,
+    "kept": 1,
+    "review": 2,
+    "rejected": 5,
+    "skipped_dup": 71
+  },
+  "Ilfov": {
+    "queries": 48,
+    "kept": 7,
+    "review": 1,
+    "rejected": 58,
+    "skipped_dup": 436
+  },
+  "Maramureș": {
+    "queries": 20,
+    "kept": 2,
+    "review": 0,
+    "rejected": 27,
+    "skipped_dup": 44
+  },
+  "Mehedinți": {
+    "queries": 20,
+    "kept": 0,
+    "review": 1,
+    "rejected": 13,
+    "skipped_dup": 112
+  },
+  "Mureș": {
+    "queries": 24,
+    "kept": 2,
+    "review": 0,
+    "rejected": 59,
+    "skipped_dup": 118
+  },
+  "Neamț": {
+    "queries": 24,
+    "kept": 1,
+    "review": 0,
+    "rejected": 20,
+    "skipped_dup": 89
+  },
+  "Olt": {
+    "queries": 20,
+    "kept": 1,
+    "review": 0,
+    "rejected": 11,
+    "skipped_dup": 219
+  },
+  "Prahova": {
+    "queries": 24,
+    "kept": 0,
+    "review": 0,
+    "rejected": 23,
+    "skipped_dup": 78
+  },
+  "Satu Mare": {
+    "queries": 16,
+    "kept": 0,
+    "review": 1,
+    "rejected": 18,
+    "skipped_dup": 137
+  },
+  "Sibiu": {
+    "queries": 24,
+    "kept": 2,
+    "review": 2,
+    "rejected": 27,
+    "skipped_dup": 131
+  },
+  "Suceava": {
+    "queries": 24,
+    "kept": 2,
+    "review": 2,
+    "rejected": 11,
+    "skipped_dup": 42
+  },
+  "Sălaj": {
+    "queries": 16,
+    "kept": 1,
+    "review": 2,
+    "rejected": 19,
+    "skipped_dup": 92
+  },
+  "Teleorman": {
+    "queries": 20,
+    "kept": 0,
+    "review": 0,
+    "rejected": 12,
+    "skipped_dup": 372
+  },
+  "Timiș": {
+    "queries": 24,
+    "kept": 4,
+    "review": 0,
+    "rejected": 8,
+    "skipped_dup": 163
+  },
+  "Tulcea": {
+    "queries": 20,
+    "kept": 0,
+    "review": 1,
+    "rejected": 28,
+    "skipped_dup": 212
+  },
+  "Vaslui": {
+    "queries": 16,
+    "kept": 3,
+    "review": 0,
+    "rejected": 15,
+    "skipped_dup": 136
+  },
+  "Vrancea": {
+    "queries": 20,
+    "kept": 0,
+    "review": 1,
+    "rejected": 12,
+    "skipped_dup": 128
+  },
+  "Vâlcea": {
+    "queries": 20,
+    "kept": 2,
+    "review": 1,
+    "rejected": 38,
+    "skipped_dup": 321
+  }
+}
