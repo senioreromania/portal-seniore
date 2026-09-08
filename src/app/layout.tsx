@@ -66,11 +66,11 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-paper w-full">
         <GoogleAnalytics />
         <div className="max-w-7xl mx-auto w-full px-4 py-2">
-          <AdSlot slot="1234567890" />
+          <AdSlot slot="4592391205" />
         </div>
         {children}
         <div className="max-w-7xl mx-auto w-full px-4 py-2">
-          <AdSlot slot="0987654321" />
+          <AdSlot slot="8172543564" />
         </div>
         <CookieBanner />
         <Toaster position="top-right" richColors />
