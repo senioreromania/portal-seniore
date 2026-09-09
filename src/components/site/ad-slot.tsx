@@ -17,8 +17,7 @@ interface AdSlotProps {
 
 /**
  * Google AdSense ad unit.
- * Requires the AdSense script to be loaded in layout.tsx.
- * The `slot` prop is the data-ad-slot ID from your AdSense dashboard.
+ * Uses the standard AdSense push pattern.
  */
 export function AdSlot({
   slot,
@@ -27,14 +26,18 @@ export function AdSlot({
   className = "",
 }: AdSlotProps) {
   const insRef = useRef<HTMLModElement>(null);
+  const pushedRef = useRef(false);
 
   useEffect(() => {
+    if (pushedRef.current) return;
+    pushedRef.current = true;
+
     try {
       if (typeof window !== "undefined") {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
       }
-    } catch {
-      // AdSense not loaded yet or blocked
+    } catch (e) {
+      console.error("AdSense push error:", e);
     }
   }, []);
 
@@ -43,7 +46,7 @@ export function AdSlot({
       <ins
         ref={insRef}
         className="adsbygoogle"
-        style={{ display: "block" }}
+        style={{ display: "block", minHeight: "90px" }}
         data-ad-client="ca-pub-5360360429135111"
         data-ad-slot={slot}
         data-ad-format={format}

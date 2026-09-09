@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin } from "lucide-react";
+import { AdSlot } from "@/components/site/ad-slot";
 
 const footerLinks = {
   "Cămine de bătrâni": [
@@ -231,6 +232,11 @@ export function SiteFooter() {
             </a>
             . Toate drepturile rezervate.
           </span>
+        </div>
+      </div>
+      <div className="relative z-0 w-full overflow-hidden border-t border-navy-deep/5 bg-paper">
+        <div className="max-w-7xl mx-auto px-4 py-2">
+          <AdSlot slot="8172543564" />
         </div>
       </div>
     </footer>

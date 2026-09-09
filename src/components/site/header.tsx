@@ -6,6 +6,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { AdSlot } from "@/components/site/ad-slot";
 
 const navLinks = [
   { href: "/", label: "Acasă" },
@@ -20,6 +21,7 @@ export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
+    <>
     <header className="sticky top-0 z-50 w-full glass border-b border-navy-deep/10">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex h-20 items-center justify-between">
@@ -117,5 +119,11 @@ export function SiteHeader() {
         )}
       </AnimatePresence>
     </header>
+    <div className="relative z-0 w-full overflow-hidden border-b border-navy-deep/5 bg-paper">
+      <div className="max-w-7xl mx-auto px-4 py-2">
+        <AdSlot slot="4592391205" />
+      </div>
+    </div>
+    </>
   );
 }

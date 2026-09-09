@@ -5,7 +5,6 @@ import { buildHomeMetadata, websiteJsonLd, organizationJsonLd, SITE_URL } from "
 import { JsonLd } from "@/components/json-ld";
 import { CookieBanner } from "@/components/site/cookie-banner";
 import { GoogleAnalytics } from "@/components/site/google-analytics";
-import { AdSlot } from "@/components/site/ad-slot";
 import "./globals.css";
 
 const inter = Inter({
@@ -65,13 +64,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-paper w-full">
         <GoogleAnalytics />
-        <div className="max-w-7xl mx-auto w-full px-4 py-2">
-          <AdSlot slot="4592391205" />
-        </div>
         {children}
-        <div className="max-w-7xl mx-auto w-full px-4 py-2">
-          <AdSlot slot="8172543564" />
-        </div>
         <CookieBanner />
         <Toaster position="top-right" richColors />
       </body>
