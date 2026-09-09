@@ -24,6 +24,7 @@ function WhatsAppIcon({ className }: { className?: string }) {
 }
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
+import { AdSlot } from "@/components/site/ad-slot";
 import { JsonLd } from "@/components/json-ld";
 import { buildCaminMetadata, nursingHomeJsonLd, breadcrumbJsonLd, faqCaminJsonLd, normalizeJudet, SITE_NAME, slugifyJudet, titleCase, caminPath, cleanCaminName } from "@/lib/seo";
 import { FaqSection } from "@/components/faq-section";
@@ -530,6 +531,11 @@ export default async function CaminDetailPage({
                       Momentan fără descriere.
                     </p>
                   )}
+                </div>
+
+                {/* In-content Ad */}
+                <div className="p-6 rounded-xl bg-white border border-navy-deep/10">
+                  <AdSlot slot="4592391205" />
                 </div>
 
                 {/* SEO contextual links */}
